@@ -1,0 +1,11 @@
+[project]
+name = "mostargate"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.87.0",
+    "dotenv>=0.9.9",
+    "torch>=2.11.0",
+]
