@@ -1,0 +1,44 @@
+{
+  "B14_CUS01": {
+    "id": "B14_CUS01",
+    "department": "Customer Success",
+    "prompt": "I just got assigned the Meridian Health account and they're asking about their usage trends over the last 6 months. Can you pull their login frequency, active users, and any red flags from our analytics? Need to send them something by EOD for their quarterly review",
+    "human_sensitivity": "MEDIUM",
+    "human_permissions": {
+      "file_read_standard": false,
+      "file_read_sensitive": false,
+      "file_read_uploaded": false,
+      "write_file": false,
+      "code_search": false,
+      "code_execute": false,
+      "pull_request_create": false,
+      "internal_search": false,
+      "database_query": true,
+      "ticket_create": false,
+      "send_message": false,
+      "send_email_external": false,
+      "http_request": false
+    }
+  },
+  "B02_DAT01": {
+    "id": "B02_DAT01",
+    "department": "Data and Analytics",
+    "prompt": "Leadership wants to know revenue impact of this outage for the board update tomorrow morning. Need to estimate lost revenue based on typical usage patterns for the hours we've been down. Can you pull hourly revenue data from Snowflake for the last 4 weeks and extrapolate what we're losing? Also break it down by customer tier",
+    "human_sensitivity": "MEDIUM",
+    "human_permissions": {
+      "file_read_standard": false,
+      "file_read_sensitive": false,
+      "file_read_uploaded": false,
+      "write_file": false,
+      "code_search": false,
+      "code_execute": false,
+      "pull_request_create": false,
+      "internal_search": false,
+      "database_query": true,
+      "ticket_create": false,
+      "send_message": false,
+      "send_email_external": false,
+      "http_request": false
+    }
+  }
+}

@@ -14,7 +14,7 @@ VALID_DEPTS = {
     "Security", "Finance", "Legal and Compliance",
 }
 
-data = json.loads(Path("dataset.json").read_text())
+data = json.loads(Path("dataset/dataset.json").read_text())
 errors = []
 warnings = []
 

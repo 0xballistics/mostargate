@@ -107,7 +107,7 @@ def run_pass2(batch_num: int):
 
     message = client.messages.create(
         model=constants.MODEL,
-        max_tokens=8000,
+        max_tokens=10000,
         messages=[{"role": "user", "content": prompt}],
     )
 
