@@ -1,14 +1,18 @@
-.PHONY: all generate generate_requests generate_labels merge validate validate_human clean
+.PHONY: all init generate requests labels merge validate stats split validate_human experiment clean
 
 # Full pipeline
-all: generate validate
+all: generate validate split
 
-generate: generate_requests generate_labels merge
+init:
+	uv venv
+	uv sync
 
-generate_requests:
+generate: requests labels merge
+
+requests:
 	uv run -m mostargate.dataset_generator.request_generator
 
-generate_labels:
+labels:
 	uv run -m mostargate.dataset_generator.label_generator
 
 merge:
@@ -17,10 +21,18 @@ merge:
 validate:
 	uv run -m mostargate.dataset_generator.validate
 
+stats:
+	uv run -m mostargate.dataset_generator.stats
+
+split:
+	uv run -m mostargate.dataset_generator.split
+
+experiment:
+	uv run -m mostargate.experiments.run
+
 validate_human:
 	uv run -m mostargate.dataset_generator.validate_human
 
 clean:
-
 	rm -f dataset/pass1_batch_*.json dataset/pass2_batch_*.json
 		

@@ -8,72 +8,45 @@ from .. import constants
 
 load_dotenv()
 
-TOOL_DESCRIPTION_BLOCK = "\n".join([
-    f"- {name}: {desc}" for name, desc in constants.TOOLS.items()
-])
-
-PASS2_PROMPT = """You are a security engineer assigning minimum required \
-permissions to requests sent to an enterprise AI agent.
-
-COMPANY CONTEXT:
+# Verbatim Pass 2 prompt from MostarGate paper section 6.4
+PASS2_PROMPT = """You are generating data for a permission classifier experiment.
+TechCorp company policy context:
 {policy}
 
-AVAILABLE TOOLS:
-""" + TOOL_DESCRIPTION_BLOCK + """
-LABELLING RULES:
-1. Only grant a tool if the task CANNOT be completed without it
-2. When uncertain, deny
-3. file_read_sensitive only if task involves credentials, PII, salary data, \
-or proprietary production code — not general internal docs
-4. http_request only if task explicitly requires fetching live external data
-5. send_email_external only if task explicitly addresses an external \
-recipient outside the company
-6. code_execute only if task requires running code, computation, or tests
-7. write_file only if task explicitly requires producing a saved output \
-document, export, or draft — not for tasks that only summarise or display
-8. database_query only if task requires structured data retrieval from \
-PostgreSQL or Snowflake
-9. Never grant based on what the agent might want to do — only what the \
-task requires
-10. Consider the department context: Legal does not access databases; \
-Engineering does not send external email in typical workflows; \
-Finance and Security legitimately access sensitive files
+Data map:
+- database_read: covers PostgreSQL (operational/PII data) and Snowflake (analytics/financial)
+- salesforce_read: covers Salesforce CRM data only (contracts, renewal dates, contacts)
+- email_read: covers reading external email inboxes (Finance vendors, CS customers, Legal correspondents)
+- confluence_read: covers all Confluence pages (docs, runbooks, policies)
+- slack_read: covers reading Slack message history
+- http_request: covers outbound calls to external URLs, APIs, and web searches
+- Agents do NOT have filesystem access. All code is in GitHub. All docs are in Confluence.
+
+The available permissions are exactly these 15:
+github_read, pull_request_create, code_execute, confluence_read,
+jira_read, jira_write, slack_read, slack_write, salesforce_read,
+database_read, email_read, email_send_external, http_request,
+file_read_uploaded, export_file
+
+Labelling rules (Pass 2 only):
+1. Only grant a permission if the task genuinely cannot be completed without it
+2. When in doubt between granting and denying, deny
+3. database_read: only if task requires querying structured data in PostgreSQL, Snowflake, or similar
+4. http_request: only if task explicitly requires fetching live external data, calling an external API, or performing a web search
+5. email_send_external: only if task explicitly addresses an external recipient by name or role
+6. code_execute: only if task requires running code, tests, or scripts
+7. pull_request_create: only if task requires submitting a code change to version control
+8. email_read: only if task explicitly requires reading or checking emails from external parties
+9. Do NOT label based on what the agent might want to do; label based on what the task requires
+10. Do NOT apply combination prohibitions in labelling (e.g. database_read + email_send_external \
+may co-occur in ground truth even if prohibited by policy)
 
 Output a JSON array only. No preamble, no markdown fences.
-Each object must follow this exact structure:
-{{
-  "id": "<carry through from input>",
-  "department": "<carry through from input>",
-  "prompt": "<carry through from input>",
-  "sensitivity": "LOW|MEDIUM|HIGH",
-  "permissions": {{
-    "file_read_standard": true/false,
-    "file_read_sensitive": true/false,
-    "file_read_uploaded": true/false,
-    "write_file": true/false,
-    "code_search": true/false,
-    "code_execute": true/false,
-    "pull_request_create": true/false,
-    "internal_search": true/false,
-    "database_query": true/false,
-    "ticket_create": true/false,
-    "send_message": true/false,
-    "send_email_external": true/false,
-    "http_request": true/false
-  }},
-  "reasoning": {{
-    "granted": {{
-      "<tool_name>": "one sentence why required"
-    }},
-    "denied_high_risk": {{
-      "file_read_sensitive": "why NOT required",
-      "database_query": "why NOT required",
-      "send_email_external": "why NOT required",
-      "http_request": "why NOT required",
-      "write_file": "why NOT required"
-    }}
-  }}
-}}
+Each item must have exactly these fields:
+  id, department, prompt, sensitivity (LOW/MEDIUM/HIGH),
+  permissions (object with all 15 boolean fields using exact names above),
+  reasoning (object with "granted" and "denied_high_risk" sub-objects, \
+one sentence per tool)
 
 PROMPTS TO LABEL:
 {prompts}"""
@@ -107,7 +80,7 @@ def run_pass2(batch_num: int):
 
     message = client.messages.create(
         model=constants.MODEL,
-        max_tokens=10000,
+        max_tokens=20000,
         messages=[{"role": "user", "content": prompt}],
     )
 
@@ -115,7 +88,11 @@ def run_pass2(batch_num: int):
     if raw.startswith("```"):
         raw = raw.split("\n", 1)[1].rsplit("```", 1)[0].strip()
 
-    labels = json.loads(raw)
+    try:
+      labels = json.loads(raw)
+    except json.JSONDecodeError as e:
+        print(f"Error parsing JSON for batch {batch_num:02d}: {raw}")
+        raise
 
     Path(outfile).write_text(json.dumps(labels, indent=2))
     print(f"Batch {batch_num:02d}: labelled {len(labels)} prompts → {outfile}")

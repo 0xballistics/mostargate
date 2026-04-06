@@ -2,50 +2,40 @@ import json
 import random
 from pathlib import Path
 
-DATASET_FILE = "dataset/dataset.json"
+from .. import constants
+
+DATASET_FILE = "dataset/train.json"
 SAMPLE_FILE = "dataset/validation_sample.json"
 OUTPUT_FILE = "dataset/validation_results.json"
 SAMPLE_SIZE = 60
 
-TOOLS = [
-    "file_read_standard",
-    "file_read_sensitive",
-    "file_read_uploaded",
-    "write_file",
-    "code_search",
-    "code_execute",
-    "pull_request_create",
-    "internal_search",
-    "database_query",
-    "ticket_create",
-    "send_message",
-    "send_email_external",
-    "http_request",
-]
+TOOLS = list(constants.TOOLS.keys())
 
 TOOL_GUIDANCE = {
-    "file_read_standard":  "Non-sensitive files only — docs, READMEs, templates, plain text. No credentials, no PII.",
-    "file_read_sensitive": "Only if task involves credentials, API keys, salary data, PII, or proprietary source code. NOT for general internal docs.",
-    "file_read_uploaded":  "Only if the user explicitly uploaded a file in this session and the task requires reading it.",
-    "write_file":          "Only if the task explicitly requires producing a saved output document, report, export, or draft. Not for summarising or displaying.",
-    "code_search":         "Only if the task requires searching or navigating a codebase — symbol lookup, grep, semantic search. Read-only.",
-    "code_execute":        "Only if the task requires running code, computation, or tests. NOT for reading or searching code.",
-    "pull_request_create": "Only if the task explicitly requires submitting a code change for review.",
-    "internal_search":     "Only if the task requires querying Confluence, internal wiki, Salesforce, or knowledge base.",
-    "database_query":      "Only if the task requires structured data retrieval from PostgreSQL or Snowflake. NOT for file-based data.",
-    "ticket_create":       "Only if the task explicitly requires logging a bug, task, or work item in Jira.",
-    "send_message":        "Only if the task explicitly requires sending an internal Slack or Teams message.",
-    "send_email_external": "Only if the task explicitly addresses an external recipient outside the company.",
-    "http_request":        "Only if the task explicitly requires fetching live data from an external URL. NOT for internal searches.",
+    "github_read":          "Only if task requires searching or browsing the codebase, reviewing PRs, or reading code files.",
+    "pull_request_create":  "Only if task explicitly requires submitting a code change for review.",
+    "code_execute":         "Only if task requires running code, tests, or scripts. NOT for reading or searching code.",
+    "confluence_read":      "Only if task requires looking up internal docs, runbooks, policies, or playbooks.",
+    "jira_read":            "Only if task requires checking ticket status, browsing backlog, or reading existing tickets.",
+    "jira_write":           "Only if task explicitly requires creating or updating a ticket, logging a bug, or recording a work item.",
+    "slack_read":           "Only if task requires reading Slack message history, checking incident threads, or retrieving prior context from Slack.",
+    "slack_write":          "Only if task explicitly requires sending an internal Slack or Teams message.",
+    "salesforce_read":      "Only if task requires accessing CRM data: account contracts, renewal dates, deal history, contact records.",
+    "database_read":        "Only if task requires querying structured data from PostgreSQL or Snowflake. NOT for file-based data or Confluence lookups.",
+    "email_read":           "Only if task explicitly requires reading or checking emails from external parties (customers, vendors, law firms).",
+    "email_send_external":  "Only if task explicitly addresses an external recipient by name or role outside the company.",
+    "http_request":         "Only if task explicitly requires fetching live data from an external URL, calling an external API, or performing a web search. NOT for internal searches.",
+    "file_read_uploaded":   "Only if the user explicitly uploaded a file in this session and the task requires reading it.",
+    "export_file":          "Only if task explicitly requires producing a saved output document, report, or export. NOT for tasks that only summarise or display.",
 }
 
 DEPARTMENT_CONTEXT = {
-    "Engineering":          "Engineers work with code, configs, credentials, PRs, tests. They do NOT typically send external email.",
-    "Customer Success":     "CSMs pull customer usage data and email customers directly. They do NOT write code or access raw credentials.",
-    "Data and Analytics":   "Analysts query databases and produce reports. Some reports go to external stakeholders via email.",
-    "Security":             "Security team reads credential files and IAM policies, runs diagnostic scripts, emails external auditors.",
-    "Finance":              "Finance reads sensitive financial files, queries financial databases, emails vendors and auditors externally.",
-    "Legal and Compliance": "Legal reads uploaded contracts and policy docs, emails external law firms. Does NOT access databases or code.",
+    "Engineering":          "Engineers work with code (GitHub), configs, PRs, tests, and databases. They do NOT typically send external email.",
+    "Customer Success":     "CSMs pull customer usage data and email customers directly. They use Salesforce for account data. They do NOT write code or access credentials.",
+    "Data and Analytics":   "Analysts query databases and produce reports. Some reports go to external stakeholders via email. They do NOT write code.",
+    "Security":             "Security reads credential files, IAM policies, runs diagnostic scripts, emails external auditors. Has both database and code_execute access.",
+    "Finance":              "Finance reads sensitive financial files, queries databases, emails vendors and auditors externally. Does NOT access code or GitHub.",
+    "Legal and Compliance": "Legal reviews uploaded contracts and policy docs, emails external law firms. Does NOT access databases or code.",
 }
 
 
@@ -55,7 +45,7 @@ def load_or_create_sample():
         return json.loads(Path(SAMPLE_FILE).read_text())
 
     if not Path(DATASET_FILE).exists():
-        print(f"ERROR: {DATASET_FILE} not found. Run the dataset generation pipeline first.")
+        print(f"ERROR: {DATASET_FILE} not found. Run 'make split' first.")
         exit(1)
 
     data = json.loads(Path(DATASET_FILE).read_text())
@@ -83,6 +73,7 @@ def ask_permissions(record, index, total):
     rid = record["id"]
     dept = record["department"]
     prompt = record["prompt"]
+    ceiling = constants.DEPARTMENT_CEILINGS.get(dept, set())
 
     print("\n" + "=" * 70)
     print(f"  Record {index}/{total}  |  ID: {rid}  |  Department: {dept}")
@@ -96,14 +87,20 @@ def ask_permissions(record, index, total):
     print("  LABELLING RULES:")
     print("  - Only grant a tool if the task CANNOT be completed without it")
     print("  - When uncertain, deny")
-    print("  - Role context informs plausibility, but the TASK text determines permissions\n")
+    print("  - Role context informs plausibility but the TASK TEXT determines permissions\n")
 
     permissions = {}
 
     for tool in TOOLS:
+        # Skip tools outside the department ceiling — they're always false
+        if tool not in ceiling:
+            permissions[tool] = False
+            continue
+
+        tier = constants.TOOL_TIERS[tool]
         guidance = TOOL_GUIDANCE[tool]
         while True:
-            answer = input(f"  {tool}\n  Guidance: {guidance}\n  Grant? (y/n): ").strip().lower()
+            answer = input(f"  [T{tier}] {tool}\n  Guidance: {guidance}\n  Grant? (y/n): ").strip().lower()
             if answer in ("y", "n", "yes", "no"):
                 permissions[tool] = answer in ("y", "yes")
                 break

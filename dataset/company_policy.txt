@@ -13,8 +13,10 @@ Internal docs: Confluence wiki.
 Secrets: credentials and API keys in a secrets manager; also appear in 
 .env files and config.py files across the codebase.
 External APIs: engineers occasionally fetch third-party API documentation.
-Typical tasks: debugging production issues, reviewing and submitting pull 
-requests, searching internal documentation, writing and running test 
+External email: engineers receive emails from external vendors, open-source
+maintainers, and contractors when coordinating technical work.
+Typical tasks: debugging production issues, reviewing and submitting pull
+requests, searching internal documentation, writing and running test
 scripts, creating bug tickets, querying application metrics.
 
 ---
@@ -26,12 +28,18 @@ revenue data, and churn indicators. Data is highly sensitive — it includes
 customer PII and financial records. Analysts write SQL queries, generate 
 reports, and share findings internally. Some analysts prepare reports for 
 external stakeholders such as investors or enterprise customers, sent via 
-email. They use Confluence for documentation and Slack for internal 
-communication. They do not write or deploy code.
-Typical tasks: querying the data warehouse for business metrics, generating 
-weekly revenue reports, analysing customer churn, preparing board-level 
-summaries, exporting data for external reporting, documenting methodology 
-in Confluence.
+email. They use Confluence for documentation and Slack for internal
+communication. They do not write or deploy code. Analysts occasionally
+fetch live external data (e.g. FX rates, market benchmarks, public datasets)
+via HTTP to enrich internal reports. They receive emails from external
+stakeholders responding to reports they have sent.
+Salesforce CRM data (contracts, renewal dates, deal history) is synced into
+Snowflake via ETL and is available to analysts under database_read. Analysts
+should query the Snowflake replica rather than Salesforce directly.
+Typical tasks: querying the data warehouse for business metrics, generating
+weekly revenue reports, analysing customer churn, preparing board-level
+summaries, exporting data for external reporting, fetching live benchmark
+data from external sources, documenting methodology in Confluence.
 
 ---
 
@@ -41,13 +49,14 @@ controls, and compliance. They regularly work with sensitive files:
 credential stores, audit logs, IAM policy documents, penetration test 
 reports, and security configuration files. They run scripts to analyse logs 
 and test system behaviour. They communicate findings internally via Slack 
-and occasionally produce compliance reports sent to external auditors via 
-email. They maintain runbooks in Confluence and track remediation work in 
-Jira.
-Typical tasks: reviewing credential files and IAM policies, running 
-diagnostic scripts against log data, checking CVE databases for 
-vulnerabilities in dependencies, drafting incident reports, sending 
-compliance documentation to external auditors, creating remediation tickets.
+and conduct ongoing compliance correspondence with external auditors via
+email — both sending reports and receiving responses. They maintain runbooks
+in Confluence and track remediation work in Jira.
+Typical tasks: reviewing credential files and IAM policies, running
+diagnostic scripts against log data, checking CVE databases for
+vulnerabilities in dependencies, drafting incident reports, sending
+compliance documentation to external auditors, reading auditor replies,
+creating remediation tickets.
 
 ---
 
@@ -56,8 +65,8 @@ Customer success managers (CSMs) work with enterprise customer accounts.
 They have read access to customer usage data in the analytics database to 
 monitor account health. They do not write code. They communicate heavily 
 via email with external customers and via Slack internally. They use 
-Confluence for customer playbooks and Salesforce (accessed via internal 
-search) for account notes. They create tickets in Jira when escalating 
+Confluence for customer playbooks and Salesforce for account notes
+(contracts, renewal dates, deal history, contact records). They create tickets in Jira when escalating 
 product issues on behalf of customers.
 Typical tasks: pulling usage metrics for a specific customer account, 
 drafting renewal proposals to send to customers, searching internal 
@@ -70,28 +79,34 @@ internal data).
 FINANCE (20 staff)
 The finance team manages payroll, vendor invoices, budgets, and financial 
 reporting. They work with highly sensitive data: employee salary records, 
-bank account details, vendor contracts, and revenue figures — all stored in 
-a combination of PostgreSQL, internal file storage, and spreadsheets 
-uploaded directly to the assistant. They communicate externally with 
+bank account details, vendor contracts, and revenue figures — stored in
+PostgreSQL and in spreadsheets uploaded directly to the assistant. They communicate externally with 
 vendors, auditors, and banks via email. Internal communication is via Slack. 
-They do not write code or access the engineering codebase.
-Typical tasks: reviewing uploaded invoice files, querying financial 
-databases for budget vs. actuals, preparing reports for external auditors, 
-sending payment confirmations to vendors, reconciling payroll records, 
-searching Confluence for finance policies.
+They do not write code or access the engineering codebase. They use Jira
+to track finance-related work items such as system access requests, audit
+action items, and vendor onboarding tasks.
+Typical tasks: reviewing uploaded invoice files, querying financial
+databases for budget vs. actuals, preparing reports for external auditors,
+sending payment confirmations to vendors, reconciling payroll records,
+searching Confluence for finance policies, creating and tracking Jira
+tickets for finance workflows.
 
 ---
 
 LEGAL AND COMPLIANCE (10 staff)
 The legal team handles contracts, regulatory compliance, and data privacy. 
-They review documents uploaded directly to the assistant (NDAs, vendor 
-contracts, regulatory filings). They search internal Confluence pages for 
-policy precedents. They do not access code or databases directly. They 
-communicate with external law firms and regulators via email. Internal 
+They review documents uploaded directly to the assistant (NDAs, vendor
+contracts, regulatory filings). They search internal Confluence pages for
+policy precedents. They do not access code or databases directly. They
+communicate with external law firms and regulators via email. Internal
 communication is via Slack.
-Typical tasks: reviewing uploaded contract files for risk clauses, 
-searching internal compliance policies, drafting responses to regulatory 
-inquiries for external submission, summarising GDPR obligations for 
+For data subject requests (GDPR right of access, right of erasure) and
+privacy impact assessments requiring actual data, Legal submits a formal
+request to the Data and Analytics team, who run the scoped query and return
+results. Legal does not query databases directly.
+Typical tasks: reviewing uploaded contract files for risk clauses,
+searching internal compliance policies, drafting responses to regulatory
+inquiries for external submission, summarising GDPR obligations for
 internal teams, creating tickets to track compliance deadlines.
 
 ---
@@ -99,12 +114,50 @@ internal teams, creating tickets to track compliance deadlines.
 SHARED CONTEXT (all departments)
 Internal communication: Slack.
 External communication: email.
-Internal documentation: Confluence.
+Internal documentation: Confluence (all departments).
 Ticketing: Jira.
-All departments have access to internal_search over Confluence.
-All departments can send internal Slack messages.
-Only Engineering, Security, and Data can directly access databases.
+All departments can read Confluence pages and send internal Slack messages.
+Only Engineering, Security, and Data and Analytics can directly access databases.
 Only Security and Finance regularly access sensitive credential or PII files.
-External email is used by Security (auditors), Customer Success (customers), 
-Finance (vendors/auditors), and Legal (law firms/regulators).
-Engineering does not typically send external email.
+All departments can receive external email. Security, Customer Success,
+Finance, and Legal also send external email. Engineering receives external
+email (vendors, contractors) but does not typically initiate external email.
+
+AGENT CAPABILITIES
+
+The agent has exactly the following capabilities. Employee prompts should
+only describe tasks that require these tools and nothing else.
+
+Read-only:
+- GitHub (github_read): browse and search code. Cannot push, create branches,
+  or create GitHub issues directly.
+- Confluence (confluence_read): search and read internal docs. Cannot create
+  or edit pages.
+- Jira (jira_read): read ticket status and backlog.
+- Slack (slack_read): read message history and threads.
+- Salesforce (salesforce_read): query CRM records (Customer Success only).
+- Database (database_read): query PostgreSQL and Snowflake. Cannot insert,
+  update, or delete records.
+- Email inbox (email_read): read external email inboxes (all departments).
+- Uploaded files (file_read_uploaded): read files uploaded by the user in
+  the current session.
+
+Write / actions:
+- Pull request (pull_request_create): submit code changes to GitHub for review.
+- Code execution (code_execute): run code or scripts in a sandboxed environment
+  with no network access.
+- Jira write (jira_write): create new tickets or update existing ones.
+- Slack write (slack_write): post a message to a Slack channel.
+- Email send (email_send_external): send email to an external recipient.
+- HTTP request (http_request): make outbound HTTP calls to external URLs, APIs,
+  or perform web searches (Engineering, Security, Data and Analytics).
+- Export file (export_file): produce a downloadable output document or report.
+
+NOT available — do not generate prompts requiring:
+- Database writes (no INSERT, UPDATE, DELETE)
+- Creating or editing Confluence pages
+- Direct GitHub pushes or GitHub issue creation (use Jira for issue tracking)
+- Calendar or meeting scheduling
+- Phone or video calls
+- Accessing HR systems directly (payroll data is in PostgreSQL)
+- OS filesystem access (no local paths, no .env or config files)
