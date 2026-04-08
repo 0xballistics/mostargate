@@ -34,5 +34,6 @@ validate_human:
 	uv run -m mostargate.dataset_generator.validate_human
 
 clean:
+	zip -r dataset/batches.zip dataset/pass*
 	rm -f dataset/pass1_batch_*.json dataset/pass2_batch_*.json
 		
