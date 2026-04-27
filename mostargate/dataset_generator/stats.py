@@ -1,3 +1,5 @@
+# Deprecated — functionality moved to metrics.py.
+# Use: make dataset-stats  (uv run -m mostargate.dataset_generator.metrics dataset)
 import json
 from collections import Counter
 from pathlib import Path

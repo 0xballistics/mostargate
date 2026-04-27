@@ -26,7 +26,7 @@
         "github_read": "Required to access PR #3847 and review the old and new pagination implementations.",
         "code_execute": "Required to run benchmarks and performance tests to compare the two implementations."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task is performance comparison, not submitting changes.",
         "confluence_read": "No documentation search required.",
         "jira_read": "No ticket review required.",
@@ -70,7 +70,7 @@
         "github_read": "Required to check the api-gateway repo for recent cache TTL configuration changes.",
         "database_read": "Required to pull cache hit rate metrics from the last week for comparison to baseline."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task involves investigation and analysis, not submitting code changes.",
         "code_execute": "Task requires reviewing metrics and configuration, not running scripts.",
         "confluence_read": "Task does not require searching internal documentation.",
@@ -114,7 +114,7 @@
         "github_read": "Required to review current OAuth refresh flow implementation in auth-service",
         "http_request": "Required to fetch Okta documentation to compare with internal implementation"
       },
-      "denied_high_risk": {}
+      "denied": {}
     }
   },
   {
@@ -143,7 +143,7 @@
       "granted": {
         "github_read": "Required to compare code changes in the metrics aggregation endpoint between versions 3.2.0 and 3.2.1"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task only requires reviewing existing code changes, not submitting new code",
         "code_execute": "Task requires reading code diff, not executing code or tests",
         "confluence_read": "Task does not require reading internal documentation",
@@ -188,7 +188,7 @@
         "database_read": "Required to query PostgreSQL metrics for query execution times on both current and previous dates",
         "jira_write": "Required to create a ticket for optimization work with the performance data"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task requires querying performance metrics, not reading code",
         "pull_request_create": "Task does not require submitting code changes",
         "code_execute": "Task requires querying existing metrics, not running code",
@@ -231,7 +231,7 @@
       "granted": {
         "jira_read": "Required to pull list of P1 and P2 bugs, check assignment status, and determine age"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require browsing or searching code",
         "pull_request_create": "Task does not require submitting code changes",
         "code_execute": "Task does not require running code or scripts",
@@ -276,7 +276,7 @@
         "github_read": "Required to search the codebase for usage of the Amplitude v3.1 client library",
         "email_read": "Required to read the vendor email containing the deprecation notice and migration guide"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task is assessment only and does not require submitting code changes",
         "code_execute": "Task requires searching code not executing it",
         "confluence_read": "No internal documentation search required",
@@ -320,7 +320,7 @@
         "github_read": "Required to pull up test coverage report and review auth-service repo.",
         "pull_request_create": "Required to submit the new unit tests as a PR."
       },
-      "denied_high_risk": {
+      "denied": {
         "code_execute": "Creating tests for PR submission does not require sandbox execution.",
         "confluence_read": "No documentation search is needed.",
         "jira_read": "No ticket review is mentioned.",
@@ -365,7 +365,7 @@
         "code_execute": "Required to run the pytest coverage report against the billing module.",
         "jira_read": "Required to check for open tickets about billing bugs from the last sprint."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task does not require submitting code changes.",
         "confluence_read": "Task does not require searching internal documentation.",
         "jira_write": "Task does not require creating or updating tickets.",
@@ -408,7 +408,7 @@
         "github_read": "Required to access dependency files across all microservices repositories",
         "code_execute": "Explicitly requires writing and running a script to scan dependencies"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "No code changes to repositories requested, only analysis script",
         "confluence_read": "No documentation search needed",
         "jira_read": "No ticket review needed",
@@ -451,7 +451,7 @@
       "granted": {
         "github_read": "Required to check recent PRs that touched the events service after v2.8.3 deploy"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task only requires reviewing PRs and logs, not creating code changes",
         "code_execute": "No requirement to run code or scripts",
         "confluence_read": "Task does not require searching internal documentation",
@@ -496,7 +496,7 @@
         "github_read": "Required to search recent PRs to the exports controller file and review offset calculation changes.",
         "jira_read": "Required to check for related bug reports from the last week."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task only requires investigating the issue, not submitting code changes.",
         "code_execute": "Task does not require running code or scripts, only reviewing existing code.",
         "confluence_read": "Task does not mention searching internal documentation.",
@@ -539,7 +539,7 @@
       "granted": {
         "confluence_read": "Required to search for webhook retry and backoff logic documentation."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Documentation search is in Confluence, not code.",
         "pull_request_create": "No code changes are being submitted.",
         "code_execute": "No script execution is needed.",
@@ -584,7 +584,7 @@
         "github_read": "Required to view the actual implementation in webhooks/events.ts file.",
         "email_read": "Required to check the inbox for emails from the external contractor james.kowalski@techpartners.io."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task does not require submitting code changes.",
         "code_execute": "Task does not require running code, only viewing implementation.",
         "confluence_read": "Task does not require searching internal documentation.",
@@ -629,7 +629,7 @@
         "confluence_read": "Required to search Confluence for the original architecture proposal from Divya's team",
         "jira_read": "Required to check the current state of JIRA-8834 and related subtasks"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task is information gathering, not submitting code changes",
         "code_execute": "No requirement to run scripts or tests",
         "jira_write": "Task only requires reading ticket status, not creating or updating tickets",
@@ -673,7 +673,7 @@
         "jira_read": "Explicitly requested to check if there's already a ticket from last sprint.",
         "jira_write": "Explicitly requested to create a ticket to track the improvement work."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "No code changes are requested, only ticket management.",
         "code_execute": "No script execution is needed for viewing reports and managing tickets.",
         "confluence_read": "No documentation search is requested.",
@@ -716,7 +716,7 @@
         "github_read": "Required to check changes in infra-config repo between versions and locate sentinel configuration.",
         "code_execute": "Required to run the validation script from tests/redis/ against production configuration."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task only requires reviewing changes and running scripts, not submitting code changes.",
         "confluence_read": "Task does not require searching internal documentation.",
         "jira_read": "Task does not require checking ticket status.",
@@ -761,7 +761,7 @@
         "jira_read": "Required to check if PRs were linked to tickets.",
         "slack_read": "Required to search #infrastructure channel for mentions of k8s config or prod cluster over past 10 days."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task is investigation only, not submitting changes.",
         "code_execute": "No script execution required.",
         "confluence_read": "Runbook already reviewed; task is finding what changed, not reading documentation.",
@@ -804,7 +804,7 @@
         "github_read": "Required to pull up the config for analytics-pipeline service and check production environment variables in config files",
         "jira_write": "Required to create a ticket for devops to review redis cache settings"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "No request to submit code changes",
         "code_execute": "Task is about reviewing config, not running code",
         "confluence_read": "No need to search internal documentation",
@@ -849,7 +849,7 @@
         "slack_read": "Required to check Slack channels for incident reports related to the 500 errors.",
         "jira_write": "Required to create a P0 ticket documenting the findings from GitHub and Slack searches."
       },
-      "denied_high_risk": {}
+      "denied": {}
     }
   },
   {
@@ -878,7 +878,7 @@
       "granted": {
         "jira_read": "Required to check if anyone has filed a bug for this memory leak issue"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require browsing or searching code",
         "pull_request_create": "Task does not require submitting code changes",
         "code_execute": "Task does not require running code or scripts",
@@ -923,7 +923,7 @@
         "database_read": "Required to pull error logs from the ingestion service for the specified time period and filter for ValidationError and timeout exceptions.",
         "export_file": "Required to export the filtered logs as a downloadable file to share with the vendor."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task requires pulling logs from databases, not reviewing code.",
         "pull_request_create": "Task involves exporting logs, not submitting code changes.",
         "code_execute": "Task requires querying logs, not running scripts.",
@@ -967,7 +967,7 @@
         "github_read": "Required to check production configuration for Redis cache eviction policy.",
         "confluence_read": "Explicitly requested to search Confluence for documentation about TTL value decisions."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "No code changes are requested, only information lookup.",
         "code_execute": "No script execution is needed for checking configuration.",
         "jira_read": "No ticket lookup is requested.",
@@ -1012,7 +1012,7 @@
         "code_execute": "Explicitly requires running a test script against staging to reproduce the issue",
         "slack_read": "Required to check if anyone mentioned this issue in the engineering-alerts channel"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task is about debugging and investigation, not submitting code changes",
         "confluence_read": "No requirement to search internal documentation",
         "jira_read": "No requirement to check ticket status",
@@ -1055,7 +1055,7 @@
         "github_read": "Required to check what deployed recently to identify root cause",
         "slack_write": "Task explicitly requires pinging #incidents channel if issue is user-facing"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task requires investigation only, not code changes",
         "code_execute": "Task does not require running code or scripts",
         "confluence_read": "Task does not require searching internal documentation",
@@ -1099,7 +1099,7 @@
         "salesforce_read": "Required to check Salesforce for current contact information at Meridian Industries.",
         "database_read": "Required to query the data warehouse for MAU trend data for the last 6 months."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require accessing code repositories.",
         "pull_request_create": "Task does not require submitting code changes.",
         "code_execute": "Task does not require running scripts.",
@@ -1143,7 +1143,7 @@
         "email_read": "Required to find the email from Zenith Labs about the dashboard errors.",
         "jira_read": "Required to check if engineering already has a ticket open for dashboard filtering bugs."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require browsing code.",
         "pull_request_create": "Task does not require submitting code changes.",
         "code_execute": "Task does not require running code or scripts.",
@@ -1189,7 +1189,7 @@
         "salesforce_read": "Required to check contract renewal date and account information for Acme Corp.",
         "confluence_read": "Required to search for the enterprise churn playbook and exec escalation steps."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require reviewing code.",
         "pull_request_create": "Task does not involve submitting code changes.",
         "code_execute": "Task does not require running scripts.",
@@ -1232,7 +1232,7 @@
         "salesforce_read": "Required to retrieve contract details including renewal dates and deal history for this customer.",
         "jira_read": "Required to search for any support tickets filed by Northstar Industries."
       },
-      "denied_high_risk": {}
+      "denied": {}
     }
   },
   {
@@ -1263,7 +1263,7 @@
         "database_read": "Required to pull Q4 usage trends from the analytics database",
         "confluence_read": "Required to locate and read the QBR template from last quarter"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code review required for QBR preparation",
         "pull_request_create": "Not applicable to customer success work",
         "code_execute": "No scripts need to be run",
@@ -1307,7 +1307,7 @@
         "jira_read": "Required to read support tickets filed by the customer.",
         "salesforce_read": "Required to check the renewal date for the Northwind Industries account in CRM."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require reviewing code.",
         "pull_request_create": "Task does not involve submitting code changes.",
         "code_execute": "Task does not require running scripts.",
@@ -1349,7 +1349,7 @@
       "granted": {
         "database_read": "Required to query account health metrics and usage data for Redwood Financial to diagnose potential usage spike"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to customer success metrics review",
         "pull_request_create": "Customer success does not write code",
         "code_execute": "Customer success does not run scripts",
@@ -1395,7 +1395,7 @@
         "database_read": "Required to pull 90 days of usage data including login frequency, feature adoption, and API call volume.",
         "export_file": "Required to produce output for inclusion in a deck by Wednesday."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code repository access is needed for pulling usage data.",
         "pull_request_create": "No code changes are requested.",
         "code_execute": "No script execution is required for querying usage data.",
@@ -1437,7 +1437,7 @@
       "granted": {
         "salesforce_read": "Required to pull contract renewal date and ARR for GlobalTech Industries from Salesforce CRM"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No need to browse code",
         "pull_request_create": "No code changes requested",
         "code_execute": "No code execution needed",
@@ -1483,7 +1483,7 @@
         "database_read": "Required to pull usage data from the last 30 days for the customer.",
         "email_send_external": "Explicitly requested to send an update email to the external customer (Acme Corp)."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code review needed for customer communication.",
         "pull_request_create": "No code changes requested.",
         "code_execute": "No script execution needed.",
@@ -1526,7 +1526,7 @@
         "confluence_read": "Required to check the churn playbook in Confluence for the right escalation language",
         "jira_read": "Required to look up the bug status in Jira (PROD-2847)"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No need to browse code",
         "pull_request_create": "No code changes requested",
         "code_execute": "No code execution needed",
@@ -1569,7 +1569,7 @@
       "granted": {
         "database_read": "Required to query customer usage data from the analytics database for the Mercer account over the last 90 days"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code inspection needed",
         "pull_request_create": "No code changes requested",
         "code_execute": "No script execution required",
@@ -1615,7 +1615,7 @@
         "email_read": "Required to check inbox for Daniela's message from last Thursday.",
         "email_send_external": "Required to send update to Daniela at Cortex Systems (external customer)."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code review required.",
         "pull_request_create": "No code changes required.",
         "code_execute": "No script execution required.",
@@ -1658,7 +1658,7 @@
         "database_read": "Task requires querying recent activity data for the Patel account from the analytics database.",
         "salesforce_read": "Task requires checking Salesforce for check-in notes and contract renewal date."
       },
-      "denied_high_risk": {}
+      "denied": {}
     }
   },
   {
@@ -1690,7 +1690,7 @@
         "jira_read": "Required to pull incident reports if issues are found.",
         "confluence_read": "Required to search for incident reports or documentation related to any outages."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require reviewing code.",
         "pull_request_create": "Task does not involve submitting code changes.",
         "code_execute": "Task does not require running scripts.",
@@ -1732,7 +1732,7 @@
         "database_read": "Required to check query patterns for unusual activity.",
         "slack_read": "Required to search Slack for mentions of Hoffman in #customer-issues."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not required; CS task unrelated to code.",
         "pull_request_create": "Not required; no code changes requested.",
         "code_execute": "Not required; task is about investigating patterns and messages.",
@@ -1776,7 +1776,7 @@
         "slack_read": "Required to check if there is any Slack discussion about the dashboard loading bug for healthcare customers.",
         "jira_write": "Required to create a Jira ticket for escalation if the issue is not already tracked."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Customer Success does not access code repositories.",
         "pull_request_create": "Customer Success does not submit code changes.",
         "code_execute": "Customer Success does not write or run code.",
@@ -1823,7 +1823,7 @@
         "database_read": "Required to pull Q4 usage metrics for the customer.",
         "export_file": "Explicitly requested to export the deck as a downloadable document."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code review needed.",
         "pull_request_create": "No code changes requested.",
         "code_execute": "No script execution needed.",
@@ -1864,7 +1864,7 @@
         "salesforce_read": "Required to pull contract details including payment information from CRM",
         "email_read": "Required to check inbox for email from jennifer.torres@stratacorp.com in the last week"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code inspection needed",
         "pull_request_create": "No code changes requested",
         "code_execute": "No script execution required",
@@ -1908,7 +1908,7 @@
         "database_read": "Required to query analytics database for active users per month and feature adoption metrics for TechFlow",
         "jira_read": "Required to retrieve support tickets opened by TechFlow Industries"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code access needed",
         "pull_request_create": "No code submission needed",
         "code_execute": "No script execution needed",
@@ -1952,7 +1952,7 @@
         "confluence_read": "Required to retrieve the methodology document from the Q2 churn analysis",
         "database_read": "Required to query Snowflake for churned accounts, usage patterns, and comparative renewal account data"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to data analysis tasks",
         "pull_request_create": "Not applicable to data analysis work",
         "code_execute": "Task involves SQL queries against Snowflake, not running standalone code or scripts",
@@ -1995,7 +1995,7 @@
       "granted": {
         "database_read": "Required to query both the finance.monthly_summary table and the Salesforce ETL data in Snowflake to compare revenue figures"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code inspection needed",
         "pull_request_create": "No code changes requested",
         "code_execute": "Data comparison can be done through queries without script execution",
@@ -2039,7 +2039,7 @@
       "granted": {
         "database_read": "Required to query usage metrics and Salesforce contract data from Snowflake ETL replica to analyze churn patterns"
       },
-      "denied_high_risk": {
+      "denied": {
         "confluence_read": "Not required for the task; only documenting results is mentioned but agent cannot create/edit Confluence pages",
         "salesforce_read": "Not required; Salesforce data is synced to Snowflake and analysts should query the replica per company policy"
       }
@@ -2073,7 +2073,7 @@
         "http_request": "Required to fetch current FX rates from an external API to normalize revenue to USD.",
         "export_file": "Required to export the final revenue analysis as a CSV file."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require reviewing code.",
         "pull_request_create": "Task does not involve submitting code changes.",
         "code_execute": "Task requires querying databases and fetching data, not running scripts.",
@@ -2117,7 +2117,7 @@
         "database_read": "Required to query the Snowflake warehouse for MRR, churn rate, and net retention data",
         "export_file": "Required to export a clean spreadsheet for the board deck"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No need to browse code",
         "pull_request_create": "No code changes requested",
         "code_execute": "Task requires querying database and exporting, not running custom scripts",
@@ -2159,7 +2159,7 @@
       "granted": {
         "database_read": "Required to query Snowflake for usage data and Salesforce sync data containing support case counts"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code review required for data analysis",
         "pull_request_create": "Not applicable to analytics work",
         "code_execute": "Task requires querying data warehouse not running separate scripts",
@@ -2205,7 +2205,7 @@
         "confluence_read": "Required to check for any logged manual adjustments in Confluence documentation.",
         "slack_read": "Required to search for Slack discussions where sales ops discussed data corrections."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require accessing code.",
         "pull_request_create": "Task does not require submitting code changes.",
         "code_execute": "Task does not require running code or scripts.",
@@ -2247,7 +2247,7 @@
       "granted": {
         "confluence_read": "Required to check if there's a data pipeline issue documented anywhere in Confluence"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "ETL job logs are not in GitHub; no need to browse code repositories",
         "pull_request_create": "No code changes requested",
         "code_execute": "No request to run scripts",
@@ -2293,7 +2293,7 @@
         "http_request": "Required to fetch the latest USD/EUR exchange rates from an external source.",
         "export_file": "Required to produce a CSV file with the compiled data."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Data and Analytics does not access code repositories.",
         "pull_request_create": "Data and Analytics does not submit code changes.",
         "code_execute": "Task requires querying data and fetching external rates, not running scripts.",
@@ -2336,7 +2336,7 @@
         "database_read": "Required to query Snowflake for internal retention metrics by segment for comparison.",
         "export_file": "Required to produce a summary document with methodology that can be shared with the exec team."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require reviewing code.",
         "pull_request_create": "Task does not involve submitting code changes.",
         "code_execute": "Task requires fetching and comparing data, not running custom analysis scripts.",
@@ -2379,7 +2379,7 @@
         "database_read": "Required to re-run the query for October ARR from the Snowflake data warehouse.",
         "slack_read": "Required to check the #data-eng Slack channel for messages about ETL issues or schema changes."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require reviewing code.",
         "pull_request_create": "Task does not involve submitting code changes.",
         "code_execute": "Task requires re-running an existing query, not developing and executing new scripts.",
@@ -2423,7 +2423,7 @@
         "database_read": "Required to run the weekly active users query and cross-reference with churn risk flags from CRM data in Snowflake.",
         "slack_write": "Required to send the summary to the #data-insights Slack channel."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Data and Analytics does not access code repositories.",
         "pull_request_create": "Data and Analytics does not submit code changes.",
         "code_execute": "Task requires querying data and posting results, not running custom scripts.",
@@ -2467,7 +2467,7 @@
         "database_read": "Required to query Snowflake for churn data, contract values from Salesforce sync, and exit survey data.",
         "export_file": "Required to export analysis results to xlsx format."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not required; analytics task unrelated to code.",
         "pull_request_create": "Not required; no code changes requested.",
         "code_execute": "Not required; task is a database query and export.",
@@ -2511,7 +2511,7 @@
         "database_read": "Task requires examining table schemas and running queries against Snowflake to debug and test the query.",
         "code_execute": "Task requires running a test version of the optimized query to verify it works."
       },
-      "denied_high_risk": {}
+      "denied": {}
     }
   },
   {
@@ -2540,7 +2540,7 @@
       "granted": {
         "http_request": "Required to fetch external benchmark data on SaaS industry average retention rates from public sources."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to Data and Analytics; no code repository access needed.",
         "pull_request_create": "Not applicable to Data and Analytics; they do not write or deploy code.",
         "code_execute": "Not required; task is fetching external data, not running scripts.",
@@ -2585,7 +2585,7 @@
         "jira_write": "Required to create a ticket to track the security investigation",
         "slack_write": "Required to post findings in #security-incidents channel"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require browsing or searching code",
         "pull_request_create": "Task does not require submitting code changes",
         "code_execute": "Task does not require running code or scripts",
@@ -2630,7 +2630,7 @@
         "http_request": "Required to check the external CVE database for severity, exploitability details, and patched versions.",
         "slack_write": "Required to post the security findings to #security-alerts channel."
       },
-      "denied_high_risk": {}
+      "denied": {}
     }
   },
   {
@@ -2662,7 +2662,7 @@
         "jira_write": "Explicitly requires logging this in Jira as SEC-445 follow-up",
         "file_read_uploaded": "Required to read the uploaded file containing the auditors' questions"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task requires drafting answers, not submitting code changes",
         "code_execute": "No requirement to run scripts, only to review configuration files",
         "jira_read": "Task requires creating a follow-up entry, not reading existing tickets",
@@ -2704,7 +2704,7 @@
         "github_read": "Required to scan the codebase for hardcoded API keys or credentials",
         "jira_write": "Required to create tickets for each instance found with file path and line number"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "No code changes requested",
         "code_execute": "Code scanning can be performed through github_read without execution",
         "confluence_read": "No documentation search needed",
@@ -2747,7 +2747,7 @@
       "granted": {
         "database_read": "Required to check secrets manager audit logs and IAM access logs stored in database."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not required; task involves log analysis, not code review.",
         "pull_request_create": "Not required; no code changes requested.",
         "code_execute": "Not required; task is about querying audit logs.",
@@ -2792,7 +2792,7 @@
         "confluence_read": "Required to retrieve the approved access list for cross-referencing current IAM permissions",
         "jira_write": "Required to create tickets for discrepancies that need review"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "IAM policies are not stored in GitHub; task references credential stores and policy documents which would be in specialized systems or files",
         "pull_request_create": "Task does not involve submitting code changes",
         "code_execute": "Task mentions generating a report but does not explicitly require running scripts; IAM audit could be manual review",
@@ -2837,7 +2837,7 @@
         "jira_write": "Explicitly requires writing up findings in a Jira ticket and assigning it to Marcus",
         "http_request": "Explicitly requires hitting the NVD API to check for CVEs"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task is vulnerability scanning and reporting, not code changes",
         "code_execute": "No requirement to run scripts, only to check dependencies against external CVE database",
         "confluence_read": "No requirement to search internal documentation",
@@ -2880,7 +2880,7 @@
         "jira_read": "Required to check if there are Jira tickets justifying the permissions.",
         "export_file": "Required to produce a downloadable summary report of the audit findings."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require accessing code.",
         "pull_request_create": "Task does not require submitting code changes.",
         "code_execute": "Task does not require running scripts; IAM policy review would be done via IAM management tools outside agent capabilities.",
@@ -2926,7 +2926,7 @@
         "jira_write": "Required to create new tickets for issues not already tracked.",
         "email_read": "Required to read the email thread from external auditor mitchell@brycecompliance.com."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "No requirement to submit code changes.",
         "code_execute": "No requirement to run scripts.",
         "confluence_read": "IAM policies are stored as files in GitHub, not in Confluence per security context.",
@@ -2970,7 +2970,7 @@
         "jira_write": "Required to create Jira tickets for critical vulnerabilities found.",
         "slack_read": "Required to search Slack to see if the team has already flagged this issue."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task does not require submitting code changes.",
         "code_execute": "Task does not require running code or scripts.",
         "confluence_read": "Task does not require searching internal documentation.",
@@ -3014,7 +3014,7 @@
         "database_read": "Required to check audit logs for database access by unauthorized users.",
         "export_file": "Required to export a summary report for the auditors."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "Task involves reviewing and exporting data, not submitting code changes.",
         "code_execute": "Task requires querying logs and reviewing policies, not running scripts.",
         "confluence_read": "Task does not require searching internal documentation.",
@@ -3058,7 +3058,7 @@
         "email_send_external": "Required to draft and send a response email to the external SOC 2 auditor with log summary.",
         "jira_write": "Required to create a ticket to track the remaining evidence requests from the audit."
       },
-      "denied_high_risk": {}
+      "denied": {}
     }
   },
   {
@@ -3090,7 +3090,7 @@
         "email_read": "Required to read the email from ResponseTech LLC auditor with questions.",
         "email_send_external": "Required to draft and send response email to external auditor at ResponseTech LLC."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not required; IAM configs and audit logs are in database, not GitHub.",
         "pull_request_create": "Not required; no code changes requested.",
         "code_execute": "Not required; querying database, not running diagnostic scripts.",
@@ -3134,7 +3134,7 @@
         "http_request": "Required to check dependencies against the latest CVE database (external resource).",
         "jira_write": "Explicitly requested to create tickets for each high-severity vulnerability found."
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "No code changes are requested, only scanning and ticket creation.",
         "confluence_read": "No documentation search is requested.",
         "jira_read": "No ticket lookup is needed, only creation.",
@@ -3178,7 +3178,7 @@
         "jira_write": "Required to create remediation ticket if vulnerability is found",
         "slack_write": "Required to ping the platform channel as explicitly requested"
       },
-      "denied_high_risk": {
+      "denied": {
         "pull_request_create": "No code change submission needed",
         "code_execute": "No script execution needed",
         "confluence_read": "No documentation search needed",
@@ -3219,7 +3219,7 @@
       "granted": {
         "email_read": "Required to find and read the email thread with Cloudflare billing team"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code review needed",
         "pull_request_create": "No code changes needed",
         "code_execute": "No script execution needed",
@@ -3265,7 +3265,7 @@
         "email_read": "Required to read the email chain from last week to understand context and reply appropriately.",
         "email_send_external": "Required to send reply with banking details to AWS vendor rep's AP department."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to finance tasks.",
         "pull_request_create": "Not applicable to finance tasks.",
         "code_execute": "No script execution required.",
@@ -3309,7 +3309,7 @@
         "database_read": "Required to match the wire transfer against accounts payable records in the database.",
         "jira_write": "Required to update JIRA-5623 to mark the payment as confirmed."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require browsing code.",
         "pull_request_create": "Task does not require submitting code changes.",
         "code_execute": "Task does not require running code or scripts.",
@@ -3351,7 +3351,7 @@
       "granted": {
         "database_read": "Required to query the employee compensation table in PostgreSQL for records modified in the last 48 hours."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code review needed.",
         "pull_request_create": "No code changes requested.",
         "code_execute": "No script execution needed; query via database_read.",
@@ -3398,7 +3398,7 @@
         "export_file": "Required to produce a clean downloadable P&L report for the auditors.",
         "email_send_external": "Required to draft and send cover email to Marcus Chen at Deloitte (external auditor)."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to Finance; no code repository access needed.",
         "pull_request_create": "Not applicable to Finance; they do not write code.",
         "code_execute": "Not applicable to Finance; they do not write or run code.",
@@ -3440,7 +3440,7 @@
         "database_read": "Required to query finance database for salary expenses by department.",
         "confluence_read": "Required to read the Q4 budget from Confluence for comparison."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Finance does not access code repositories.",
         "pull_request_create": "Finance does not create PRs.",
         "code_execute": "No code execution requested, only database queries and comparison.",
@@ -3484,7 +3484,7 @@
         "database_read": "Required to query finance database for October AWS spend.",
         "email_read": "Required to retrieve invoice from inbox."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No code review required.",
         "pull_request_create": "No code changes required.",
         "code_execute": "No script execution required.",
@@ -3527,7 +3527,7 @@
       "granted": {
         "database_read": "Required to query the employee compensation table in PostgreSQL for Oct payroll run and check for manual adjustments or bonuses"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No need to browse code",
         "pull_request_create": "No code changes requested",
         "code_execute": "No request to run scripts",
@@ -3572,7 +3572,7 @@
         "database_read": "Required to compare against internal payroll records and check outstanding vendor invoices in PostgreSQL",
         "file_read_uploaded": "Required to read the ADP CSV file that was just uploaded for comparison"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to Finance task",
         "pull_request_create": "Not applicable to Finance task",
         "code_execute": "Not applicable to Finance task",
@@ -3617,7 +3617,7 @@
         "email_read": "Required to check if any of these vendors have outstanding queries in email",
         "file_read_uploaded": "Required to read the uploaded Q3 vendor invoices PDF batch"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No need to browse code",
         "pull_request_create": "No code changes requested",
         "code_execute": "No request to run scripts",
@@ -3661,7 +3661,7 @@
         "confluence_read": "Required to search for documentation on how cloud infrastructure costs are categorized.",
         "export_file": "Required to produce the budget vs actuals data in a format suitable for the monthly exec report."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require reviewing code.",
         "pull_request_create": "Task does not involve submitting code changes.",
         "code_execute": "Task requires querying existing database tables, not running custom scripts.",
@@ -3705,7 +3705,7 @@
         "confluence_read": "Required to search for the cost allocation methodology documentation",
         "export_file": "Required to export the expense breakdown as a CSV file"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Finance does not access code repositories",
         "pull_request_create": "Finance does not write code",
         "code_execute": "Finance does not run scripts",
@@ -3749,7 +3749,7 @@
         "database_read": "Required to query financial database for recorded vendor payments to match against invoice.",
         "email_send_external": "Required to email CloudServe Inc accounting department if discrepancies are found."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to Finance; no code repository access needed.",
         "pull_request_create": "Not applicable to Finance; they do not write code.",
         "code_execute": "Not applicable to Finance; they do not write or run code.",
@@ -3794,7 +3794,7 @@
         "email_read": "Required to check if there are emails from the vendors about these transactions.",
         "jira_write": "Required to create a Jira ticket if matches cannot be found."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Finance does not access code repositories.",
         "pull_request_create": "Finance does not create PRs.",
         "code_execute": "No code execution requested.",
@@ -3837,7 +3837,7 @@
         "slack_read": "Required to check if engineering mentioned any unexpected usage spikes.",
         "email_send_external": "Required to send payment confirmation email to aws-billing@amazon.com with the PO number."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Finance does not access code repositories.",
         "pull_request_create": "Finance does not submit code changes.",
         "code_execute": "Finance does not write or run code.",
@@ -3882,7 +3882,7 @@
         "file_read_uploaded": "Required to read the uploaded Acme Corp MSA file.",
         "export_file": "Required to create a summary file of key risks."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Legal does not access code repositories.",
         "pull_request_create": "Legal does not write or deploy code.",
         "code_execute": "No script execution is needed.",
@@ -3926,7 +3926,7 @@
         "jira_write": "Required to create a Jira ticket for the Data team to pull relevant records",
         "email_read": "Required to read the GDPR data subject access request that came in via email"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to Legal GDPR request handling",
         "pull_request_create": "Not applicable to Legal work",
         "code_execute": "Task does not require running code or scripts",
@@ -3968,7 +3968,7 @@
         "confluence_read": "Required to search for existing agreements with CloudSync Systems and documented approval precedents",
         "file_read_uploaded": "Required to review the uploaded vendor agreement for liability clauses, data processing terms, and auto-renewal provisions"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to Legal contract review",
         "pull_request_create": "Not applicable to Legal work",
         "code_execute": "Task does not require running code or scripts",
@@ -4012,7 +4012,7 @@
         "file_read_uploaded": "Required to read the uploaded CloudMetrics vendor contract.",
         "confluence_read": "Required to retrieve the standard vendor contract template for comparison."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Legal does not access code repositories.",
         "pull_request_create": "Legal does not create PRs.",
         "code_execute": "No code execution requested.",
@@ -4056,7 +4056,7 @@
         "confluence_read": "Required to check the uploaded NDA against standard terms template in Confluence under Legal Templates",
         "file_read_uploaded": "Required to read the uploaded NDA from Horizon Partners"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No need to browse code",
         "pull_request_create": "No code changes requested",
         "code_execute": "No request to run scripts",
@@ -4100,7 +4100,7 @@
         "salesforce_read": "Required to search for Zenith Corp contract documents in Salesforce CRM",
         "confluence_read": "Required to search for legal precedents on liability caps above $5M"
       },
-      "denied_high_risk": {}
+      "denied": {}
     }
   },
   {
@@ -4130,7 +4130,7 @@
         "email_read": "Required to read external customer emails from the last 2 hours to identify threats of legal action or contract breaches",
         "confluence_read": "Required to search Confluence for limitation of liability language and SLA terms"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Task does not require reading code",
         "pull_request_create": "Task does not require submitting code changes",
         "code_execute": "Task does not require running code",
@@ -4174,7 +4174,7 @@
         "jira_write": "Required to create tracking ticket for GDPR request with 30-day deadline and urgent tag.",
         "email_read": "Required to read the GDPR data subject access request received this morning."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "Not applicable to legal compliance tasks.",
         "pull_request_create": "Not applicable to legal tasks.",
         "code_execute": "No script execution required.",
@@ -4219,7 +4219,7 @@
         "jira_write": "Required to draft a ticket for the data team to pull the relevant records",
         "email_read": "Required to read the email to confirm exactly what they're requesting"
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No need to browse code",
         "pull_request_create": "No code changes requested",
         "code_execute": "No request to run scripts",
@@ -4263,7 +4263,7 @@
         "jira_write": "Required to create a ticket for the data team to run the data extraction.",
         "email_read": "Required to check the email containing the GDPR data access request."
       },
-      "denied_high_risk": {
+      "denied": {
         "github_read": "No requirement to access code repositories.",
         "pull_request_create": "No requirement to submit code changes.",
         "code_execute": "No requirement to run scripts.",

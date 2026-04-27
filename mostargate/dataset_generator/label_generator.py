@@ -45,7 +45,7 @@ Output a JSON array only. No preamble, no markdown fences.
 Each item must have exactly these fields:
   id, department, prompt, sensitivity (LOW/MEDIUM/HIGH),
   permissions (object with all 15 boolean fields using exact names above),
-  reasoning (object with "granted" and "denied_high_risk" sub-objects, \
+  reasoning (object with "granted" and "denied" sub-objects, \
 one sentence per tool)
 
 PROMPTS TO LABEL:

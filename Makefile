@@ -1,39 +1,57 @@
-.PHONY: all init generate requests labels merge validate stats split validate_human experiment clean
+.PHONY: all init \
+        dataset-generate dataset-requests dataset-labels dataset-merge \
+        dataset-validate dataset-stats dataset-split \
+        validate-human validate-compare validate-review \
+        experiment-run clean
 
-# Full pipeline
-all: generate validate split
+# ── Full pipeline ──────────────────────────────────────────────────────────────
+all: dataset-generate dataset-validate dataset-split
 
 init:
 	uv venv
 	uv sync
 
-generate: requests labels merge
+# ── Dataset generation ─────────────────────────────────────────────────────────
+dataset-generate: dataset-requests dataset-labels dataset-merge
 
-requests:
+dataset-requests:
 	uv run -m mostargate.dataset_generator.request_generator
 
-labels:
+dataset-labels:
 	uv run -m mostargate.dataset_generator.label_generator
 
-merge:
+dataset-merge:
 	uv run -m mostargate.dataset_generator.merge
 
-validate:
+# ── Dataset quality ────────────────────────────────────────────────────────────
+dataset-validate:
 	uv run -m mostargate.dataset_generator.validate
 
-stats:
-	uv run -m mostargate.dataset_generator.stats
+dataset-stats:
+	uv run -m mostargate.dataset_generator.metrics dataset
 
-split:
+dataset-split:
 	uv run -m mostargate.dataset_generator.split
 
-experiment:
-	uv run -m mostargate.experiments.run
-
-validate_human:
+# ── Human validation pipeline ─────────────────────────────────────────────────
+# Step 1: label 60 sampled records interactively
+validate-human:
 	uv run -m mostargate.dataset_generator.validate_human
 
+# Step 2: compare human labels vs LLM, generate disagreements.json + pre-review metrics
+#         add --refresh to regenerate disagreements.json from scratch
+validate-compare:
+	uv run -m mostargate.dataset_generator.metrics compare
+
+# Step 3: resolve disagreements interactively (resumable)
+validate-review:
+	uv run -m mostargate.dataset_generator.metrics review
+
+# ── Experiments ────────────────────────────────────────────────────────────────
+experiment-run:
+	uv run -m mostargate.experiments.run
+
+# ── Cleanup ────────────────────────────────────────────────────────────────────
 clean:
 	zip -r dataset/batches.zip dataset/pass*
 	rm -f dataset/pass1_batch_*.json dataset/pass2_batch_*.json
-		
