@@ -109,7 +109,7 @@ def ask_permissions(record, index, total):
 
     sensitivity = ""
     while sensitivity not in ("low", "medium", "high"):
-        sensitivity = input("  Sensitivity tier (low / medium / high): ").strip().lower()
+        sensitivity = input("Data sensitivity tier - low(no PII or IP) / medium (IP or internal user) / high (PII or security critical): ").strip().lower()
 
     return {
         "id": rid,
