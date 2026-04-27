@@ -2,7 +2,7 @@
   "meta": {
     "type": "pre_review",
     "n_records": 60,
-    "generated_at": "2026-04-27T12:29:16.208830",
+    "generated_at": "2026-04-27T13:33:41.394183",
     "note": "Human labels used as reference. Permission metrics computed within department ceiling only (out-of-ceiling tools trivially denied by both \u2014 excluded). Sensitivity reported as a separate metric."
   },
   "permission_metrics": {
@@ -18,6 +18,10 @@
       "hamming_accuracy": 0.9709,
       "macro_f1": 0.9205,
       "kappa": 0.9175,
+      "kappa_ci_95": [
+        0.8818,
+        0.9531
+      ],
       "overshoot_rate": 0.0133,
       "undershoot_rate": 0.0813,
       "severity_weighted_overshoot": 15.0
@@ -33,6 +37,10 @@
         "specificity": 1.0,
         "f1": 1.0,
         "kappa": 1.0,
+        "kappa_ci_95": [
+          1.0,
+          1.0
+        ],
         "overshoot_rate": 0.0,
         "undershoot_rate": 0.0,
         "tier": 2
@@ -47,6 +55,10 @@
         "specificity": 1.0,
         "f1": 1.0,
         "kappa": 1.0,
+        "kappa_ci_95": [
+          1.0,
+          1.0
+        ],
         "overshoot_rate": 0.0,
         "undershoot_rate": 0.0,
         "tier": 1
@@ -61,6 +73,10 @@
         "specificity": 0.9375,
         "f1": 0.5455,
         "kappa": 0.4162,
+        "kappa_ci_95": [
+          -0.0364,
+          0.8689
+        ],
         "overshoot_rate": 0.0625,
         "undershoot_rate": 0.5714,
         "tier": 2
@@ -75,6 +91,10 @@
         "specificity": 1.0,
         "f1": 0.9143,
         "kappa": 0.8794,
+        "kappa_ci_95": [
+          0.7463,
+          1.0
+        ],
         "overshoot_rate": 0.0,
         "undershoot_rate": 0.1579,
         "tier": 3
@@ -89,6 +109,10 @@
         "specificity": 0.98,
         "f1": 0.9524,
         "kappa": 0.9423,
+        "kappa_ci_95": [
+          0.8302,
+          1.0
+        ],
         "overshoot_rate": 0.02,
         "undershoot_rate": 0.0,
         "tier": 3
@@ -103,6 +127,10 @@
         "specificity": 0.9608,
         "f1": 0.9,
         "kappa": 0.8802,
+        "kappa_ci_95": [
+          0.717,
+          1.0
+        ],
         "overshoot_rate": 0.0392,
         "undershoot_rate": 0.0,
         "tier": 2
@@ -117,6 +145,10 @@
         "specificity": 1.0,
         "f1": 1.0,
         "kappa": 1.0,
+        "kappa_ci_95": [
+          1.0,
+          1.0
+        ],
         "overshoot_rate": 0.0,
         "undershoot_rate": 0.0,
         "tier": 2
@@ -131,6 +163,10 @@
         "specificity": 0.9821,
         "f1": 0.8889,
         "kappa": 0.88,
+        "kappa_ci_95": [
+          0.6468,
+          1.0
+        ],
         "overshoot_rate": 0.0179,
         "undershoot_rate": 0.0,
         "tier": 2
@@ -145,6 +181,10 @@
         "specificity": 1.0,
         "f1": 1.0,
         "kappa": 1.0,
+        "kappa_ci_95": [
+          1.0,
+          1.0
+        ],
         "overshoot_rate": 0.0,
         "undershoot_rate": 0.0,
         "tier": 2
@@ -159,6 +199,10 @@
         "specificity": 0.95,
         "f1": 0.9706,
         "kappa": 0.9206,
+        "kappa_ci_95": [
+          0.8126,
+          1.0
+        ],
         "overshoot_rate": 0.05,
         "undershoot_rate": 0.0294,
         "tier": 1
@@ -173,6 +217,10 @@
         "specificity": 1.0,
         "f1": 0.8421,
         "kappa": 0.8133,
+        "kappa_ci_95": [
+          0.6073,
+          1.0
+        ],
         "overshoot_rate": 0.0,
         "undershoot_rate": 0.2727,
         "tier": 2
@@ -187,6 +235,10 @@
         "specificity": 1.0,
         "f1": 0.8333,
         "kappa": 0.8085,
+        "kappa_ci_95": [
+          0.5491,
+          1.0
+        ],
         "overshoot_rate": 0.0,
         "undershoot_rate": 0.2857,
         "tier": 1
@@ -201,6 +253,10 @@
         "specificity": 0.96,
         "f1": 0.96,
         "kappa": 0.9396,
+        "kappa_ci_95": [
+          0.8229,
+          1.0
+        ],
         "overshoot_rate": 0.04,
         "undershoot_rate": 0.0,
         "tier": 1
@@ -215,6 +271,10 @@
         "specificity": 1.0,
         "f1": 1.0,
         "kappa": 1.0,
+        "kappa_ci_95": [
+          1.0,
+          1.0
+        ],
         "overshoot_rate": 0.0,
         "undershoot_rate": 0.0,
         "tier": 3
@@ -229,6 +289,10 @@
         "specificity": 1.0,
         "f1": 1.0,
         "kappa": 1.0,
+        "kappa_ci_95": [
+          1.0,
+          1.0
+        ],
         "overshoot_rate": 0.0,
         "undershoot_rate": 0.0,
         "tier": 2

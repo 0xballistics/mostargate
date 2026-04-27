@@ -62,6 +62,23 @@ def cohen_kappa(tp: int, fp: int, tn: int, fn: int) -> float | None:
     return round((po - pe) / (1 - pe), 4) if (1 - pe) != 0 else None
 
 
+def kappa_ci_95(tp: int, fp: int, tn: int, fn: int) -> tuple[float, float] | None:
+    """95% CI for Cohen's kappa using the Fleiss/Everitt SE formula."""
+    import math
+    n = tp + fp + tn + fn
+    if n == 0:
+        return None
+    po = (tp + tn) / n
+    pe = ((tp + fp) / n) * ((tp + fn) / n) + ((tn + fn) / n) * ((tn + fp) / n)
+    denom = 1 - pe
+    if denom == 0:
+        return None
+    kappa = (po - pe) / denom
+    se    = math.sqrt(po * (1 - po) / (n * denom ** 2))
+    margin = 1.96 * se
+    return (round(max(-1.0, kappa - margin), 4), round(min(1.0, kappa + margin), 4))
+
+
 def f1_score(precision: float | None, recall: float | None) -> float | None:
     if precision is None or recall is None:
         return None
@@ -270,6 +287,7 @@ def _tool_stats(tp: int, fp: int, tn: int, fn: int) -> dict:
         "specificity":     spec,
         "f1":              f1_score(prec, rec),
         "kappa":           cohen_kappa(tp, fp, tn, fn),
+        "kappa_ci_95":     kappa_ci_95(tp, fp, tn, fn),
         "overshoot_rate":  safe_div(fp, fp + tn),
         "undershoot_rate": safe_div(fn, fn + tp),
     }
@@ -357,6 +375,7 @@ def _build_permission_metrics(
         "hamming_accuracy":           safe_div(agg_tp + agg_tn, n_evals),
         "macro_f1":                   macro_f1,
         "kappa":                      cohen_kappa(agg_tp, agg_fp, agg_tn, agg_fn),
+        "kappa_ci_95":                kappa_ci_95(agg_tp, agg_fp, agg_tn, agg_fn),
         "overshoot_rate":             safe_div(agg_fp, agg_fp + agg_tn),
         "undershoot_rate":            safe_div(agg_fn, agg_fn + agg_tp),
         "severity_weighted_overshoot": round(sev_weighted_overshoot, 2),
@@ -465,7 +484,9 @@ def _print_perm_summary(label: str, overall: dict) -> None:
     print(f"  Exact match rate:            {overall['exact_match_rate']:.1%}  ({overall['n_exact_matches']}/{overall['n_records']} records fully agree)")
     print(f"  Hamming accuracy:            {overall['hamming_accuracy']:.1%}")
     print(f"  Macro F1:                    {overall['macro_f1']:.3f}")
-    print(f"  Cohen's kappa:               {overall['kappa']:.3f}")
+    ci = overall.get("kappa_ci_95")
+    ci_str = f"  [95% CI: {ci[0]:.3f}–{ci[1]:.3f}]" if ci else ""
+    print(f"  Cohen's kappa:               {overall['kappa']:.3f}{ci_str}")
     print(f"  Overshoot rate:              {overall['overshoot_rate']:.1%}  (LLM grants, human denies)")
     print(f"  Undershoot rate:             {overall['undershoot_rate']:.1%}  (LLM denies, human grants)")
     print(f"  Severity-weighted overshoot: {overall['severity_weighted_overshoot']:.2f}")
