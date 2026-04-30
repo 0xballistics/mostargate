@@ -50,11 +50,6 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
-% Todonotes is useful during development; simply uncomment the next line
-%    and comment out the line below the next line to turn off comments
-%\usepackage[disable,textsize=tiny]{todonotes}
-\usepackage[textsize=tiny]{todonotes}
-
 % The \icmltitle you define below is probably too long as a header.
 % Therefore, a short form for the running title is supplied here:
 \icmltitlerunning{Dynamic Capability Scoping for Enterprise AI Agents}
@@ -109,39 +104,71 @@
 % \printAffiliationsAndNotice{\icmlEqualContribution}
 
 \begin{abstract}
-Enterprise AI agents are typically granted static credential sets at configuration time, holding every tool the role might need for every task they perform. This persistent over-privilege expands the attack surface. We argue that capability scoping must follow a dynamic least-privilege principle and be treated as a prevention mechanism before a detection one. A credential that does not exist in an agent's context cannot be misused regardless of the agent's reasoning or evasion sophistication. We outline a three-source architecture instantiating this principle: role-based ceilings, a task-context classifier, and policy-derived combination prohibitions targeting the lethal trifecta of private data, untrusted content, and external 
-communication. The architecture supports both enforcing and observe-only deployment; the latter records agent permission requests inconsistent with task context, producing a behavioral signal usable in misalignment research.
+Enterprise AI agents are typically granted static credential sets at configuration time, holding every tool the role might need for every task they perform. This persistent over-privilege expands the attack surface. We argue that capability scoping must follow a dynamic least-privilege principle and be treated as a prevention mechanism before a detection one. A credential that does not exist in an agent's context cannot be misused regardless of the agent's reasoning or evasion sophistication. We outline a three-source architecture instantiating this principle: role-based ceilings, a task-context classifier, and policy-derived combination prohibitions creating a layered proactive defense against LLM agent misalignment and misuse cases. The architecture supports both enforcing and observe-only deployment; the latter records agent permission requests inconsistent with task context, producing a behavioral signal usable in misalignment research.
 
 As a first step toward evaluating this architecture, we 
 contribute a synthetic dataset of 600 enterprise task prompts grounded 
 in a multi-department company policy, labeled with minimum required 
 permissions across a 15-permission tool-based taxonomy designed to map directly to 
-deployable credentials or enforceable guardrails. The dataset is constructed via a two-pass pipeline that separates prompt generation from permission labeling to avoid circularity, and is validated against a 60-record human-reviewed sample (Cohen's $\kappa = 0.967$ post-adjudication). Iterating between dataset and policy reduced ceiling violations from 46 to 3, a 93\% reduction. This shows that synthetic prompt generation can drive policy refinement when the two are developed together. The dataset and policy artifacts are released to support 
+deployable credentials or enforceable guardrails. The dataset is constructed via a two-pass pipeline that separates prompt generation from permission labeling to avoid circularity, and is validated against a 60-record human-reviewed sample (Cohen's $\kappa = 0.967$ post-adjudication). Iterating between dataset and policy reduced ceiling violations from 46 to 3, a 93\% reduction. This doesn't prove architectural performance but shows that synthetic prompt generation can drive policy refinement when the two are developed together. The dataset and policy artifacts are released to support 
 evaluation of dynamic scoping mechanisms by the broader community.
 \end{abstract}
 
 \section{Introduction}
 
-Enterprise deployments of AI agents typically grant a static capability envelope at configuration time: a fixed set of tools (file access, code execution, database queries, network calls, external email) that the agent holds for every task in its session, building on foundational paradigms where models learn to invoke external APIs~\citep{schick2023toolformer}. The envelope reflects what the role might ever need, not what any individual task actually requires. We call this gap \emph{context-privilege mismatch}. Preemptively deploying the permissions creates an unnecessary attack surface. A documentation-summarization task with no business reason to make a network call still has \texttt{http\_request} available, and a compromised or manipulated agent can use any tool that is already deployed on the agent environment. Recent work on alignment faking~\citep{greenblatt2024alignment} and frontier-model scheming~\citep{apollo2024scheming} shows that this is not a theoretical concern. Agents capable of reasoning about monitoring systems can adapt their behavior to evade detection, but they cannot use a credential that does not exist.
+Enterprise deployments of AI agents typically grant a static capability envelope at configuration time. A fixed set of tools (file access, code execution, database queries, network calls, external email) are deployed at provision time that the agent holds for every task in its session, building on foundational architecture choices where models learn to invoke external APIs~\citep{schick2023toolformer, yaoetal2022react}. The envelope reflects what the role might ever need, not what any individual task actually requires. We call this gap \emph{context-privilege mismatch}. Preemptively deploying the permissions creates an unnecessary attack surface. A documentation-summarization task with no business reason to make a network call still has \texttt{http\_request} available, and a compromised or manipulated agent can use any tool that is already deployed on the agent environment or simply exfiltrate them. Recent work on alignment faking~\citep{greenblatt2024alignment} and frontier-model scheming~\citep{apollo2024scheming} shows that this is not a theoretical concern. Agents capable of reasoning about monitoring systems can adapt their behavior to evade detection, but they cannot use a credential that does not exist.
 
-Existing approaches to agent capability scoping treat the problem as one of input/output filtering or runtime monitoring. Policy-as-Prompt~\citep{tsai2025conseca} automates the translation of design documents into prompt-based classifiers that enforce least privilege at the agent boundary. Output filters and behavioral monitors observe agent actions and intervene when something looks wrong. Although detection mechanisms present a necessary layer of defense, they are reactive countermeasures instead of threat elimination at source. Against agents that reason about monitoring and adapt to evade it, detections have a structural ceiling: the attacker only needs to find one phrasing the monitor misses. Security risk and potential blast radius can be proactively minimized by implementing a dynamic least-privilege methodology. For example, if \texttt{http\_request} permission does not exist in the agent's context for the current task, a misaligned or compromised agent will lose the most straightforward capability to perform HTTP exfiltration. The attack surface is eliminated at the source, reducing the risk earlier in the cyber kill-chain than detective measures.
+Existing approaches~\citep{inan2023llamaguard, rebedea2023nemo} to agent capability scoping treat the problem as one of input/output filtering or runtime monitoring. Policy-as-Prompt~\citep{kholkar2025policyasprompt} automates the translation of design documents into prompt-based classifiers that enforce least privilege at the agent boundary. Output filters and behavioral monitors observe agent actions and intervene when something looks wrong. Although detection mechanisms present a necessary layer of defense, they are reactive countermeasures instead of threat elimination at source. Against agents that reason about monitoring and adapt to evade it, detections have a structural ceiling: the attacker only needs to find one phrasing the monitor misses. Security risk and potential blast radius can be proactively minimized by implementing a dynamic least-privilege methodology. For example, if \texttt{http\_request} permission does not exist in the agent's context for the current task, a misaligned or compromised agent will lose the most straightforward capability to perform HTTP exfiltration. The attack surface is eliminated at the source, reducing the risk earlier in the cyber kill-chain than detective measures.
 
-Effective capability scoping for AI agents requires multiple complementary layers, in the spirit of the Swiss cheese model of defense in depth: a role-based ceiling that constrains an agent to the credentials its function legitimately requires, a task-context classifier that further narrows the permission set to what the current task actually needs, and a policy-derived prohibition layer that eliminates dangerous permission combinations regardless of any individual permission's legitimacy. The third layer specifically targets the \emph{lethal trifecta}~\citep{willison2025trifecta} of private data access, exposure to untrusted content, and external communication, the conditions under which indirect prompt injection~\citep{greshake2023more} enables silent exfiltration. Each layer addresses a unique failure mode: role ceilings cannot distinguish between tasks, task classifiers can be manipulated by injection, and combination prohibitions are deterministic but coarse. Therefore they must be used in combination for effective attack surface minimization.
-
-The architecture supports two deployment modes. In enforcing mode the orchestrator deploys only the predicted credentials and blocks tool calls outside that set. In observe-only mode it deploys the full role-based ceiling and lets the agent execute against it, but still computes the task-context and policy outputs and emits a structured event whenever the agent invokes a tool that the full system would have denied. Observe-only mode mirrors the permissive-mode pattern of access control systems such as SELinux~\citep{smalley2001selinux}, where policy is evaluated and logged before being enforced, and provides a deployment path that does not expose production workflows to undershoot. It also produces a behavioral signal: a record of agent permission requests inconsistent with stated task context, aggregated across tasks and 
-deployments. We see this as a contribution to misalignment research that does not depend on the system being run in enforcing mode.
+Effective capability scoping for AI agents requires multiple complementary layers, in the spirit of the Swiss cheese model of defense in depth~\citep{reason1990human}: a role-based ceiling that constrains an agent to the credentials its function legitimately requires, a task-context classifier that further narrows the permission set to what the current task actually needs, and a policy-derived prohibition layer that eliminates dangerous permission combinations regardless of any individual permission's legitimacy. The third layer specifically targets the \emph{lethal trifecta}~\citep{willison2025trifecta, greshake2023more} of private data access, exposure to untrusted content, and external communication, the conditions under which indirect prompt injection~\citep{greshake2023more} enables silent exfiltration. Each layer addresses a unique failure mode: role ceilings cannot distinguish between tasks, task classifiers can be manipulated by injection, and combination prohibitions are deterministic but coarse. Therefore they must be used in combination for effective attack surface minimization. The architecture supports both enforcing and observe-only deployment, described in Section~\ref{sec:combined}.
 
 This paper presents the first of two contributions toward evaluating this architecture. We construct a synthetic dataset of 600 enterprise task prompts grounded in a multi-department company policy, labeled with minimum required permissions across a 15-permission taxonomy designed to map either directly to deployable credentials or agent guardrails. During validation, we observed that the two-pass pipeline inherently stress-tests the policy, exposing realistic workflow gaps that the policy fails to authorize. Iterating between the dataset and the policy reduced ceiling violations from 46 to 3 across the dataset, a 93\% reduction, demonstrating that synthetic prompt generation can drive policy refinement when the two are co-evolved. We release the dataset, the policy, and the validation results to support future evaluation of the full three-source architecture.
 
-Our contributions are:
-\begin{itemize}
-  \item \textbf{A proposed three-source capability scoping architecture} that combines role-based ceilings, a task-context classifier, and policy-derived combination prohibitions, framed as a defense-in-depth layer that complements runtime detection. We present the architecture as a design proposal in this paper; empirical evaluation of the full system is left to follow-up work.
-  \item \textbf{A synthetic enterprise dataset} of 600 task prompts grounded in a multi-department company policy, labeled across a 15-permission taxonomy that maps directly to deployable credentials or agent guardrails, validated against a 60-record human-reviewed sample at Cohen's $\kappa = 0.967$.
-  \item \textbf{A methodological finding on adaptive policy refinement}: synthetic prompt generation acts as a stress test of the underlying access policy, exposing realistic workflow gaps. Co-evolving the dataset and policy reduced ceiling violations from 46 to 3, a 93\% reduction. The dataset, policy, validation results, and metric computation code are released publicly to support replication and future evaluation.
-\end{itemize}
+Our threat model consists of several LLM agent nodes deployed in hosts of an enterprise environment which has access to the inference model as well as various tools and capabilities to perform business-level operations on behalf of employees. For simplicity we are not including fully-autonomous service agents due to identity-without-role complications. The company has following departments: Engineering, Data and Analytics, Security, Customer Success, Finance, and Legal and Compliance. Expected workflow of each department is detailed in policy document both for policy-making and for automated enforcement. Departments have access to the following assets, which can contain 
+business intellectual property, user data, employee information, and 
+security-sensitive data: source code repositories (GitHub), issue 
+tracking and project management (Jira), internal knowledge base 
+(Confluence), customer relationship data (Salesforce), the analytics 
+data warehouse (Snowflake, PostgreSQL), team communication channels (Slack), 
+internal and external email, code execution environments, the public 
+internet (HTTP), and uploaded session files. We are assuming tasks will have no gradual scope creep and discuss this limitation in the Section~\ref{sec:discussions}. Threat model assumes the task-context classifier, credential deployment service, and orchestrator are trusted components. 
+Threat actors we are enumerating are misaligned LLM or a compromised agent. The attacker can attempt to invoke any tool the agent currently holds. The attack vectors within scope are indirect prompt injection, side-task execution, tool-output poisoning, malicious tool definition, LLM supply-chain attacks (as special case of misalignment). The mitigations against the misalignment and misuse are identical in our research context.
+
+\section{Related Work}
+
+Capability-based security is a methodology rooted in computer science 
+since the 1960s~\citep{dennis1966programming}, with foundational work on least 
+privilege~\citep{saltzer1975protection} and systems such as 
+CapDesk~\citep{miller2006robust} and EROS~\citep{shapiro1999eros}. 
+Classical capability-based systems trust the agent to hold its own 
+credentials and attenuate them when delegating. In LLM agent security, 
+the agent itself must not be trusted. We frame our research on how 
+capability-based security applies to agentic workflows in AI control.
+
+OWASP LLM Top 10 LLM06 (Excessive Agency)~\citep{owasp2025llmtop10} 
+defines over-privileged agents as a fundamental problem in the AI safety 
+domain. NIST SP 800-207~\citep{nist800207} specifies a zero trust 
+architecture which treats each entity as untrusted by default regardless 
+of perimeter. This forms the baseline of our research.
+
+PCAS~\citep{palumbo2026pcas} proposes a policy compiler that provides 
+an authorization layer based on a policy specification. This is the 
+same idea as the policy enforcement component of our three-source 
+permission scoping architecture detailed in Section 3. The significant 
+difference is that whereas PCAS relies on the Datalog formal policy 
+language, we argue LLM-generated rules compiled from official company 
+policy are more performant and maintainable, in the spirit of 
+Policy-as-Prompt~\citep{kholkar2025policyasprompt}.
+
+\citet{zhang2026formalizing} outline a framework for the contextual 
+security of LLM agents and point to the utility-security trade-off our 
+overshoot/undershoot metrics measure directly. Our work contributes to 
+that research direction by providing a realistic enterprise prompt 
+dataset that can support evaluation of permission classifiers as one 
+form of contextual defense.
 
 \section{Three-Source Architecture}
-\subsection{Source 1 - Role-Based Ceiling}
+\subsection{Role-Based Ceiling}
 The first source is a deterministic lookup: given the agent's department, 
 return the maximum permission set that role is authorized to hold. An 
 Engineering agent may receive a database read credential because Engineering 
@@ -167,7 +194,7 @@ ceilings attach to the principal regardless of its type. The Source 1
 mechanism is the same in both cases, only the principal that owns the 
 ceiling differs.
 
-\subsection{Source 2 - Task-Context Classifier}
+\subsection{Task-Context Classifier}
 
 The second source narrows the role-based ceiling to the permissions the 
 current task actually requires. Given the user's task description and the 
@@ -183,10 +210,12 @@ does not declare its own required permissions or interact with the
 permissions classifier in any capacity. A compromised or deceptive agent 
 would fabricate justifications to acquire maximum permissions. Source 2 
 reasons over the task description independently and produces a prediction 
-the agent cannot influence at runtime. The classifier outputs confidence 
+the agent cannot influence at runtime. This differs from prior context-aware approaches such as Conseca~\citep{tsai2025conseca}, which generates just-in-time policies per action from trusted context but evaluates the agent's own action attempts. Source 2 instead predicts the full task-required permission set up front from the user's task description.
+
+The classifier outputs confidence 
 scores per permission, and the orchestrator applies asymmetric thresholds 
 based on permission risk: high-risk permissions such 
-as \texttt{database\_read} or \texttt{email \_send \_external} are only granted 
+as \texttt{database\_read} or \texttt{email\_send\_external} are only granted 
 at high confidence, while low-risk permissions such 
 as \texttt{confluence\_read} are granted under lower confidence to avoid 
 breaking common tasks. This dataset is the training input for that 
@@ -204,7 +233,7 @@ three mechanisms but also the most susceptible to attacks.
 
 
 
-\subsection{Source 3 - Policy-Based Combination Prohibitions}
+\subsection{Policy-Based Combination Prohibitions}
 The third source is a deterministic filter applied to the output of 
 Sources 1 and 2. It removes permission combinations that violate the 
 organization's data handling policy. The motivating threat is the 
@@ -219,7 +248,7 @@ or \texttt{http\_request}; when Sources 1 and 2 produce such a set,
 Source 3 removes the external-communication permission.
 
 The prohibition rules can be authored manually from policy documents, but 
-a more scalable approach uses Policy-as-Prompt~\citep{tsai2025conseca} to 
+a more scalable approach uses Policy-as-Prompt~\citep{kholkar2025policyasprompt} to 
 generate them automatically. A classifier reads the company policy and 
 the expected workflow descriptions, then derives the set of permission 
 combinations that fall within authorized workflows. Anything outside 
@@ -243,6 +272,7 @@ policy-processing classifier can encode as a concrete prohibition rule.
 
 
 \subsection{Combined Application of the Three-Source Architecture}
+\label{sec:combined}
 The three sources combine through intersection: a permission is granted 
 only if Source 1 permits it (within the role ceiling), Source 2 predicts 
 it (the task requires it), and Source 3 does not prohibit it (the 
@@ -425,29 +455,18 @@ labeling error), \emph{human\_correct} (LLM prediction error), or
 
 Independent re-labeling prevents anchoring bias. A review-style 
 validation, where the human inspects the LLM's labels and accepts or 
-rejects them, anchors the human to the LLM's prior decisions. Independent 
-labeling produces the human's own assessment of what the task requires, 
-which the LLM's labels are then compared against. Anchoring bias is 
-removed this way. Later the disagreements are surfaced and resolved as 
+rejects them, anchors the human to the LLM's prior decisions. Our labeling process produces the human's own assessment of what the task requires, 
+which the LLM's labels are then compared against. Later the disagreements are surfaced and resolved as 
 a separate step. Both pre-review and post-review statistics are used to evaluate the results of the research.
 
-\paragraph{Why Cohen's $\kappa$.} Raw agreement is misleading on this 
-dataset: most permissions are denied for most tasks (only 2--4 of the 
-15 are typically required), so two raters who default to ``deny'' would 
-agree on a large fraction of decisions without doing any real labeling 
-work. Cohen's $\kappa$ corrects for this by subtracting the agreement 
-that would be expected if both raters made independent random decisions 
-with the same marginal frequencies. The remaining quantity is the 
-agreement signal that exceeds chance. This is the standard reliability 
+Because most permissions are denied for most tasks (only 2-4 of the 15 are typically required), raw agreement shows inflated misleading accuracy. We used Cohen's $\kappa$ which is the standard reliability 
 metric for two-rater categorical labeling and has been since Cohen 
-introduced it in 1960~\citep{cohen1960coefficient}.
-
-We compute $\kappa$ over the in-ceiling decision space which means for 
+introduced it in 1960~\citep{cohen1960coefficient}. We compute $\kappa$ over the in-ceiling decision space which means for 
 each record, only permissions within the agent's department ceiling 
 are evaluated. Otherwise out-of-ceiling permissions would be trivially 
 denied by both raters and would inflate both observed and chance 
 agreement. Adjusting department ceilings across 60 records yields 688 
-binary human--LLM decisions. The reported $\kappa$ is computed once 
+binary human-LLM decisions. The reported $\kappa$ is computed once 
 over those decisions; per-tool $\kappa$ values are also released for 
 diagnostic use, but the headline figure is the overall $\kappa$. We 
 additionally report the 95\% confidence interval using the standard 
@@ -458,8 +477,7 @@ Two metric sets are reported within the scope of research. \textbf{Pre-review}
 metrics treat the human labels as ground truth. \textbf{Post-review} 
 metrics treat the reviewed labels as ground truth, which proved more accurate once the resolution data showed that human labels 
 themselves contain errors. Both sets are released; we treat the 
-post-review metrics as the headline figures and retain pre-review as 
-a stricter floor.
+post-review metrics as the main labelled dataset and retain pre-review for research log.
 
 Relying on a single labeler is a methodological limitation. Self-review bias is unavoidable here as the same 
 researcher who produced the human labels also resolved their 
@@ -517,7 +535,7 @@ over-grant. It essentially performs as a security risk score. The
 disagreement resolution attributed 10 of the 20 disagreements to human 
 labeling error rather than LLM error, with the corrections concentrated 
 on the high-risk permissions that drive the severity score. The 
-post-review figure of 2.0 reflects the LLM's residual rate of high-risk 
+post-review Figure~\ref{fig:pre-post-metrics} reflects the LLM's residual rate of high-risk 
 over-granting on this sample.
 
 The remaining error after resolution is conservative undershoot at 
@@ -540,7 +558,7 @@ and would inflate observed and chance agreement together.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{figures/fig2_pre_post_comparison.pdf}
+\includegraphics[width=\linewidth]{figures/fig1_pre_post_comparison.pdf}
 \caption{Pre-review vs post-review permission metrics on the 60-record 
 validated sample. Both $\kappa$ values sit in the ``almost perfect'' 
 agreement band ($\kappa \geq 0.81$). The metric improvements after 
@@ -573,28 +591,44 @@ External readers can audit the review directly.
 
 
 \subsection{Sensitivity Tier Labels}
-In addition to permissions, each generated record carries a sensitivity tier label - LOW, MEDIUM, or HIGH - assigned by the LLM at generation time based on the data being handled by the task. The tiers were originally intended to map to standard data-classification levels such as those in NIST SP 800-60~\citep{nist80060}, on the principle that more sensitive data implies higher security risk for any task that touches it. The validation pass found the label too subjective for that purpose: human-LLM raw agreement on sensitivity was 60\%, substantially below the corresponding figure for permission decisions on the same sample. The instability concentrates on the MEDIUM tier, which the confusion matrix shows is split nearly evenly across all three human assignments. The boundary between MEDIUM and the adjacent tiers is genuinely ambiguous in many enterprise tasks rather than a labeling defect. Of the 24 sensitivity disagreements adjudicated, the human was correct in 17 cases (71\%) and the LLM in 6 (25\%), confirming that the LLM's sensitivity assignments are systematically less reliable than its permission assignments.
+In addition to permissions, each generated record carries a sensitivity tier label - LOW, MEDIUM, or HIGH - assigned by the LLM at generation time based on the data being handled by the task. The tiers were originally intended to map to standard data-classification levels such as those in NIST SP 800-60~\citep{nist80060}, on the principle that more sensitive data implies higher security risk for any task that touches it. The validation pass found the label too subjective for that purpose: human-LLM raw agreement on sensitivity was 60\%, substantially below the corresponding figure for permission decisions on the same sample. The instability concentrates on the MEDIUM tier, which the confusion matrix shows is split nearly evenly across all three human assignments. The boundary between MEDIUM and the adjacent tiers is genuinely ambiguous in many enterprise tasks rather than a labeling defect. Of the 24 sensitivity disagreements adjudicated, the human was correct in 17 cases (71\%) and the LLM in 6 (25\%) with 1 ambiguous case (4\%), confirming that the LLM's sensitivity assignments are systematically less reliable than its permission assignments.
 
 Sensitivity tier labels are therefore excluded from all classifier metrics and from the severity-weighted delta computation. They are retained in the dataset as descriptive metadata only.
 
 \section{Discussion and Limitations}
+\label{sec:discussions}
+The release of this synthetic dataset and the methodology of adaptive policy refinement provide an empirical baseline toward evaluating dynamic capability scoping.
 
-The release of this synthetic dataset and the methodology of adaptive policy refinement provide a foundational step toward evaluating dynamic capability scoping.
+Our findings must be interpreted alongside several methodological considerations. First, our dataset validation currently relies on a single expert reviewer; while we released the full adjudication log to audit self-review bias, formal multi-rater validation is required to establish true inter-rater reliability. This will be handled in a future iteration. Second, despite careful grounding in a multi-department policy, synthetic data inherently lacks the full ecological validity, implicit context, and noise of real-world corporate communications. Third, because the task classifier relies on natural language processing, it inherits standard vulnerabilities to prompt injection. This reinforces our core design principle: dynamic scoping cannot function reliably in isolation and must be paired with deterministic ceilings and prohibitions. Finally, assigning data sensitivity tiers yielded lower human-to-LLM agreement (60\%), indicating that automating data classification requires more structured rubrics to be reliable.
 
-However, our findings must be interpreted alongside several methodological considerations. First, our dataset validation currently relies on a single expert reviewer; while we released the full adjudication log to transparently audit self-review bias, formal multi-rater validation is required to establish true inter-rater reliability. Second, despite careful grounding in a multi-department policy, synthetic data inherently lacks the full ecological validity, implicit context, and noise of real-world corporate communications. Third, because the task classifier relies on natural language processing, it inherits standard vulnerabilities to prompt injection. This reinforces our core design principle: dynamic scoping cannot function reliably in isolation and must be paired with deterministic ceilings and prohibitions. Finally, assigning data sensitivity tiers yielded lower human-to-LLM agreement (60\%), indicating that automating data classification requires more structured rubrics to be reliable.
-
-A significant architectural limitation arises in the context of autonomous, multi-step agent workflows, such as ReAct~\citep{yaoetal2022react} or iterative tool-calling loops. Source 2, the task-context classifier, predicts required permissions based solely on the initial natural language prompt. However, complex open-ended tasks such as debugging a production incident often exhibit expanding permission scopes. An agent might initially only appear to need \texttt{jira\_read} to triage an alert, but upon reading the ticket, dynamically discover it requires \texttt{github\_read} to inspect a repository and \texttt{code\_execute} to reproduce a bug. Because Source 2 currently evaluates only the upfront request, it cannot anticipate downstream requirements discovered during the agent's reasoning loop. The orchestrator must either strictly undershoot (breaking the workflow) or preemptively over-provision tools for complex prompts, which risks collapsing the dynamic scope back into the broad Source 1 role ceiling. Ultimately, this limitation confines the proposed solution to a narrow subset of tasks that are strictly close-ended and deterministic.
+A significant architectural limitation arises in the context of autonomous, multi-step agent workflows, such as ReAct~\citep{yaoetal2022react} or iterative tool-calling loops. Source 2, the task-context classifier, predicts required permissions based solely on the initial natural language prompt. However, complex open-ended tasks such as debugging a production incident often exhibit expanding permission scopes. An agent might initially only appear to need \texttt{jira\_read} to triage an alert, but upon reading the ticket, dynamically discover it requires \texttt{github\_read} to inspect a repository and \texttt{code\_execute} to reproduce a bug. Because Source 2 currently evaluates only the upfront request, it cannot anticipate downstream requirements discovered during the agent's reasoning loop. The orchestrator must either strictly undershoot (breaking the workflow) or preemptively over-provision tools for complex prompts, which risks increasing the dynamic scope back into the broad Source 1 role ceiling. We still argue even open-ended tasks can still benefit from scope reduction in majority of cases (e.g., \texttt{slack\_write} permission within "debugging context" ).
 
 The effectiveness of Source 3's prohibitions depends directly on the precision of the underlying rule mechanism and the workflow definitions in the organizational policy. Our baseline taxonomy blocks the co-occurrence of tools like \texttt{database\_read} and \texttt{http\_request} to prevent exfiltration. However, enterprise workflows frequently combine internal database reads with internal HTTP webhooks. If the rule mechanism lacks parameter-level scoping (e.g., distinguishing internal Virtual Private Cloud (VPC) endpoints from public IP addresses) or if the policy fails to explicitly distinguish authorized internal communication from prohibited external access, binary tool prohibitions will disrupt operations. Our adaptive policy refinement methodology directly addresses this requirement. Iterating between generated task prompts and policy definitions forces organizations to surface and resolve these network-scoping ambiguities prior to deployment, ensuring the architecture scales to complex enterprise environments.
 
-Future work will advance this architecture from a design proposal to an empirically validated system. As an immediate next step, we will train a dedicated task-context classifier on this dataset to establish baseline overshoot and undershoot statistics. We will then evaluate the complete architecture across a phased progression (C0--C3): from an unenforced baseline (C0), to role ceilings only (C1), adding the task classifier (C2), and finally enforcing the policy prohibitions (C3). To further advance AI control against misalignment, we plan to deploy this setup as a custom micro-protocol within the ControlArena~\citep{control_arena} framework. Testing against deceptive model organisms will empirically evaluate the system's capacity to deterministically prevent hidden exfiltration side tasks. Lastly, we will explore practical operational integration via Just-in-Time credentialing and observe-only telemetry for enterprise security platforms.
+Future work will advance this architecture from a design proposal to an empirically validated system. As an immediate next step, we will train a dedicated task-context classifier on this dataset to establish baseline overshoot and undershoot statistics. We will then evaluate the complete architecture across a phased progression (C0--C3): from an unenforced baseline (C0), to role ceilings only (C1), adding the task classifier (C2), and finally enforcing the policy prohibitions (C3). To further advance AI control against misalignment, we plan to deploy this setup as a custom micro-protocol within the ControlArena~\citep{control_arena} framework. Testing against deceptive model organisms~\citep{hubinger2024sleeper} will empirically evaluate the system's capacity to deterministically prevent hidden exfiltration side tasks. Lastly, we will explore practical operational integration via Just-in-Time credentialing and observe-only telemetry for enterprise security platforms.
 
 \section{Conclusion}
+Recent security incidents involving OpenClaw~\citep{openclaw2026systematic} demonstrate that agentic LLM deployments carry substantial security risks. As increasingly capable models are deployed within critical infrastructure, the impact of emerging misalignment grows exponentially. Anthropic reports that Claude Mythos~\citep{anthropic2026mythos}—their latest frontier model at the time of writing—demonstrates complex vulnerability exploitation and autonomous sandbox escape capabilities. Furthermore, sandbagging and alignment faking~\citep{greenblatt2024alignment} have the potential to bypass standard safety evaluations; a compromised agent that retains broad permissions can therefore cause severe damage. Substantial investment in AI control measures is required to mitigate these exploding risk factors.
 
-To address the context-privilege mismatch and eliminate the attack surface available to deceptive AI agents, we proposed a dynamic capability scoping architecture that shifts the security paradigm from reactive detection to proactive prevention. As a foundational step, we contributed a 600-prompt synthetic enterprise dataset, demonstrating that co-evolving generated tasks with access policies yields a 93\% reduction in architectural ceiling violations. Future work will empirically evaluate this architecture through phased runtime deployments and standardized model organism benchmarks to quantitatively measure its efficacy in neutralizing misalignment in the wild.
+Our proposal reduces the blast radius of these failure modes by removing the credentials a deceptive agent would require to execute an attack. A tool that does not exist in the agent's context cannot be misused, regardless of the agent's reasoning or strategic capabilities. This creates a partially-deterministic confinement layer that serves as a robust safety primitive, complementing existing alignment, monitoring, and detection solutions.
+
+While the architecture introduces operational costs detailed in the Section~\ref{sec:discussions}, we expect these to be minimized through targeted fine-tuning. Despite current limitations in evaluating complex, open-ended tasks, we believe this architecture provides a critical component for the practical implementation of AI control measures in high-stakes environments.
+
+% Use this to hide acknowledgments during the review phase
+% Replace "false" with "true" once the paper is accepted
+\newif\ifaccepted
+\acceptedfalse % Set to \acceptedtrue for the camera-ready version
+
+\ifaccepted
+\section*{Acknowledgements}
+The author would like to thank the organizers and community of the AI Security Bootcamp (AISB) Singapore for the technical discussions and threat modeling exercises that informed the Three-Source Architecture. Additional thanks go to BlueDot Impact for the research environment and mentorship provided during the project development. All views expressed are solely those of the author and do not represent the positions of his employer.
+\fi
+
 
 \bibliography{dynamic_scoping_icml}
 \bibliographystyle{icml2026}
+
+
 
 \end{document}
 
