@@ -81,7 +81,8 @@ already has.
 | max seq length | 256 tokens | Empirical: longest training prompt = 105 tokens, p95 = 85. 256 leaves headroom, halves attention compute vs 512. See §6.7 of the Notion proposal. |
 | loss | BCEWithLogitsLoss with per-class `pos_weight` | Multi-label classification with rare positive classes (pull_request_create at 13/500) |
 | `pos_weight` formula | `(N − n_pos) / n_pos` per permission | Standard rebalancing to make positives and negatives carry equal expected loss |
-| `pos_weight` clip | 10.0 | Without clipping, the rarest label produces pos_weight = 37.5 and destabilises training. Clip caps the asymmetry while still emphasising rare positives. |
+| `pos_weight` clip | 3.0 | Originally 10.0. Lowered to 3.0 after a NaN gradient explosion at step 5 of a 20-epoch / lr 5e-5 run: the combination of `pos_weight=10` rare-class gradients and high LR produced weight updates large enough to corrupt parameters. 3.0 keeps meaningful rebalancing (rare positives count 3× negatives) without the instability. |
+| `max_grad_norm` | 0.5 | HF Trainer default is 1.0. Tightened to 0.5 as a safety net — bounds the optimizer step even when an individual batch produces a large gradient. |
 | seed | 42 | Reproducibility |
 | `eval_strategy` | `"no"` | No internal validation hold-out (see below); train for fixed epochs, save final checkpoint |
 | `save_strategy` | `"no"` + manual save at end | Save once at the end; avoid per-epoch I/O overhead |
