@@ -2,7 +2,9 @@
         dataset-generate dataset-requests dataset-labels dataset-merge \
         dataset-validate dataset-stats dataset-split \
         validate-human validate-compare validate-review \
-        experiment-run clean
+        experiments \
+        baselines baseline-tfidf baseline-claude baseline-claude-refresh \
+        clean
 
 # ── Full pipeline ──────────────────────────────────────────────────────────────
 all: dataset-generate dataset-validate dataset-split
@@ -48,8 +50,27 @@ validate-review:
 	uv run -m mostargate.dataset_generator.metrics review
 
 # ── Experiments ────────────────────────────────────────────────────────────────
-experiment-run:
+experiments:
 	uv run -m mostargate.experiments.run
+
+# ── Classifier baselines ───────────────────────────────────────────────────────
+# Both baselines: TF-IDF + Claude few-shot with 6-config threshold sweep.
+# First Claude run costs ~$0.30 in API; subsequent runs use the cached score matrix.
+baselines:
+	uv run -m mostargate.classifier.baselines --baseline all
+
+# Fast, no API. TF-IDF + logreg at threshold 0.5 only.
+baseline-tfidf:
+	uv run -m mostargate.classifier.baselines --baseline tfidf
+
+# Claude Haiku 4.5 few-shot + 6-config threshold sweep. Uses cached scores if
+# present; only calls the API on first run or when the cache is missing.
+baseline-claude:
+	uv run -m mostargate.classifier.baselines --baseline claude
+
+# Force a fresh Claude API call (re-generates the score cache).
+baseline-claude-refresh:
+	uv run -m mostargate.classifier.baselines --baseline claude --refresh-claude-cache
 
 # ── Cleanup ────────────────────────────────────────────────────────────────────
 clean:

@@ -30,6 +30,7 @@ def run_experiment(condition: ModuleType, records: list[dict]) -> None:
         results=results,
     )
 
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     out_path = RESULTS_DIR / f"{condition.CONDITION}.json"
     out_path.write_text(json.dumps(output, indent=2))
 

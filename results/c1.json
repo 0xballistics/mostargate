@@ -1,0 +1,3976 @@
+{
+  "condition": "c1",
+  "description": "Role ceiling (Source 1): per-department permission ceiling applied as a lookup table. No task-context classification.",
+  "summary": {
+    "n_records": 100,
+    "mean_raw_delta": 9.05,
+    "mean_severity_weighted_delta": 17.51,
+    "overshoot_rate": 1.0,
+    "undershoot_rate": 0.02,
+    "mean_overshoot_count_by_tier": {
+      "tier_1": 1.82,
+      "tier_2": 4.82,
+      "tier_3": 2.41
+    },
+    "mean_undershoot_count_by_tier": {
+      "tier_1": 0.0,
+      "tier_2": 0.02,
+      "tier_3": 0.0
+    },
+    "overshoot_rate_by_tier": {
+      "tier_1": 0.96,
+      "tier_2": 1.0,
+      "tier_3": 1.0
+    },
+    "undershoot_rate_by_tier": {
+      "tier_1": 0.0,
+      "tier_2": 0.02,
+      "tier_3": 0.0
+    },
+    "by_department": {
+      "Customer Success": {
+        "n_records": 20,
+        "mean_raw_delta": 8.5,
+        "mean_severity_weighted_delta": 15.9,
+        "overshoot_rate": 1.0,
+        "undershoot_rate": 0.0,
+        "mean_overshoot_count_by_tier": {
+          "tier_1": 1.25,
+          "tier_2": 4.9,
+          "tier_3": 2.35
+        },
+        "mean_undershoot_count_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        },
+        "overshoot_rate_by_tier": {
+          "tier_1": 0.95,
+          "tier_2": 1.0,
+          "tier_3": 1.0
+        },
+        "undershoot_rate_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        }
+      },
+      "Data and Analytics": {
+        "n_records": 15,
+        "mean_raw_delta": 9.066666666666666,
+        "mean_severity_weighted_delta": 17.266666666666666,
+        "overshoot_rate": 1.0,
+        "undershoot_rate": 0.06666666666666667,
+        "mean_overshoot_count_by_tier": {
+          "tier_1": 1.8666666666666667,
+          "tier_2": 4.466666666666667,
+          "tier_3": 2.7333333333333334
+        },
+        "mean_undershoot_count_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.06666666666666667,
+          "tier_3": 0.0
+        },
+        "overshoot_rate_by_tier": {
+          "tier_1": 1.0,
+          "tier_2": 1.0,
+          "tier_3": 1.0
+        },
+        "undershoot_rate_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.06666666666666667,
+          "tier_3": 0.0
+        }
+      },
+      "Engineering": {
+        "n_records": 25,
+        "mean_raw_delta": 10.96,
+        "mean_severity_weighted_delta": 22.12,
+        "overshoot_rate": 1.0,
+        "undershoot_rate": 0.0,
+        "mean_overshoot_count_by_tier": {
+          "tier_1": 2.8,
+          "tier_2": 5.56,
+          "tier_3": 2.6
+        },
+        "mean_undershoot_count_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        },
+        "overshoot_rate_by_tier": {
+          "tier_1": 1.0,
+          "tier_2": 1.0,
+          "tier_3": 1.0
+        },
+        "undershoot_rate_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        }
+      },
+      "Finance": {
+        "n_records": 15,
+        "mean_raw_delta": 7.466666666666667,
+        "mean_severity_weighted_delta": 13.533333333333333,
+        "overshoot_rate": 1.0,
+        "undershoot_rate": 0.0,
+        "mean_overshoot_count_by_tier": {
+          "tier_1": 0.9333333333333333,
+          "tier_2": 4.2,
+          "tier_3": 2.3333333333333335
+        },
+        "mean_undershoot_count_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        },
+        "overshoot_rate_by_tier": {
+          "tier_1": 0.8,
+          "tier_2": 1.0,
+          "tier_3": 1.0
+        },
+        "undershoot_rate_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        }
+      },
+      "Legal and Compliance": {
+        "n_records": 10,
+        "mean_raw_delta": 6.5,
+        "mean_severity_weighted_delta": 12.4,
+        "overshoot_rate": 1.0,
+        "undershoot_rate": 0.1,
+        "mean_overshoot_count_by_tier": {
+          "tier_1": 1.0,
+          "tier_2": 3.9,
+          "tier_3": 1.6
+        },
+        "mean_undershoot_count_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.1,
+          "tier_3": 0.0
+        },
+        "overshoot_rate_by_tier": {
+          "tier_1": 1.0,
+          "tier_2": 1.0,
+          "tier_3": 1.0
+        },
+        "undershoot_rate_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.1,
+          "tier_3": 0.0
+        }
+      },
+      "Security": {
+        "n_records": 15,
+        "mean_raw_delta": 9.866666666666667,
+        "mean_severity_weighted_delta": 19.6,
+        "overshoot_rate": 1.0,
+        "undershoot_rate": 0.0,
+        "mean_overshoot_count_by_tier": {
+          "tier_1": 2.3333333333333335,
+          "tier_2": 5.066666666666666,
+          "tier_3": 2.466666666666667
+        },
+        "mean_undershoot_count_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        },
+        "overshoot_rate_by_tier": {
+          "tier_1": 1.0,
+          "tier_2": 1.0,
+          "tier_3": 1.0
+        },
+        "undershoot_rate_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        }
+      }
+    },
+    "by_sensitivity": {
+      "HIGH": {
+        "n_records": 48,
+        "mean_raw_delta": 8.645833333333334,
+        "mean_severity_weighted_delta": 16.5,
+        "overshoot_rate": 1.0,
+        "undershoot_rate": 0.0,
+        "mean_overshoot_count_by_tier": {
+          "tier_1": 1.6458333333333333,
+          "tier_2": 4.5625,
+          "tier_3": 2.4375
+        },
+        "mean_undershoot_count_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        },
+        "overshoot_rate_by_tier": {
+          "tier_1": 0.9166666666666666,
+          "tier_2": 1.0,
+          "tier_3": 1.0
+        },
+        "undershoot_rate_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        }
+      },
+      "LOW": {
+        "n_records": 13,
+        "mean_raw_delta": 10.846153846153847,
+        "mean_severity_weighted_delta": 22.153846153846153,
+        "overshoot_rate": 1.0,
+        "undershoot_rate": 0.0,
+        "mean_overshoot_count_by_tier": {
+          "tier_1": 2.769230769230769,
+          "tier_2": 5.769230769230769,
+          "tier_3": 2.3076923076923075
+        },
+        "mean_undershoot_count_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        },
+        "overshoot_rate_by_tier": {
+          "tier_1": 1.0,
+          "tier_2": 1.0,
+          "tier_3": 1.0
+        },
+        "undershoot_rate_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.0,
+          "tier_3": 0.0
+        }
+      },
+      "MEDIUM": {
+        "n_records": 39,
+        "mean_raw_delta": 8.948717948717949,
+        "mean_severity_weighted_delta": 17.205128205128204,
+        "overshoot_rate": 1.0,
+        "undershoot_rate": 0.05128205128205128,
+        "mean_overshoot_count_by_tier": {
+          "tier_1": 1.7179487179487178,
+          "tier_2": 4.82051282051282,
+          "tier_3": 2.41025641025641
+        },
+        "mean_undershoot_count_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.05128205128205128,
+          "tier_3": 0.0
+        },
+        "overshoot_rate_by_tier": {
+          "tier_1": 1.0,
+          "tier_2": 1.0,
+          "tier_3": 1.0
+        },
+        "undershoot_rate_by_tier": {
+          "tier_1": 0.0,
+          "tier_2": 0.05128205128205128,
+          "tier_3": 0.0
+        }
+      }
+    }
+  },
+  "results": [
+    {
+      "record_id": "B20_ENG03",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "code_execute",
+        "github_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B16_ENG02",
+      "department": "Engineering",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "github_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 21
+    },
+    {
+      "record_id": "B28_ENG03",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "github_read",
+        "http_request"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 21
+    },
+    {
+      "record_id": "B22_ENG01",
+      "department": "Engineering",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "github_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 12,
+      "severity_weighted_delta": 24
+    },
+    {
+      "record_id": "B22_ENG05",
+      "department": "Engineering",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 21
+    },
+    {
+      "record_id": "B19_ENG05",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "jira_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 12,
+      "severity_weighted_delta": 25
+    },
+    {
+      "record_id": "B10_ENG05",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "email_read",
+        "github_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B13_ENG03",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "github_read",
+        "pull_request_create"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 21
+    },
+    {
+      "record_id": "B09_ENG03",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "code_execute",
+        "github_read",
+        "jira_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 21
+    },
+    {
+      "record_id": "B03_ENG04",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "code_execute",
+        "github_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B19_ENG01",
+      "department": "Engineering",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "github_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 12,
+      "severity_weighted_delta": 24
+    },
+    {
+      "record_id": "B11_ENG01",
+      "department": "Engineering",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "github_read",
+        "jira_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 23
+    },
+    {
+      "record_id": "B13_ENG02",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "confluence_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 12,
+      "severity_weighted_delta": 25
+    },
+    {
+      "record_id": "B09_ENG04",
+      "department": "Engineering",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "email_read",
+        "github_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B08_ENG04",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "confluence_read",
+        "github_read",
+        "jira_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B21_ENG04",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "github_read",
+        "jira_read",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 21
+    },
+    {
+      "record_id": "B12_ENG02",
+      "department": "Engineering",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "code_execute",
+        "github_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B20_ENG05",
+      "department": "Engineering",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "github_read",
+        "jira_read",
+        "slack_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_write",
+        "pull_request_create",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 21
+    },
+    {
+      "record_id": "B14_ENG03",
+      "department": "Engineering",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "github_read",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B24_ENG03",
+      "department": "Engineering",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "github_read",
+        "jira_write",
+        "slack_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "pull_request_create",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 20
+    },
+    {
+      "record_id": "B19_ENG02",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "jira_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 12,
+      "severity_weighted_delta": 25
+    },
+    {
+      "record_id": "B16_ENG05",
+      "department": "Engineering",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "export_file"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "email_read",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 21
+    },
+    {
+      "record_id": "B21_ENG05",
+      "department": "Engineering",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "confluence_read",
+        "github_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 23
+    },
+    {
+      "record_id": "B08_ENG03",
+      "department": "Engineering",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "code_execute",
+        "github_read",
+        "slack_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 20
+    },
+    {
+      "record_id": "B19_ENG04",
+      "department": "Engineering",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "github_read",
+        "slack_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "pull_request_create",
+        "slack_read"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B09_CUS02",
+      "department": "Customer Success",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 16
+    },
+    {
+      "record_id": "B04_CUS03",
+      "department": "Customer Success",
+      "sensitivity": "LOW",
+      "ground_truth": [
+        "email_read",
+        "jira_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 18
+    },
+    {
+      "record_id": "B16_CUS03",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "database_read",
+        "jira_read",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B24_CUS01",
+      "department": "Customer Success",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "jira_read",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 15
+    },
+    {
+      "record_id": "B10_CUS03",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "database_read",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 15
+    },
+    {
+      "record_id": "B16_CUS01",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "jira_read",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 15
+    },
+    {
+      "record_id": "B18_CUS02",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 18
+    },
+    {
+      "record_id": "B21_CUS01",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "export_file",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B14_CUS03",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B02_CUS01",
+      "department": "Customer Success",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "email_send_external",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 13
+    },
+    {
+      "record_id": "B14_CUS04",
+      "department": "Customer Success",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "jira_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B27_CUS01",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 18
+    },
+    {
+      "record_id": "B30_CUS02",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "email_read",
+        "email_send_external",
+        "jira_write"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B29_CUS02",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 16
+    },
+    {
+      "record_id": "B16_CUS04",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "email_read",
+        "jira_read",
+        "slack_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "database_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_write",
+        "salesforce_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 15
+    },
+    {
+      "record_id": "B07_CUS04",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "slack_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 16
+    },
+    {
+      "record_id": "B26_CUS02",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "jira_write",
+        "slack_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "salesforce_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B02_CUS02",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "database_read",
+        "export_file",
+        "jira_read",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 6,
+      "severity_weighted_delta": 12
+    },
+    {
+      "record_id": "B27_CUS03",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "email_read",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B17_CUS03",
+      "department": "Customer Success",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "jira_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_write",
+        "salesforce_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B15_DAT01",
+      "department": "Data and Analytics",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 18
+    },
+    {
+      "record_id": "B27_DAT01",
+      "department": "Data and Analytics",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B28_DAT02",
+      "department": "Data and Analytics",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B16_DAT01",
+      "department": "Data and Analytics",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "export_file",
+        "http_request"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B14_DAT01",
+      "department": "Data and Analytics",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "database_read",
+        "export_file"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 16
+    },
+    {
+      "record_id": "B10_DAT02",
+      "department": "Data and Analytics",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B11_DAT02",
+      "department": "Data and Analytics",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "database_read",
+        "slack_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 16
+    },
+    {
+      "record_id": "B14_DAT02",
+      "department": "Data and Analytics",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 21
+    },
+    {
+      "record_id": "B26_DAT01",
+      "department": "Data and Analytics",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "export_file",
+        "http_request"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B01_DAT03",
+      "department": "Data and Analytics",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "export_file",
+        "http_request"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B01_DAT02",
+      "department": "Data and Analytics",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "slack_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B26_DAT03",
+      "department": "Data and Analytics",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "database_read",
+        "slack_write"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B07_DAT01",
+      "department": "Data and Analytics",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "export_file"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B29_DAT03",
+      "department": "Data and Analytics",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "code_execute",
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [
+        "code_execute"
+      ],
+      "raw_delta": 10,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B06_DAT02",
+      "department": "Data and Analytics",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "http_request"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B19_SEC03",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "jira_write",
+        "slack_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "slack_read"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B24_SEC02",
+      "department": "Security",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "github_read",
+        "http_request",
+        "slack_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B08_SEC01",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "file_read_uploaded",
+        "github_read",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "http_request",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 20
+    },
+    {
+      "record_id": "B27_SEC02",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "github_read",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 22
+    },
+    {
+      "record_id": "B07_SEC02",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 12,
+      "severity_weighted_delta": 23
+    },
+    {
+      "record_id": "B15_SEC02",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 23
+    },
+    {
+      "record_id": "B08_SEC03",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "github_read",
+        "http_request",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 10,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B11_SEC03",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "export_file",
+        "jira_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 11,
+      "severity_weighted_delta": 23
+    },
+    {
+      "record_id": "B23_SEC02",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "email_read",
+        "github_read",
+        "jira_read",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "http_request",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 19
+    },
+    {
+      "record_id": "B04_SEC02",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "github_read",
+        "http_request",
+        "jira_write",
+        "slack_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B16_SEC01",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "export_file",
+        "github_read",
+        "jira_read"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "http_request",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 18
+    },
+    {
+      "record_id": "B24_SEC01",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "database_read",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 18
+    },
+    {
+      "record_id": "B06_SEC02",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B21_SEC02",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "code_execute",
+        "github_read",
+        "http_request",
+        "jira_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B17_SEC01",
+      "department": "Security",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "github_read",
+        "http_request",
+        "jira_write",
+        "slack_write"
+      ],
+      "granted": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "github_read",
+        "http_request",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "code_execute",
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "slack_read"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B03_FIN02",
+      "department": "Finance",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "email_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "database_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 17
+    },
+    {
+      "record_id": "B20_FIN03",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "email_read",
+        "email_send_external"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "database_read",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 13
+    },
+    {
+      "record_id": "B04_FIN03",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "email_read",
+        "jira_write"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 12
+    },
+    {
+      "record_id": "B02_FIN01",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 16
+    },
+    {
+      "record_id": "B06_FIN02",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 6,
+      "severity_weighted_delta": 10
+    },
+    {
+      "record_id": "B05_FIN02",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 15
+    },
+    {
+      "record_id": "B30_FIN01",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "email_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B14_FIN02",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 9,
+      "severity_weighted_delta": 16
+    },
+    {
+      "record_id": "B19_FIN01",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "file_read_uploaded"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 8,
+      "severity_weighted_delta": 15
+    },
+    {
+      "record_id": "B14_FIN01",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "email_read",
+        "file_read_uploaded"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "database_read",
+        "email_send_external",
+        "export_file",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 15
+    },
+    {
+      "record_id": "B01_FIN02",
+      "department": "Finance",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "database_read",
+        "export_file"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 13
+    },
+    {
+      "record_id": "B18_FIN03",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "database_read",
+        "export_file"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 13
+    },
+    {
+      "record_id": "B06_FIN01",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "email_send_external",
+        "file_read_uploaded"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "export_file",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 12
+    },
+    {
+      "record_id": "B05_FIN03",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "email_read",
+        "file_read_uploaded",
+        "jira_write"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_send_external",
+        "export_file",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 6,
+      "severity_weighted_delta": 11
+    },
+    {
+      "record_id": "B26_FIN01",
+      "department": "Finance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "database_read",
+        "email_send_external",
+        "slack_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "database_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_read",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 11
+    },
+    {
+      "record_id": "B13_LEG02",
+      "department": "Legal and Compliance",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "export_file",
+        "file_read_uploaded",
+        "slack_write"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "jira_read",
+        "jira_write",
+        "slack_read"
+      ],
+      "undershoot": [],
+      "raw_delta": 5,
+      "severity_weighted_delta": 10
+    },
+    {
+      "record_id": "B15_LEG01",
+      "department": "Legal and Compliance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "email_read",
+        "jira_read",
+        "jira_write"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 5,
+      "severity_weighted_delta": 10
+    },
+    {
+      "record_id": "B15_LEG02",
+      "department": "Legal and Compliance",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "file_read_uploaded"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B05_LEG02",
+      "department": "Legal and Compliance",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "file_read_uploaded"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B14_LEG02",
+      "department": "Legal and Compliance",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "file_read_uploaded"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 14
+    },
+    {
+      "record_id": "B28_LEG01",
+      "department": "Legal and Compliance",
+      "sensitivity": "MEDIUM",
+      "ground_truth": [
+        "confluence_read",
+        "salesforce_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [
+        "salesforce_read"
+      ],
+      "raw_delta": 8,
+      "severity_weighted_delta": 15
+    },
+    {
+      "record_id": "B22_LEG01",
+      "department": "Legal and Compliance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "email_read"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 13
+    },
+    {
+      "record_id": "B20_LEG01",
+      "department": "Legal and Compliance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "email_read",
+        "jira_write"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "confluence_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 7,
+      "severity_weighted_delta": 12
+    },
+    {
+      "record_id": "B14_LEG01",
+      "department": "Legal and Compliance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "email_read",
+        "jira_write"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 6,
+      "severity_weighted_delta": 11
+    },
+    {
+      "record_id": "B23_LEG01",
+      "department": "Legal and Compliance",
+      "sensitivity": "HIGH",
+      "ground_truth": [
+        "confluence_read",
+        "email_read",
+        "jira_write"
+      ],
+      "granted": [
+        "confluence_read",
+        "email_read",
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "jira_write",
+        "slack_read",
+        "slack_write"
+      ],
+      "overshoot": [
+        "email_send_external",
+        "export_file",
+        "file_read_uploaded",
+        "jira_read",
+        "slack_read",
+        "slack_write"
+      ],
+      "undershoot": [],
+      "raw_delta": 6,
+      "severity_weighted_delta": 11
+    }
+  ]
+}

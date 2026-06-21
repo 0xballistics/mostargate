@@ -2,6 +2,7 @@ from .. import constants
 from .types import EvalResult, Summary, DeptSummary
 
 PERMISSIONS: list[str] = list(constants.TOOLS.keys())
+TIERS: list[int] = [1, 2, 3]
 
 # Tier 1 → weight 3, Tier 2 → weight 2, Tier 3 → weight 1
 TIER_WEIGHTS: dict[str, int] = {
@@ -15,7 +16,7 @@ def severity_weighted_delta(granted: set[str], ground_truth: set[str]) -> float:
 
 
 def evaluate(record: dict, granted: set[str]) -> EvalResult:
-    ground_truth = {p for p in PERMISSIONS if record["permissions"][p]}
+    ground_truth = {p for p in PERMISSIONS if record["permissions"].get(p, False)}
     overshoot = granted - ground_truth
     undershoot = ground_truth - granted
     return EvalResult(
@@ -31,14 +32,42 @@ def evaluate(record: dict, granted: set[str]) -> EvalResult:
     )
 
 
+def _tier_key(tier: int) -> str:
+    return f"tier_{tier}"
+
+
+def _filter_by_tier(perms: list[str], tier: int) -> list[str]:
+    return [p for p in perms if constants.TOOL_TIERS[p] == tier]
+
+
 def _group_summary(results: list[EvalResult]) -> DeptSummary:
-    n = len(results)
+    n_records = len(results)
+    over_count_by_tier = {_tier_key(t): 0 for t in TIERS}
+    under_count_by_tier = {_tier_key(t): 0 for t in TIERS}
+    over_rate_by_tier = {_tier_key(t): 0 for t in TIERS}
+    under_rate_by_tier = {_tier_key(t): 0 for t in TIERS}
+
+    for r in results:
+        for t in TIERS:
+            o = _filter_by_tier(r["overshoot"], t)
+            u = _filter_by_tier(r["undershoot"], t)
+            over_count_by_tier[_tier_key(t)] += len(o)
+            under_count_by_tier[_tier_key(t)] += len(u)
+            if o:
+                over_rate_by_tier[_tier_key(t)] += 1
+            if u:
+                under_rate_by_tier[_tier_key(t)] += 1
+
     return DeptSummary(
-        n=n,
-        mean_raw_delta=sum(r["raw_delta"] for r in results) / n,
-        mean_severity_weighted_delta=sum(r["severity_weighted_delta"] for r in results) / n,
-        overshoot_rate=sum(1 for r in results if r["overshoot"]) / n,
-        undershoot_rate=sum(1 for r in results if r["undershoot"]) / n,
+        n_records=n_records,
+        mean_raw_delta=sum(r["raw_delta"] for r in results) / n_records,
+        mean_severity_weighted_delta=sum(r["severity_weighted_delta"] for r in results) / n_records,
+        overshoot_rate=sum(1 for r in results if r["overshoot"]) / n_records,
+        undershoot_rate=sum(1 for r in results if r["undershoot"]) / n_records,
+        mean_overshoot_count_by_tier={k: v / n_records for k, v in over_count_by_tier.items()},
+        mean_undershoot_count_by_tier={k: v / n_records for k, v in under_count_by_tier.items()},
+        overshoot_rate_by_tier={k: v / n_records for k, v in over_rate_by_tier.items()},
+        undershoot_rate_by_tier={k: v / n_records for k, v in under_rate_by_tier.items()},
     )
 
 
