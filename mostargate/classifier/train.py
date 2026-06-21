@@ -121,12 +121,22 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
     parser.add_argument("--train-path", type=Path, default=TRAIN_PATH)
+    parser.add_argument(
+        "--fp16",
+        action="store_true",
+        help="Enable fp16 mixed precision. Default off: transformers 5.x has a "
+             "regression where accelerate's grad scaler fails to unscale fp16 "
+             "gradients ('Attempting to unscale FP16 gradients'). Turn on only "
+             "if you have a transformers version that handles it correctly.",
+    )
     args = parser.parse_args()
 
     set_seed(args.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     batch_size = args.batch_size or (16 if device == "cuda" else 4)
-    use_fp16 = device == "cuda"
+    # fp16 only when explicitly enabled AND we have a GPU. Default fp32 for
+    # both CPU and GPU because of the transformers 5.x grad-unscale issue.
+    use_fp16 = args.fp16 and device == "cuda"
 
     print(f"device={device} batch={batch_size} epochs={args.epochs} "
           f"lr={args.learning_rate} seed={args.seed} fp16={use_fp16}")

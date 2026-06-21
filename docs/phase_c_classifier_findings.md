@@ -85,7 +85,7 @@ already has.
 | seed | 42 | Reproducibility |
 | `eval_strategy` | `"no"` | No internal validation hold-out (see below); train for fixed epochs, save final checkpoint |
 | `save_strategy` | `"no"` + manual save at end | Save once at the end; avoid per-epoch I/O overhead |
-| precision | fp16 on GPU, fp32 on CPU | T4 supports fp16 |
+| precision | fp32 by default | Transformers 5.x has a regression where `accelerate`'s grad scaler raises `ValueError: Attempting to unscale FP16 gradients` at the first gradient-clipping step. fp16 disabled by default; opt-in via `--fp16` once you've verified your stack handles it. T4's fp32 throughput is enough for our 160-step training in ~10–15 min. |
 
 ### Why no validation hold-out
 
@@ -174,8 +174,8 @@ to use which.
 
 | where to train | cost | wall time |
 |---|---|---|
-| **Colab free tier (T4 GPU)** | **$0** | ~3–5 minutes |
-| Kaggle notebook (P100 / T4) | $0 | ~3–5 minutes |
+| **Colab free tier (T4 GPU, fp32 default)** | **$0** | ~10–15 minutes |
+| Kaggle notebook (P100 / T4, fp32) | $0 | ~10–15 minutes |
 | Lambda Labs T4 spot | ~$0.04 | ~5 minutes |
 | Local CPU (16 GB RAM) | $0 | ~1–2 hours |
 
@@ -213,7 +213,7 @@ directory for download.
    uploaded from GitHub; the launcher notebook then `git clone`s the
    rest of the repo into the Colab session.)
 3. `Runtime → Change runtime type → T4 GPU` (free tier).
-4. `Runtime → Run all`. Wall time: 3–5 minutes.
+4. `Runtime → Run all`. Wall time: ~10–15 minutes (fp32 default; see §2 for the fp16 caveat).
 5. Download `classifier_model.zip` from the file panel on the left.
 6. Locally: unzip so the contents land at
    `dataset/classifier_artifacts/model/`.
