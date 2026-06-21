@@ -197,35 +197,41 @@ run.
 
 ---
 
-## 5. Colab runner — paste this into a fresh notebook
+## 5. Colab runner
 
-```bash
-# Cell 1 — set up
-!git clone https://github.com/0xballistics/mostargate.git
-%cd mostargate
-!pip install -q transformers datasets sentencepiece protobuf scikit-learn anthropic python-dotenv
+A launcher notebook lives at `notebooks/colab_train.ipynb`. It contains
+no training logic — just five shell cells that clone the repo, install
+the extra Python deps, verify the GPU, run
+`python -m mostargate.classifier.train`, and zip the resulting model
+directory for download.
 
-# Cell 2 — verify GPU
-!nvidia-smi
+### Workflow
 
-# Cell 3 — train (3–5 minutes on T4)
-!python -m mostargate.classifier.train
+1. Open <https://colab.research.google.com>.
+2. `File → Open notebook → GitHub` tab, paste this repo's URL, and pick
+   `notebooks/colab_train.ipynb`. (Colab only allows notebooks to be
+   uploaded from GitHub; the launcher notebook then `git clone`s the
+   rest of the repo into the Colab session.)
+3. `Runtime → Change runtime type → T4 GPU` (free tier).
+4. `Runtime → Run all`. Wall time: 3–5 minutes.
+5. Download `classifier_model.zip` from the file panel on the left.
+6. Locally: unzip so the contents land at
+   `dataset/classifier_artifacts/model/`.
 
-# Cell 4 — zip the model directory for download
-!zip -qr classifier_model.zip dataset/classifier_artifacts/model/
-print("Download classifier_model.zip from the Files panel on the left.")
-```
+Direct link (substitute branch if needed):
+<https://colab.research.google.com/github/0xballistics/mostargate/blob/main/notebooks/colab_train.ipynb>
 
-In Colab:
-1. Open <https://colab.research.google.com> and create a new notebook.
-2. `Runtime → Change runtime type → T4 GPU` (free tier).
-3. Paste the four cells above and `Runtime → Run all`.
-4. Download `classifier_model.zip` from the file browser on the left.
-5. Locally: unzip into `dataset/classifier_artifacts/model/`.
+### Why a launcher notebook and not a full one
 
-If the repo is private, swap the `git clone` line for a zip upload
+The notebook contains only shell commands. The training code is in
+`mostargate/classifier/train.py` — one source of truth, no duplication.
+If `train.py` changes, the launcher notebook does not. Reviewing diffs
+on the notebook stays trivial because none of the cells contain Python
+logic.
+
+If the repo is private, replace the `git clone` line with a zip upload
 (`Files → Upload to session storage`, then `!unzip mostargate.zip` and
-`%cd mostargate`). No code changes needed.
+`%cd mostargate`). No other changes needed.
 
 ---
 
