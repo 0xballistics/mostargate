@@ -116,7 +116,16 @@ class WeightedBCETrainer(Trainer):
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Fine-tune DeBERTa-v3-base for C2.")
+    parser = argparse.ArgumentParser(
+        description="Fine-tune a transformer encoder for C2 permission classification."
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default=MODEL_NAME,
+        help=f"Base model from HuggingFace Hub. Default: {MODEL_NAME!r}. "
+             "Try 'roberta-large' (~3x params) for higher capacity at ~3x train time.",
+    )
     parser.add_argument("--epochs", type=int, default=5)
     parser.add_argument(
         "--batch-size",
@@ -148,10 +157,12 @@ def main() -> None:
     print(f"device={device} batch={batch_size} epochs={args.epochs} "
           f"lr={args.learning_rate} seed={args.seed} fp16={use_fp16}")
 
+    print(f"Base model: {args.model}")
+
     # 1. Load + tokenise data
     train_records = load_records(args.train_path)
     print(f"Loaded {len(train_records)} training records.")
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
     encodings = tokenize(train_records, tokenizer, max_len=MAX_LEN)
     labels = build_label_matrix(train_records)
     print(f"Label matrix: shape={labels.shape} dtype={labels.dtype} "
@@ -166,7 +177,7 @@ def main() -> None:
 
     # 3. Model
     model = AutoModelForSequenceClassification.from_pretrained(
-        MODEL_NAME,
+        args.model,
         num_labels=len(PERMISSIONS),
         problem_type="multi_label_classification",
     )
@@ -222,7 +233,7 @@ def main() -> None:
         for i, p in enumerate(PERMISSIONS)
     )
     card_path.write_text(MODEL_CARD_TEMPLATE.format(
-        model_name=MODEL_NAME,
+        model_name=args.model,
         train_path=args.train_path,
         n_records=len(train_records),
         epochs=args.epochs,
