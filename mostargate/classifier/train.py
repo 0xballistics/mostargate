@@ -43,10 +43,10 @@ MAX_LEN = 256
 # clip of 10 combined with LR ≥ 5e-5 produced NaN gradient explosions at
 # step 5 of training. 3.0 still gives rare-class positives 3× the gradient
 # weight of negatives — meaningful rebalancing without the instability.
-POS_WEIGHT_CLIP = 3.0
+POS_WEIGHT_CLIP = 10.0
 # Grad-norm clip below the HF default of 1.0 — extra safety against any
 # single batch producing an outlier gradient that would corrupt weights.
-MAX_GRAD_NORM = 0.5
+MAX_GRAD_NORM = 1.0
 
 
 MODEL_CARD_TEMPLATE = """\
