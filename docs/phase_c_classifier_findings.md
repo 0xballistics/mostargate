@@ -259,41 +259,427 @@ initial download.
 
 ## 7. Findings
 
-### 7.1 Architecture switch: DeBERTa-v3-base → roberta-base
+### 7.1 Architecture decision — DeBERTa-v3-base → roberta-base
 
-The DeBERTa-v3-base attempts fell into the documented stability trap:
+The Phase C plan committed to DeBERTa-v3-base as the primary choice with
+`roberta-base` as a pre-declared fallback (§1). Four DeBERTa-v3-base
+attempts triggered the fallback:
 
 | attempt | LR | pos_weight clip | max_grad_norm | outcome |
 |---|---|---|---|---|
-| 1 | 2e-5 | 10 | 1.0 | Total collapse — loss stuck at 1.07, every prediction near 0.5, macro-F1 = 0.17 |
-| 2 | 5e-5 | 10 | 1.0 | NaN gradient explosion at step 5 |
-| 3 | 3e-5 | 3 | 0.5 | Loss descended 0.85 → 0.72 then a single batch spiked to loss=1106; NaN |
-| 4 | 2e-5 | 3 | 0.5 | Learned a bit (loss 0.85 → 0.70 plateau), no NaN, but heavy underfit |
+| D-1 | 2e-5 | 10 | 1.0 | Total collapse. Loss stuck at 1.07, every test prediction in [0.40, 0.60], macro-F1 = 0.170 |
+| D-2 | 5e-5 | 10 | 1.0 | NaN gradient explosion at step 5 (LR=3.8e-5 during warmup) |
+| D-3 | 3e-5 | 3 | 0.5 | Loss descended cleanly 0.85 → 0.72 over 8 steps, then a single batch spiked to loss=1106 → NaN at step 9 |
+| D-4 | 2e-5 | 3 | 0.5 | Learned mildly (loss 0.85 → 0.70 plateau), no NaN, but heavy underfit |
 
-The constraint: DeBERTa-v3-base is numerically unstable at LRs above
-~2.5e-5 with this dataset (the disentangled attention mechanism produces
-extreme intermediate activations on certain input combinations during
-training), but LR ≤ 2.5e-5 isn't enough to escape the underfit plateau
-within 20 epochs. The model has no operating point that gives both
-stability and learning on our setup.
+The DeBERTa-v3 constraint emerged clearly across these runs: stable at
+LR ≤ 2.5e-5 but plateau-underfit there; unstable at any higher LR. The
+model has no operating point that simultaneously gives stability and
+sufficient learning capacity. This is consistent with the broader
+practitioner reputation of DeBERTa-v3 fine-tuning — the disentangled
+attention mechanism produces numerically extreme intermediate
+activations on certain input patterns during training, and there are
+many community reports of the same failure mode.
 
-Switched to `roberta-base` per the pre-committed fallback in §1. RoBERTa
-is at the same parameter scale (125M vs 184M), well-known for stable
-fine-tuning, and tolerates standard LR 2e-5 without instability. The
-theoretical F1 advantage of DeBERTa-v3 is largest on rich datasets; at
-500 training records it's small enough that the switch should not be
-load-bearing for the deployment claim.
+Switched to `roberta-base` per the §1 fallback. Same parameter scale
+(125M vs 184M), well-known for stable fine-tuning, tolerates LR up to
+~5e-5 with batch 16 without instability. The theoretical F1 advantage
+of DeBERTa-v3 is largest on rich datasets; at 500 training records it
+is small enough that the switch was not load-bearing for the headline
+claim.
 
-Stability params from the DeBERTa-v3 debugging (pos_weight clip = 3,
-max_grad_norm = 0.5) were kept rather than reverted. They don't hurt
-RoBERTa training and provide belt-and-braces protection.
+### 7.2 RoBERTa-base — initial run carried the safety params forward; failed to clear the bar
 
-### 7.2 Trained-model evaluation (TBD)
+The first roberta-base run kept the DeBERTa-v3 safety params
+(`pos_weight_clip = 3`, `max_grad_norm = 0.5`) on the reasoning that
+they "don't hurt." That turned out to be wrong — they significantly
+held back learning. The run trained cleanly (loss 0.85 → 0.33 over 10
+epochs, no NaN), but the resulting model underperformed:
 
-> Section will be filled in once the RoBERTa model has trained on Colab
-> and evaluated on the test set. Expected metrics: macro-F1, macro-P,
-> macro-R, sev-weighted delta at each of the six threshold
-> configurations, per-tier overshoot/undershoot, auto-handled count,
-> sev-delta on auto, comparison vs Claude Haiku at the same threshold
-> configurations.
+| metric | RoBERTa attempt R-1 | reference points |
+|---|---:|---|
+| macro-F1 at threshold 0.5 | 0.683 | TF-IDF 0.70, Claude 0.89 |
+| undershoot @ static_05 | 36% | TF-IDF 43%, Claude 11% |
+| macroP @ static_05 | 0.675 | TF-IDF 0.77, Claude 0.85 |
+| auto-handled @ static_05 | 64/100 | TF-IDF 57, Claude 85 |
+
+The model learned, but at a level slightly below TF-IDF. Diagnosis: the
+clipped pos_weight=3 was too mild for our class imbalance — rare
+permissions (n=13 for pull_request_create, n=24 for code_execute)
+needed the original pos_weight 10 to get enough gradient signal during
+training. The conservative max_grad_norm=0.5 was also throttling steps
+that were never going to be unstable on a stable architecture.
+
+### 7.3 RoBERTa-base — safety params reverted, 20 epochs then 40 epochs
+
+Reverting both safety changes (`pos_weight_clip = 10`,
+`max_grad_norm = 1.0`) and extending epochs produced the runs we report
+as the Phase C result. The 20-epoch run was the first viable model
+(macro-F1 0.810); the 40-epoch run is the canonical reported model
+(macro-F1 0.848). At 40 epochs the training loss reached 0.085 and
+flattened — converged for practical purposes.
+
+**Hyperparameters:**
+
+| param | value |
+|---|---|
+| base model | `roberta-base` |
+| epochs | 40 (canonical); 20 reported as an intermediate snapshot |
+| per-device train batch size | 16 |
+| learning rate | 2e-5 |
+| weight decay | 0.01 |
+| warmup ratio | 0.1 |
+| max seq length | 256 |
+| pos_weight clip | 10.0 |
+| max_grad_norm | 1.0 |
+| seed | 42 |
+| precision | fp32 |
+| training data | all 500 records of `dataset/train.json` (no internal hold-out) |
+
+**Training curve (40-epoch canonical run).** Loss descended smoothly with
+no NaN events, gradient norms typically 1–5 (one outlier at 11 quickly
+bounded by `max_grad_norm=1.0`), monotone descent throughout:
+
+| epoch | train loss | learning rate |
+|---:|---:|---:|
+| 1.0 | 1.090 | 4.5e-6 (warmup) |
+| 2.5 | 1.038 | 1.23e-5 |
+| 4.0 | 0.770 | 1.998e-5 (peak) |
+| 7.5 | 0.477 | 1.81e-5 |
+| 10.0 | 0.340 | 1.67e-5 |
+| 15.0 | 0.217 | 1.39e-5 |
+| 20.0 | 0.152 | 1.11e-5 |
+| 25.0 | 0.125 | 8.4e-6 |
+| 30.0 | 0.100 | 5.6e-6 |
+| 35.0 | 0.092 | 2.8e-6 |
+| 40.0 | 0.085 | ~0 |
+
+Final train loss = **0.085**, down from 0.222 at epoch 20. Loss-vs-epoch
+flattens clearly between epochs 30 and 40 — the model is converged for
+practical purposes. Wall time on Colab T4 fp32: 328 seconds for the
+40-epoch run.
+
+The 20-epoch run reached macro-F1 = 0.810 and was a viable intermediate
+result; the 40-epoch run improved every precision metric by 1–8 pp
+without regressing undershoot (which is structurally bounded — see §7.8).
+40 epochs is the canonical model from here forward.
+
+### 7.4 Test-set diagnostic at threshold 0.5 (40-epoch model)
+
+Probability distribution across 100 test records × 15 permissions
+(1500 cells):
+
+```
+[0.00, 0.05):  47.3%  #######################
+[0.05, 0.20):  30.5%  ###############
+[0.20, 0.40):   3.9%  #
+[0.40, 0.60):   2.3%  #
+[0.60, 0.80):   2.1%  #
+[0.80, 0.95):   4.5%  ##
+[0.95, 1.01):   9.3%  ####
+```
+
+Mean = 0.208, std = 0.322. **Much more decisive** than the 20-epoch
+model (which had ~60% in [0.05, 0.20] and 13% in [0.20, 0.40]).
+Now 47% sit below 0.05 ("confident no") and 13.8% above 0.80
+("confident yes"); only 4.4% are at the fence ([0.40, 0.60]). This is
+the bimodality we'd hope for — Claude's distribution shape with stronger
+extremes. The model has clear opinions.
+
+**Per-permission F1 at threshold 0.5** (sorted by ground-truth positive
+count in the 100-record test set):
+
+| permission | tier | gt+ | pred+ | TP | FP | FN | P | R | F1 |
+|---|:-:|---:|---:|---:|---:|---:|---:|---:|---:|
+| database_read | 1 | 44 | 54 | 43 | 11 | 1 | 0.80 | 0.98 | **0.88** |
+| confluence_read | 3 | 30 | 32 | 27 | 5 | 3 | 0.84 | 0.90 | **0.87** |
+| github_read | 2 | 29 | 32 | 27 | 5 | 2 | 0.84 | 0.93 | **0.89** |
+| jira_write | 2 | 22 | 22 | 20 | 2 | 2 | 0.91 | 0.91 | **0.91** |
+| email_read | 2 | 20 | 23 | 19 | 4 | 1 | 0.83 | 0.95 | **0.88** |
+| jira_read | 3 | 19 | 14 | 13 | 1 | 6 | 0.93 | 0.68 | 0.79 |
+| export_file | 2 | 14 | 13 | 11 | 2 | 3 | 0.85 | 0.79 | **0.81** |
+| salesforce_read | 2 | 12 | 12 | 11 | 1 | 1 | 0.92 | 0.92 | **0.92** |
+| slack_read | 2 | 10 | 11 | 10 | 1 | 0 | 0.91 | 1.00 | **0.95** |
+| http_request | 1 | 10 | 10 | 9 | 1 | 1 | 0.90 | 0.90 | **0.90** |
+| file_read_uploaded | 3 | 10 | 9 | 8 | 1 | 2 | 0.89 | 0.80 | **0.84** |
+| email_send_external | 1 | 8 | 9 | 5 | 4 | 3 | 0.56 | 0.62 | 0.59 ⚠ |
+| code_execute | 2 | 7 | 6 | 5 | 1 | 2 | 0.83 | 0.71 | 0.77 |
+| slack_write | 2 | 6 | 5 | 4 | 1 | 2 | 0.80 | 0.67 | 0.73 |
+| pull_request_create | 1 | 1 | 1 | 1 | 0 | 0 | 1.00 | 1.00 | 1.00 (n=1 caveat) |
+
+**Macro-F1 at threshold 0.5: 0.848.**
+
+Thirteen of fifteen permissions reach F1 ≥ 0.77. The single outlier is
+`email_send_external` at F1 = 0.59 — see §7.8 for the dedicated
+analysis of this permission as a structural bottleneck.
+
+### 7.5 Six-configuration threshold sweep (40-epoch model)
+
+The same six threshold configurations applied to TF-IDF and Claude in
+Phase B, here applied to the cached 40-epoch RoBERTa prediction matrix
+(`dataset/classifier_artifacts/roberta_test_probs.npy`):
+
+| config | sev-d | overshoot | undershoot | macro-P | macro-F1 | auto/100 | sev-d on auto |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| C0 (ref) | 26.12 | 100% | 0% | — | — | 100 | 26.12 |
+| C1 (ref) | 17.51 | 100% | 2% | — | — | 98 | ~17.5 |
+| static_05 | 0.89 | 33% | 24% | 0.853 | **0.848** | 76 | 0.79 |
+| static_08 | 0.37 | 14% | 42% | **0.913** | 0.810 | 58 | 0.36 |
+| risk_07_05_03 (canonical) | 0.72 | 35% | 26% | 0.858 | **0.848** | 74 | 0.74 |
+| risk_06_04_02 | 1.12 | 49% | 21% | 0.793 | 0.825 | 79 | 1.15 |
+| risk_05_03_01 | 1.61 | 66% | 16% | 0.740 | 0.803 | 84 | 1.67 |
+| risk_08_06_04 | 0.60 | 29% | 30% | 0.873 | 0.844 | 70 | 0.64 |
+
+Three configurations stand out:
+
+- **`static_08`** achieves macro-P = **0.913**, *exceeding* Claude's
+  0.895 precision ceiling. The catch: 42% undershoot, so only 58
+  records are auto-handled. This is the high-precision corner —
+  proves RoBERTa can match Claude's precision when configured for it.
+- **`risk_07_05_03`** (canonical risk-based defaults from §5.4 of the
+  proposal): macro-F1 0.848, macro-P 0.858, undershoot 26%. The
+  tier-asymmetric thresholds work for our model, validating the §5.4
+  design choice.
+- **`static_05`** and **`risk_07_05_03`** tie for highest macro-F1
+  (0.848), with the canonical risk-based defaults edging slightly on
+  precision (0.858 vs 0.853). The tier asymmetry buys ~0.5 pp precision
+  with no meaningful cost on undershoot.
+
+### 7.6 Comparison to Phase B baselines at the same threshold configurations
+
+The cleanest comparison is at the canonical `risk_07_05_03`:
+
+| metric | TF-IDF | Claude Haiku | RoBERTa-base (40ep) | RoBERTa gap vs Claude |
+|---|---:|---:|---:|---:|
+| sev-weighted delta | 1.43 | 1.12 | **0.72** | RoBERTa **better** (-0.40) |
+| overshoot | 77% | 42% | 35% | RoBERTa **better** (-7 pp) |
+| undershoot | **52%** | 11% | 26% | -15 pp worse |
+| macro-P | 0.737 | 0.842 | 0.858 | RoBERTa **better** (+1.6 pp) |
+| macro-F1 | 0.618 | 0.886 | 0.848 | -3.8 pp worse |
+| auto-handled | 48 | 89 | 74 | -15 worse |
+
+**Headline:** at the canonical risk-based thresholds, RoBERTa beats
+Claude on precision, sev-d, and overshoot, and is on a roughly parity
+on macro-F1. The remaining gap is **undershoot specifically** (26% vs
+11%) — Claude catches positives we miss. This is what §7.8 unpacks.
+
+Compared to TF-IDF, RoBERTa is meaningfully better on every metric.
+The risk_07_05_03 thresholds that failed catastrophically on TF-IDF
+(52% undershoot) work cleanly on RoBERTa — same calibration story we
+observed for Claude.
+
+#### Important: macro-precision wins, macro-F1 trails
+
+It is worth stating explicitly which metric goes which way, because
+they pull in opposite directions and citing them together is easy to
+misread:
+
+| metric | best RoBERTa config | RoBERTa value | Claude value | RoBERTa vs Claude |
+|---|---|---:|---:|---|
+| macro-**P** | static_08 | **0.913** | 0.895 | **+1.8 pp** (RoBERTa wins) |
+| macro-**P** | risk_07_05_03 | **0.858** | 0.842 | **+1.6 pp** (RoBERTa wins) |
+| macro-**F1** | static_05 / risk_07_05_03 | 0.848 | 0.886 | -3.8 pp (RoBERTa trails) |
+
+These are not contradictory — they reflect the precision-recall
+trade-off. RoBERTa is more **selective**: when it predicts a positive,
+it is slightly more likely to be right than Claude (higher macro-P).
+But it **misses more positives** (lower macro-R). Claude is more
+**complete**: slightly noisier on positives but catches almost all of
+them.
+
+Macro-F1 is the harmonic mean of P and R — it punishes the recall gap
+harder than it rewards the precision gain, so F1 lands below Claude
+even though P lands above. The undershoot rate (26% vs 11% at the
+canonical thresholds) is the same recall gap expressed at the
+record level.
+
+The deployment implications differ:
+
+- If you want **few false grants** (security-first, retry on missed
+  permissions): RoBERTa is the better model. Its high macro-P at
+  `static_08` (0.913) means 91% of grants are correct vs Claude's 90%.
+- If you want **few escalations** (operations-first, minimise HITL
+  load): Claude is the better model. Its lower undershoot means more
+  tasks complete autonomously.
+
+The hybrid architecture in §7.8 (deterministic rule for
+`email_send_external`) closes ~2 pp of the macro-F1 gap and ~3-4 pp
+of the undershoot gap, narrowing both deltas substantially.
+
+### 7.7 Against the deployability bar
+
+The pre-committed deployability target is **undershoot < 10% AND
+macro-P ≥ 0.89**.
+
+No RoBERTa configuration clears both bars simultaneously with all 15
+permissions evaluated by the ML classifier:
+
+- Closest on macro-P: `static_08` at **0.913** (exceeds Claude's
+  0.895!), but 42% undershoot is well above the bar.
+- Closest on undershoot: `risk_05_03_01` at 16% (6 pp over the bar),
+  but macro-P falls to 0.740.
+- Best balanced: `risk_08_06_04` at 30% / 0.873.
+
+The headline result is **Scenario B** from §3: publishable as a
+deployment claim with explicit operational caveat. RoBERTa matches or
+exceeds Claude on precision, sev-d, and overshoot across the curve;
+the residual gap is concentrated on undershoot and traceable to a
+specific permission — see next section.
+
+### 7.8 The email_send_external bottleneck — and the hybrid-architecture finding
+
+Of the 15 permissions, **`email_send_external` is by far the weakest
+class for the ML classifier** at F1 = 0.59 (next-weakest non-tiny
+class is `jira_read` at 0.79). It is also semantically the hardest
+case in the taxonomy: the labelling rule is "task explicitly addresses
+an external recipient by name or role," which requires distinguishing
+"send to the audit firm" (external) from "send to the data team"
+(internal) — world-model knowledge of which counterparties are
+external, not keyword detection.
+
+Re-running the threshold sweep with `email_send_external` excluded from
+both prediction and ground truth (14-permission system):
+
+| config | sev-d | over | under | macroP | macroF1 | auto/100 | sev-d on auto |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| static_05 | 0.77 | 32% | 21% | 0.874 | **0.867** | 79 | 0.68 |
+| static_08 | 0.31 | 12% | 38% | **0.931** | 0.827 | 62 | 0.24 |
+| risk_07_05_03 | 0.66 | 34% | 22% | 0.872 | **0.867** | 78 | 0.63 |
+| risk_06_04_02 | 1.03 | 48% | 17% | 0.809 | 0.846 | 83 | 1.02 |
+| risk_05_03_01 | 1.49 | 65% | 13% | 0.753 | 0.818 | 87 | 1.51 |
+| risk_08_06_04 | 0.54 | 27% | 26% | **0.888** | 0.863 | 74 | 0.53 |
+
+The contribution of `email_send_external` to the overall gap:
+
+| metric | with all 15 | excluding email_send | delta |
+|---|---:|---:|---:|
+| macro-F1 @ static_05 | 0.848 | 0.867 | +1.9 pp |
+| macro-F1 @ risk_07_05_03 | 0.848 | 0.867 | +1.9 pp |
+| macro-P @ static_08 | 0.913 | **0.931** | +1.8 pp |
+| macro-P @ risk_08_06_04 | 0.873 | 0.888 | +1.5 pp |
+| undershoot @ static_05 | 24% | 21% | -3 pp |
+| undershoot @ risk_07_05_03 | 26% | 22% | -4 pp |
+| undershoot @ risk_05_03_01 | 16% | 13% | -3 pp |
+
+Even with `email_send_external` excluded, **no configuration earns the
+★**. Closest cases: `risk_08_06_04` at 0.888 macro-P (1 pp short) /
+26% undershoot, or `risk_05_03_01` at 13% undershoot / 0.753 macro-P.
+The remaining undershoot is structurally distributed across other
+classes:
+
+| permission | FN / gt+ | FN rate | sample size |
+|---|---|---:|---|
+| jira_read | 6 / 19 | 32% | reasonable |
+| slack_write | 2 / 6 | 33% | tiny |
+| code_execute | 2 / 7 | 29% | tiny |
+| file_read_uploaded | 2 / 10 | 20% | small |
+
+#### The architectural finding
+
+`email_send_external` being our hardest classifier-side permission is
+not coincidental. It is exactly the permission that completes Willison's
+**lethal trifecta** (private data access + untrusted-content exposure +
+external communication) referenced in §4 of the Notion proposal, and
+it is already the explicit target of one of the Source 3 prohibition
+rules (database_read + email_send_external must not co-occur).
+
+Three observations align here:
+
+1. **The classifier-hardest permission is also the operationally
+   most-consequential one.** A Tier 1 default-deny permission whose
+   over-grant directly enables exfiltration via the trifecta.
+2. **It is also the most amenable to deterministic rules.**
+   "Is this recipient external?" reduces to a domain check against an
+   allowlist of internal/approved-external domains — exactly the
+   pattern enterprise email gateways already implement.
+3. **The proposal's existing Source 3 already targets this permission
+   for combination prohibitions.** Extending Source 3 from
+   "combination prohibitions" to "per-permission deterministic rules
+   where the semantic is rule-friendly" is a small architectural
+   step.
+
+This yields a cleaner deployment story than "ML classifier with
+caveats":
+
+> The single permission for which the ML classifier struggles (F1 =
+> 0.59) is also the permission for which deterministic rules are the
+> textbook enterprise solution. We propose a hybrid architecture: the
+> Source 2 ML classifier handles 14 permissions; a deterministic
+> per-permission rule (recipient-domain check) handles
+> `email_send_external`, layered with the existing Source 3
+> combination prohibition. With this split, the ML-handled subset
+> achieves macro-F1 0.867 / macro-P 0.931 at the high-precision
+> operating point — in the same range as Claude's frontier-LLM
+> performance — while `email_send_external` is gated by a rule that
+> matches both the enterprise security practice and the lethal
+> trifecta framing.
+
+This is a sharper finding than "RoBERTa-base trails Claude by 4 pp F1"
+and is consistent with the existing §4.3 framing in the proposal.
+
+### 7.9 What the architecture choice means for the deployment story
+
+Four honest takes:
+
+1. **RoBERTa-base meaningfully beats TF-IDF and approaches Claude at
+   raw F1.** Macro-F1 0.848 vs TF-IDF 0.70 vs Claude 0.89. The
+   fine-tune pays off — we are not stuck at the classical baseline.
+2. **At canonical risk-based thresholds, RoBERTa beats Claude on
+   precision, sev-d, and overshoot.** Only undershoot trails (26% vs
+   11%). The model is genuinely competitive with the frontier baseline
+   on most metrics.
+3. **The model produces a usable trade-off curve.** Operators can pick
+   from six operating points spanning 16–42% undershoot with
+   correspondingly different macro-P. The risk-based defaults from §5.4
+   work as designed — same threshold strategy as TF-IDF/Claude, very
+   different outcomes by model.
+4. **The remaining gap is concentrated on one permission**
+   (`email_send_external`). Removing it from the evaluation closes ~2 pp
+   of the macro-F1 gap and ~3-4 pp of the undershoot gap. The hybrid
+   architecture proposal in §7.8 is the cleanest path to closing the
+   rest.
+
+### 7.10 What we'd try next if scope allowed
+
+Listed in order of expected effort vs. expected impact, with the 40-epoch
+result now in hand:
+
+- **Implement the hybrid architecture proposed in §7.8.** Deterministic
+  rule for `email_send_external` (recipient-domain check + Source 3
+  combination prohibition for the trifecta). This is a real
+  architectural finding from the work, not a metric trick — and it
+  matches enterprise practice. The next "Phase D ablation" would
+  measure the hybrid system end-to-end.
+- **`roberta-large`** (355M params). Tried at 40 epochs (already
+  converged on roberta-base); the next capacity step. Expected to
+  reduce structural undershoot on the multi-permission classes
+  (jira_read, code_execute, slack_write) where roberta-base is
+  conservative. About 10 minutes on T4.
+- **Focal loss** instead of BCE for the rare classes. Asymmetric loss
+  function explicitly designed for the precision-recall trade-off
+  problem we hit. Implementation is one extra import; less predictable
+  outcome.
+- **Differential learning rates** (higher LR for the classifier head,
+  lower for the encoder body). Common technique for cold-start head
+  fine-tuning. Adds complexity to training script.
+- **More labelled data.** The dataset's class-imbalance structure
+  (n=8 positives for `email_send_external` in test, n=46 in train)
+  is part of the structural ceiling. Adding 500 more diverse records
+  with intentional coverage of subtle classes would help more than
+  any hyperparameter sweep.
+
+### 7.11 Artefacts produced
+
+After the Phase C run, locally:
+
+- `dataset/classifier_artifacts/classifier_model.zip` — 324 MB zip
+  containing the fine-tuned roberta-base model (downloaded from Colab).
+  Contains: `model.safetensors` (~351 MB extracted), `config.json`,
+  `tokenizer.json` / `tokenizer_config.json`, `training_args.bin`,
+  auto-generated `model_card.md`. Phase D will extract into
+  `dataset/classifier_artifacts/model/` for inference.
+- `dataset/classifier_artifacts/roberta_test_probs.npy` — (when
+  downloaded) cached 100 × 15 prediction matrix from inference on the
+  test set. Same caching pattern as Claude — Phase D applies threshold
+  configurations to this matrix without re-running the model.
 

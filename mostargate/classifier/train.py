@@ -50,7 +50,7 @@ MAX_GRAD_NORM = 1.0
 
 
 MODEL_CARD_TEMPLATE = """\
-# DeBERTa-v3-base — fine-tuned for C2 permission classification
+# {model_name} — fine-tuned for C2 permission classification
 
 Base model: `{model_name}` (fine-tuned, not trained from scratch)
 Training data: `{train_path}` ({n_records} records)
