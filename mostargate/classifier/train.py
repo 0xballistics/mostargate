@@ -35,7 +35,7 @@ from transformers import (
 
 from .data import PERMISSIONS, build_label_matrix, load_records, tokenize
 
-MODEL_NAME = "microsoft/deberta-v3-base"
+MODEL_NAME = "roberta-base"
 OUTPUT_DIR = Path("dataset/classifier_artifacts/model")
 TRAIN_PATH = Path("dataset/train.json")
 MAX_LEN = 256

@@ -257,9 +257,40 @@ initial download.
 
 ---
 
-## 7. Findings (TBD — append after training runs)
+## 7. Findings
 
-> Section will be filled in once the model has been trained on Colab
+### 7.1 Architecture switch: DeBERTa-v3-base → roberta-base
+
+The DeBERTa-v3-base attempts fell into the documented stability trap:
+
+| attempt | LR | pos_weight clip | max_grad_norm | outcome |
+|---|---|---|---|---|
+| 1 | 2e-5 | 10 | 1.0 | Total collapse — loss stuck at 1.07, every prediction near 0.5, macro-F1 = 0.17 |
+| 2 | 5e-5 | 10 | 1.0 | NaN gradient explosion at step 5 |
+| 3 | 3e-5 | 3 | 0.5 | Loss descended 0.85 → 0.72 then a single batch spiked to loss=1106; NaN |
+| 4 | 2e-5 | 3 | 0.5 | Learned a bit (loss 0.85 → 0.70 plateau), no NaN, but heavy underfit |
+
+The constraint: DeBERTa-v3-base is numerically unstable at LRs above
+~2.5e-5 with this dataset (the disentangled attention mechanism produces
+extreme intermediate activations on certain input combinations during
+training), but LR ≤ 2.5e-5 isn't enough to escape the underfit plateau
+within 20 epochs. The model has no operating point that gives both
+stability and learning on our setup.
+
+Switched to `roberta-base` per the pre-committed fallback in §1. RoBERTa
+is at the same parameter scale (125M vs 184M), well-known for stable
+fine-tuning, and tolerates standard LR 2e-5 without instability. The
+theoretical F1 advantage of DeBERTa-v3 is largest on rich datasets; at
+500 training records it's small enough that the switch should not be
+load-bearing for the deployment claim.
+
+Stability params from the DeBERTa-v3 debugging (pos_weight clip = 3,
+max_grad_norm = 0.5) were kept rather than reverted. They don't hurt
+RoBERTa training and provide belt-and-braces protection.
+
+### 7.2 Trained-model evaluation (TBD)
+
+> Section will be filled in once the RoBERTa model has trained on Colab
 > and evaluated on the test set. Expected metrics: macro-F1, macro-P,
 > macro-R, sev-weighted delta at each of the six threshold
 > configurations, per-tier overshoot/undershoot, auto-handled count,
