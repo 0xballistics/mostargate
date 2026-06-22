@@ -50,6 +50,161 @@
             "tier_2": 0.12,
             "tier_3": 0.06
           },
+          "macro_precision": 0.8975612766793426,
+          "macro_recall": 0.8638663403545438,
+          "macro_f1": 0.8762537876581082,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 29,
+              "tp": 26,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.896551724137931,
+              "recall": 0.896551724137931,
+              "f1": 0.896551724137931
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 7,
+              "tp": 5,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.7142857142857143,
+              "recall": 0.7142857142857143,
+              "f1": 0.7142857142857143
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 32,
+              "tp": 29,
+              "fp": 3,
+              "fn": 1,
+              "precision": 0.90625,
+              "recall": 0.9666666666666667,
+              "f1": 0.9354838709677419
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 15,
+              "tp": 15,
+              "fp": 0,
+              "fn": 4,
+              "precision": 1.0,
+              "recall": 0.7894736842105263,
+              "f1": 0.8823529411764706
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 22,
+              "tp": 20,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.9090909090909091,
+              "recall": 0.9090909090909091,
+              "f1": 0.9090909090909091
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 12,
+              "tp": 12,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 50,
+              "tp": 42,
+              "fp": 8,
+              "fn": 2,
+              "precision": 0.84,
+              "recall": 0.9545454545454546,
+              "f1": 0.8936170212765958
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 23,
+              "tp": 19,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8260869565217391,
+              "recall": 0.95,
+              "f1": 0.8837209302325583
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 5,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.625,
+              "recall": 0.625,
+              "f1": 0.625
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 9,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 8,
+              "tp": 8,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.8,
+              "f1": 0.888888888888889
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 13,
+              "tp": 11,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.8461538461538461,
+              "recall": 0.7857142857142857,
+              "f1": 0.8148148148148148
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -76,7 +231,10 @@
                 "tier_1": 0.15,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.47777777777777775,
+              "macro_recall": 0.4482051282051282,
+              "macro_f1": 0.4515132275132275
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -103,7 +261,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4444444444444444,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4470899470899471
             },
             "Engineering": {
               "n_records": 25,
@@ -130,7 +291,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.08,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6466666666666666,
+              "macro_recall": 0.6849206349206349,
+              "macro_f1": 0.6612739112739113
             },
             "Finance": {
               "n_records": 15,
@@ -157,7 +321,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.4848717948717949,
+              "macro_recall": 0.47,
+              "macro_f1": 0.46929100529100526
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -184,7 +351,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -211,7 +381,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.3333333333333333,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.6238888888888888,
+              "macro_recall": 0.6896296296296297,
+              "macro_f1": 0.6444619719232723
             }
           },
           "by_sensitivity": {
@@ -240,7 +413,10 @@
                 "tier_1": 0.041666666666666664,
                 "tier_2": 0.125,
                 "tier_3": 0.0625
-              }
+              },
+              "macro_precision": 0.8393074837040354,
+              "macro_recall": 0.8064425770308122,
+              "macro_f1": 0.8161046679758694
             },
             "LOW": {
               "n_records": 13,
@@ -267,7 +443,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.15384615384615385,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3759259259259259,
+              "macro_recall": 0.4259259259259259,
+              "macro_f1": 0.3881192881192881
             },
             "MEDIUM": {
               "n_records": 39,
@@ -294,7 +473,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.10256410256410256,
                 "tier_3": 0.05128205128205128
-              }
+              },
+              "macro_precision": 0.8244639376218323,
+              "macro_recall": 0.7661570593149541,
+              "macro_f1": 0.785323513775526
             }
           }
         },
@@ -2231,6 +2413,161 @@
             "tier_2": 0.15,
             "tier_3": 0.08
           },
+          "macro_precision": 0.9413634999095992,
+          "macro_recall": 0.8347975345888232,
+          "macro_f1": 0.8780582587910332,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 27,
+              "tp": 25,
+              "fp": 2,
+              "fn": 4,
+              "precision": 0.9259259259259259,
+              "recall": 0.8620689655172413,
+              "f1": 0.8928571428571429
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.5714285714285714,
+              "f1": 0.7272727272727273
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 30,
+              "tp": 29,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9666666666666667,
+              "recall": 0.9666666666666667,
+              "f1": 0.9666666666666667
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 14,
+              "tp": 14,
+              "fp": 0,
+              "fn": 5,
+              "precision": 1.0,
+              "recall": 0.7368421052631579,
+              "f1": 0.8484848484848484
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 22,
+              "tp": 20,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.9090909090909091,
+              "recall": 0.9090909090909091,
+              "f1": 0.9090909090909091
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 11,
+              "tp": 11,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9166666666666666,
+              "f1": 0.9565217391304348
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 47,
+              "tp": 41,
+              "fp": 6,
+              "fn": 3,
+              "precision": 0.8723404255319149,
+              "recall": 0.9318181818181818,
+              "f1": 0.9010989010989012
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 21,
+              "tp": 19,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.9047619047619048,
+              "recall": 0.95,
+              "f1": 0.9268292682926829
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 5,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.625,
+              "recall": 0.625,
+              "f1": 0.625
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 7,
+              "tp": 7,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.7,
+              "f1": 0.8235294117647058
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 12,
+              "tp": 11,
+              "fp": 1,
+              "fn": 3,
+              "precision": 0.9166666666666666,
+              "recall": 0.7857142857142857,
+              "f1": 0.8461538461538461
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -2257,7 +2594,10 @@
                 "tier_1": 0.15,
                 "tier_2": 0.15,
                 "tier_3": 0.15
-              }
+              },
+              "macro_precision": 0.4944444444444444,
+              "macro_recall": 0.4338111888111888,
+              "macro_f1": 0.45247781847781854
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -2284,7 +2624,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4577777777777778,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.45449735449735457
             },
             "Engineering": {
               "n_records": 25,
@@ -2311,7 +2654,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.16,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6664912280701754,
+              "macro_recall": 0.6682539682539682,
+              "macro_f1": 0.6609076109076109
             },
             "Finance": {
               "n_records": 15,
@@ -2338,7 +2684,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.13333333333333333
-              }
+              },
+              "macro_precision": 0.4848717948717949,
+              "macro_recall": 0.45666666666666667,
+              "macro_f1": 0.46003174603174596
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -2365,7 +2714,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -2392,7 +2744,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.3333333333333333,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.663888888888889,
+              "macro_recall": 0.6674074074074074,
+              "macro_f1": 0.6596471571084573
             }
           },
           "by_sensitivity": {
@@ -2421,7 +2776,10 @@
                 "tier_1": 0.0625,
                 "tier_2": 0.125,
                 "tier_3": 0.10416666666666667
-              }
+              },
+              "macro_precision": 0.8845214045214045,
+              "macro_recall": 0.7815536881419234,
+              "macro_f1": 0.8165006058164626
             },
             "LOW": {
               "n_records": 13,
@@ -2448,7 +2806,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.3076923076923077,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3972222222222222,
+              "macro_recall": 0.3962962962962963,
+              "macro_f1": 0.3726508785332315
             },
             "MEDIUM": {
               "n_records": 39,
@@ -2475,7 +2836,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.1282051282051282,
                 "tier_3": 0.05128205128205128
-              }
+              },
+              "macro_precision": 0.8596491228070176,
+              "macro_recall": 0.7587496519075467,
+              "macro_f1": 0.7987549293808548
             }
           }
         },
@@ -4387,6 +4751,161 @@
             "tier_2": 0.12,
             "tier_3": 0.04
           },
+          "macro_precision": 0.896674913042979,
+          "macro_recall": 0.8725266274358834,
+          "macro_f1": 0.8811371664240855,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 29,
+              "tp": 26,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.896551724137931,
+              "recall": 0.896551724137931,
+              "f1": 0.896551724137931
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 7,
+              "tp": 5,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.7142857142857143,
+              "recall": 0.7142857142857143,
+              "f1": 0.7142857142857143
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 33,
+              "tp": 29,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8787878787878788,
+              "recall": 0.9666666666666667,
+              "f1": 0.9206349206349207
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 16,
+              "tp": 16,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.8421052631578947,
+              "f1": 0.9142857142857143
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 22,
+              "tp": 20,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.9090909090909091,
+              "recall": 0.9090909090909091,
+              "f1": 0.9090909090909091
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 12,
+              "tp": 12,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 48,
+              "tp": 41,
+              "fp": 7,
+              "fn": 3,
+              "precision": 0.8541666666666666,
+              "recall": 0.9318181818181818,
+              "f1": 0.8913043478260869
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 23,
+              "tp": 19,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8260869565217391,
+              "recall": 0.95,
+              "f1": 0.8837209302325583
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 5,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.625,
+              "recall": 0.625,
+              "f1": 0.625
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 9,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 13,
+              "tp": 11,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.8461538461538461,
+              "recall": 0.7857142857142857,
+              "f1": 0.8148148148148148
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -4413,7 +4932,10 @@
                 "tier_1": 0.15,
                 "tier_2": 0.1,
                 "tier_3": 0.05
-              }
+              },
+              "macro_precision": 0.47777777777777775,
+              "macro_recall": 0.45653846153846156,
+              "macro_f1": 0.4565925925925926
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -4440,7 +4962,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4444444444444444,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4470899470899471
             },
             "Engineering": {
               "n_records": 25,
@@ -4467,7 +4992,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.08,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6466666666666666,
+              "macro_recall": 0.6849206349206349,
+              "macro_f1": 0.6612739112739113
             },
             "Finance": {
               "n_records": 15,
@@ -4494,7 +5022,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4848717948717949,
+              "macro_recall": 0.48333333333333334,
+              "macro_f1": 0.4766984126984127
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -4521,7 +5052,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -4548,7 +5082,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.3333333333333333,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.6194444444444444,
+              "macro_recall": 0.6674074074074074,
+              "macro_f1": 0.6329804904417907
             }
           },
           "by_sensitivity": {
@@ -4577,7 +5114,10 @@
                 "tier_1": 0.0625,
                 "tier_2": 0.125,
                 "tier_3": 0.041666666666666664
-              }
+              },
+              "macro_precision": 0.8374190080072433,
+              "macro_recall": 0.8148870214752567,
+              "macro_f1": 0.8211713326930716
             },
             "LOW": {
               "n_records": 13,
@@ -4604,7 +5144,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.15384615384615385,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3759259259259259,
+              "macro_recall": 0.4259259259259259,
+              "macro_f1": 0.3881192881192881
             },
             "MEDIUM": {
               "n_records": 39,
@@ -4631,7 +5174,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.10256410256410256,
                 "tier_3": 0.02564102564102564
-              }
+              },
+              "macro_precision": 0.8244639376218323,
+              "macro_recall": 0.7756808688387636,
+              "macro_f1": 0.791306419758432
             }
           }
         },
@@ -6566,6 +7112,161 @@
             "tier_2": 0.09,
             "tier_3": 0.04
           },
+          "macro_precision": 0.8851041051872254,
+          "macro_recall": 0.8898426447519007,
+          "macro_f1": 0.8833413546156047,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 30,
+              "tp": 26,
+              "fp": 4,
+              "fn": 3,
+              "precision": 0.8666666666666667,
+              "recall": 0.896551724137931,
+              "f1": 0.8813559322033899
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 8,
+              "tp": 6,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.75,
+              "recall": 0.8571428571428571,
+              "f1": 0.7999999999999999
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 34,
+              "tp": 29,
+              "fp": 5,
+              "fn": 1,
+              "precision": 0.8529411764705882,
+              "recall": 0.9666666666666667,
+              "f1": 0.90625
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 16,
+              "tp": 16,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.8421052631578947,
+              "f1": 0.9142857142857143
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 23,
+              "tp": 21,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.9130434782608695,
+              "recall": 0.9545454545454546,
+              "f1": 0.9333333333333332
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 13,
+              "tp": 12,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9230769230769231,
+              "recall": 1.0,
+              "f1": 0.9600000000000001
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 48,
+              "tp": 41,
+              "fp": 7,
+              "fn": 3,
+              "precision": 0.8541666666666666,
+              "recall": 0.9318181818181818,
+              "f1": 0.8913043478260869
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 24,
+              "tp": 19,
+              "fp": 5,
+              "fn": 1,
+              "precision": 0.7916666666666666,
+              "recall": 0.95,
+              "f1": 0.8636363636363635
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 5,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.625,
+              "recall": 0.625,
+              "f1": 0.625
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 9,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 15,
+              "tp": 12,
+              "fp": 3,
+              "fn": 2,
+              "precision": 0.8,
+              "recall": 0.8571428571428571,
+              "f1": 0.8275862068965518
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -6592,7 +7293,10 @@
                 "tier_1": 0.15,
                 "tier_2": 0.05,
                 "tier_3": 0.05
-              }
+              },
+              "macro_precision": 0.4507936507936508,
+              "macro_recall": 0.4898717948717949,
+              "macro_f1": 0.46184511784511784
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -6619,7 +7323,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.43555555555555553,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4411640211640212
             },
             "Engineering": {
               "n_records": 25,
@@ -6646,7 +7353,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.08,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6436507936507937,
+              "macro_recall": 0.6849206349206349,
+              "macro_f1": 0.6597291958267568
             },
             "Finance": {
               "n_records": 15,
@@ -6673,7 +7383,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4848717948717949,
+              "macro_recall": 0.5166666666666667,
+              "macro_f1": 0.49892063492063493
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -6700,7 +7413,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -6727,7 +7443,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.6527777777777778,
+              "macro_recall": 0.7340740740740742,
+              "macro_f1": 0.6774249348862352
             }
           },
           "by_sensitivity": {
@@ -6756,7 +7475,10 @@
                 "tier_1": 0.0625,
                 "tier_2": 0.08333333333333333,
                 "tier_3": 0.041666666666666664
-              }
+              },
+              "macro_precision": 0.8404136604136603,
+              "macro_recall": 0.8521419234360411,
+              "macro_f1": 0.8383049495635307
             },
             "LOW": {
               "n_records": 13,
@@ -6783,7 +7505,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.15384615384615385,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3759259259259259,
+              "macro_recall": 0.4259259259259259,
+              "macro_f1": 0.3881192881192881
             },
             "MEDIUM": {
               "n_records": 39,
@@ -6810,7 +7535,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.07692307692307693,
                 "tier_3": 0.02564102564102564
-              }
+              },
+              "macro_precision": 0.8055221386800334,
+              "macro_recall": 0.7867919799498747,
+              "macro_f1": 0.789160293897136
             }
           }
         },
@@ -8757,6 +9485,161 @@
             "tier_2": 0.08,
             "tier_3": 0.03
           },
+          "macro_precision": 0.8323028453875136,
+          "macro_recall": 0.9003233135084315,
+          "macro_f1": 0.8589976112346452,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 33,
+              "tp": 27,
+              "fp": 6,
+              "fn": 2,
+              "precision": 0.8181818181818182,
+              "recall": 0.9310344827586207,
+              "f1": 0.8709677419354839
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 11,
+              "tp": 6,
+              "fp": 5,
+              "fn": 1,
+              "precision": 0.5454545454545454,
+              "recall": 0.8571428571428571,
+              "f1": 0.6666666666666665
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 39,
+              "tp": 29,
+              "fp": 10,
+              "fn": 1,
+              "precision": 0.7435897435897436,
+              "recall": 0.9666666666666667,
+              "f1": 0.8405797101449275
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 19,
+              "tp": 16,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.8421052631578947,
+              "recall": 0.8421052631578947,
+              "f1": 0.8421052631578947
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 23,
+              "tp": 21,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.9130434782608695,
+              "recall": 0.9545454545454546,
+              "f1": 0.9333333333333332
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 11,
+              "tp": 10,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9090909090909091,
+              "recall": 1.0,
+              "f1": 0.9523809523809523
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 13,
+              "tp": 12,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9230769230769231,
+              "recall": 1.0,
+              "f1": 0.9600000000000001
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 50,
+              "tp": 42,
+              "fp": 8,
+              "fn": 2,
+              "precision": 0.84,
+              "recall": 0.9545454545454546,
+              "f1": 0.8936170212765958
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 24,
+              "tp": 19,
+              "fp": 5,
+              "fn": 1,
+              "precision": 0.7916666666666666,
+              "recall": 0.95,
+              "f1": 0.8636363636363635
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 5,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.625,
+              "recall": 0.625,
+              "f1": 0.625
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 9,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 12,
+              "tp": 10,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.8333333333333334,
+              "recall": 1.0,
+              "f1": 0.9090909090909091
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 15,
+              "tp": 12,
+              "fp": 3,
+              "fn": 2,
+              "precision": 0.8,
+              "recall": 0.8571428571428571,
+              "f1": 0.8275862068965518
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -8783,7 +9666,10 @@
                 "tier_1": 0.15,
                 "tier_2": 0.05,
                 "tier_3": 0.05
-              }
+              },
+              "macro_precision": 0.44246031746031744,
+              "macro_recall": 0.4898717948717949,
+              "macro_f1": 0.45795622895622895
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -8810,7 +9696,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4292063492063492,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4363155363155364
             },
             "Engineering": {
               "n_records": 25,
@@ -8837,7 +9726,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.04,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6025108225108226,
+              "macro_recall": 0.6882539682539682,
+              "macro_f1": 0.6354497354497355
             },
             "Finance": {
               "n_records": 15,
@@ -8864,7 +9756,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.47376068376068375,
+              "macro_recall": 0.5166666666666667,
+              "macro_f1": 0.49286002886002883
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -8891,7 +9786,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.31333333333333335,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.32241715399610144
             },
             "Security": {
               "n_records": 15,
@@ -8918,7 +9816,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.6858730158730157,
+              "macro_recall": 0.822962962962963,
+              "macro_f1": 0.7279084073820916
             }
           },
           "by_sensitivity": {
@@ -8947,7 +9848,10 @@
                 "tier_1": 0.041666666666666664,
                 "tier_2": 0.08333333333333333,
                 "tier_3": 0.020833333333333332
-              }
+              },
+              "macro_precision": 0.7829524498490016,
+              "macro_recall": 0.8659197012138189,
+              "macro_f1": 0.809450497520673
             },
             "LOW": {
               "n_records": 13,
@@ -8974,7 +9878,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.07692307692307693,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3666666666666666,
+              "macro_recall": 0.43333333333333335,
+              "macro_f1": 0.3848750664540138
             },
             "MEDIUM": {
               "n_records": 39,
@@ -9001,7 +9908,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.07692307692307693,
                 "tier_3": 0.02564102564102564
-              }
+              },
+              "macro_precision": 0.7402657284236233,
+              "macro_recall": 0.7867919799498747,
+              "macro_f1": 0.7533255360623783
             }
           }
         },
@@ -10993,6 +11903,161 @@
             "tier_2": 0.12,
             "tier_3": 0.04
           },
+          "macro_precision": 0.9146243185327366,
+          "macro_recall": 0.8725266274358834,
+          "macro_f1": 0.8896596335498825,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 28,
+              "tp": 26,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.9285714285714286,
+              "recall": 0.896551724137931,
+              "f1": 0.912280701754386
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 6,
+              "tp": 5,
+              "fp": 1,
+              "fn": 2,
+              "precision": 0.8333333333333334,
+              "recall": 0.7142857142857143,
+              "f1": 0.7692307692307692
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 33,
+              "tp": 29,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8787878787878788,
+              "recall": 0.9666666666666667,
+              "f1": 0.9206349206349207
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 16,
+              "tp": 16,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.8421052631578947,
+              "f1": 0.9142857142857143
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 22,
+              "tp": 20,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.9090909090909091,
+              "recall": 0.9090909090909091,
+              "f1": 0.9090909090909091
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 12,
+              "tp": 12,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 47,
+              "tp": 41,
+              "fp": 6,
+              "fn": 3,
+              "precision": 0.8723404255319149,
+              "recall": 0.9318181818181818,
+              "f1": 0.9010989010989012
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 23,
+              "tp": 19,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8260869565217391,
+              "recall": 0.95,
+              "f1": 0.8837209302325583
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 5,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.625,
+              "recall": 0.625,
+              "f1": 0.625
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 13,
+              "tp": 11,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.8461538461538461,
+              "recall": 0.7857142857142857,
+              "f1": 0.8148148148148148
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -11019,7 +12084,10 @@
                 "tier_1": 0.15,
                 "tier_2": 0.1,
                 "tier_3": 0.05
-              }
+              },
+              "macro_precision": 0.47777777777777775,
+              "macro_recall": 0.45653846153846156,
+              "macro_f1": 0.4565925925925926
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -11046,7 +12114,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4444444444444444,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4470899470899471
             },
             "Engineering": {
               "n_records": 25,
@@ -11073,7 +12144,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.08,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6666666666666666,
+              "macro_recall": 0.6849206349206349,
+              "macro_f1": 0.671961741961742
             },
             "Finance": {
               "n_records": 15,
@@ -11100,7 +12174,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4848717948717949,
+              "macro_recall": 0.48333333333333334,
+              "macro_f1": 0.4766984126984127
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -11127,7 +12204,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -11154,7 +12234,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.3333333333333333,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.6194444444444444,
+              "macro_recall": 0.6674074074074074,
+              "macro_f1": 0.6329804904417907
             }
           },
           "by_sensitivity": {
@@ -11183,7 +12266,10 @@
                 "tier_1": 0.0625,
                 "tier_2": 0.125,
                 "tier_3": 0.041666666666666664
-              }
+              },
+              "macro_precision": 0.8374190080072433,
+              "macro_recall": 0.8148870214752567,
+              "macro_f1": 0.8211713326930716
             },
             "LOW": {
               "n_records": 13,
@@ -11210,7 +12296,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.15384615384615385,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.39814814814814814,
+              "macro_recall": 0.4259259259259259,
+              "macro_f1": 0.397008177008177
             },
             "MEDIUM": {
               "n_records": 39,
@@ -11237,7 +12326,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.10256410256410256,
                 "tier_3": 0.02564102564102564
-              }
+              },
+              "macro_precision": 0.8318713450292398,
+              "macro_recall": 0.7756808688387636,
+              "macro_f1": 0.7952279883858829
             }
           }
         },
@@ -13170,6 +14262,161 @@
             "tier_2": 0.12,
             "tier_3": 0.06
           },
+          "macro_precision": 0.9225612766793426,
+          "macro_recall": 0.8888663403545437,
+          "macro_f1": 0.9012537876581083,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 29,
+              "tp": 26,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.896551724137931,
+              "recall": 0.896551724137931,
+              "f1": 0.896551724137931
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 7,
+              "tp": 5,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.7142857142857143,
+              "recall": 0.7142857142857143,
+              "f1": 0.7142857142857143
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 32,
+              "tp": 29,
+              "fp": 3,
+              "fn": 1,
+              "precision": 0.90625,
+              "recall": 0.9666666666666667,
+              "f1": 0.9354838709677419
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 15,
+              "tp": 15,
+              "fp": 0,
+              "fn": 4,
+              "precision": 1.0,
+              "recall": 0.7894736842105263,
+              "f1": 0.8823529411764706
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 22,
+              "tp": 20,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.9090909090909091,
+              "recall": 0.9090909090909091,
+              "f1": 0.9090909090909091
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 12,
+              "tp": 12,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 50,
+              "tp": 42,
+              "fp": 8,
+              "fn": 2,
+              "precision": 0.84,
+              "recall": 0.9545454545454546,
+              "f1": 0.8936170212765958
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 23,
+              "tp": 19,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8260869565217391,
+              "recall": 0.95,
+              "f1": 0.8837209302325583
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 9,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 8,
+              "tp": 8,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.8,
+              "f1": 0.888888888888889
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 13,
+              "tp": 11,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.8461538461538461,
+              "recall": 0.7857142857142857,
+              "f1": 0.8148148148148148
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -13196,7 +14443,10 @@
                 "tier_1": 0.05,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.5444444444444444,
+              "macro_recall": 0.5148717948717949,
+              "macro_f1": 0.5181798941798942
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -13223,7 +14473,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4444444444444444,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4470899470899471
             },
             "Engineering": {
               "n_records": 25,
@@ -13250,7 +14503,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.08,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6466666666666666,
+              "macro_recall": 0.6849206349206349,
+              "macro_f1": 0.6612739112739113
             },
             "Finance": {
               "n_records": 15,
@@ -13277,7 +14533,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.5115384615384616,
+              "macro_recall": 0.48666666666666664,
+              "macro_f1": 0.4915132275132275
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -13304,7 +14563,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -13331,7 +14593,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.3333333333333333,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.646111111111111,
+              "macro_recall": 0.6896296296296297,
+              "macro_f1": 0.6577953052566057
             }
           },
           "by_sensitivity": {
@@ -13360,7 +14625,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.125,
                 "tier_3": 0.0625
-              }
+              },
+              "macro_precision": 0.8583551027516545,
+              "macro_recall": 0.8254901960784313,
+              "macro_f1": 0.8351522870234885
             },
             "LOW": {
               "n_records": 13,
@@ -13387,7 +14655,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.15384615384615385,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3759259259259259,
+              "macro_recall": 0.4259259259259259,
+              "macro_f1": 0.3881192881192881
             },
             "MEDIUM": {
               "n_records": 39,
@@ -13414,7 +14685,10 @@
                 "tier_1": 0.05128205128205128,
                 "tier_2": 0.10256410256410256,
                 "tier_3": 0.05128205128205128
-              }
+              },
+              "macro_precision": 0.891130604288499,
+              "macro_recall": 0.8328237259816208,
+              "macro_f1": 0.8519901804421928
             }
           }
         },
@@ -15340,6 +16614,161 @@
             "tier_2": 0.15,
             "tier_3": 0.08
           },
+          "macro_precision": 0.9663634999095992,
+          "macro_recall": 0.8597975345888232,
+          "macro_f1": 0.9030582587910332,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 27,
+              "tp": 25,
+              "fp": 2,
+              "fn": 4,
+              "precision": 0.9259259259259259,
+              "recall": 0.8620689655172413,
+              "f1": 0.8928571428571429
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.5714285714285714,
+              "f1": 0.7272727272727273
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 30,
+              "tp": 29,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9666666666666667,
+              "recall": 0.9666666666666667,
+              "f1": 0.9666666666666667
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 14,
+              "tp": 14,
+              "fp": 0,
+              "fn": 5,
+              "precision": 1.0,
+              "recall": 0.7368421052631579,
+              "f1": 0.8484848484848484
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 22,
+              "tp": 20,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.9090909090909091,
+              "recall": 0.9090909090909091,
+              "f1": 0.9090909090909091
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 11,
+              "tp": 11,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9166666666666666,
+              "f1": 0.9565217391304348
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 47,
+              "tp": 41,
+              "fp": 6,
+              "fn": 3,
+              "precision": 0.8723404255319149,
+              "recall": 0.9318181818181818,
+              "f1": 0.9010989010989012
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 21,
+              "tp": 19,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.9047619047619048,
+              "recall": 0.95,
+              "f1": 0.9268292682926829
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 7,
+              "tp": 7,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.7,
+              "f1": 0.8235294117647058
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 12,
+              "tp": 11,
+              "fp": 1,
+              "fn": 3,
+              "precision": 0.9166666666666666,
+              "recall": 0.7857142857142857,
+              "f1": 0.8461538461538461
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -15366,7 +16795,10 @@
                 "tier_1": 0.05,
                 "tier_2": 0.15,
                 "tier_3": 0.15
-              }
+              },
+              "macro_precision": 0.5611111111111111,
+              "macro_recall": 0.5004778554778555,
+              "macro_f1": 0.5191444851444852
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -15393,7 +16825,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4577777777777778,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.45449735449735457
             },
             "Engineering": {
               "n_records": 25,
@@ -15420,7 +16855,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.16,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6664912280701754,
+              "macro_recall": 0.6682539682539682,
+              "macro_f1": 0.6609076109076109
             },
             "Finance": {
               "n_records": 15,
@@ -15447,7 +16885,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.13333333333333333
-              }
+              },
+              "macro_precision": 0.5115384615384616,
+              "macro_recall": 0.47333333333333333,
+              "macro_f1": 0.48225396825396827
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -15474,7 +16915,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -15501,7 +16945,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.3333333333333333,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.6861111111111112,
+              "macro_recall": 0.6674074074074074,
+              "macro_f1": 0.6729804904417908
             }
           },
           "by_sensitivity": {
@@ -15530,7 +16977,10 @@
                 "tier_1": 0.020833333333333332,
                 "tier_2": 0.125,
                 "tier_3": 0.10416666666666667
-              }
+              },
+              "macro_precision": 0.9035690235690236,
+              "macro_recall": 0.8006013071895425,
+              "macro_f1": 0.8355482248640816
             },
             "LOW": {
               "n_records": 13,
@@ -15557,7 +17007,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.3076923076923077,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3972222222222222,
+              "macro_recall": 0.3962962962962963,
+              "macro_f1": 0.3726508785332315
             },
             "MEDIUM": {
               "n_records": 39,
@@ -15584,7 +17037,10 @@
                 "tier_1": 0.05128205128205128,
                 "tier_2": 0.1282051282051282,
                 "tier_3": 0.05128205128205128
-              }
+              },
+              "macro_precision": 0.9263157894736842,
+              "macro_recall": 0.8254163185742134,
+              "macro_f1": 0.8654215960475214
             }
           }
         },
@@ -17485,6 +18941,161 @@
             "tier_2": 0.12,
             "tier_3": 0.04
           },
+          "macro_precision": 0.921674913042979,
+          "macro_recall": 0.8975266274358834,
+          "macro_f1": 0.9061371664240855,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 29,
+              "tp": 26,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.896551724137931,
+              "recall": 0.896551724137931,
+              "f1": 0.896551724137931
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 7,
+              "tp": 5,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.7142857142857143,
+              "recall": 0.7142857142857143,
+              "f1": 0.7142857142857143
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 33,
+              "tp": 29,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8787878787878788,
+              "recall": 0.9666666666666667,
+              "f1": 0.9206349206349207
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 16,
+              "tp": 16,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.8421052631578947,
+              "f1": 0.9142857142857143
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 22,
+              "tp": 20,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.9090909090909091,
+              "recall": 0.9090909090909091,
+              "f1": 0.9090909090909091
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 12,
+              "tp": 12,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 48,
+              "tp": 41,
+              "fp": 7,
+              "fn": 3,
+              "precision": 0.8541666666666666,
+              "recall": 0.9318181818181818,
+              "f1": 0.8913043478260869
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 23,
+              "tp": 19,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8260869565217391,
+              "recall": 0.95,
+              "f1": 0.8837209302325583
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 9,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 13,
+              "tp": 11,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.8461538461538461,
+              "recall": 0.7857142857142857,
+              "f1": 0.8148148148148148
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -17511,7 +19122,10 @@
                 "tier_1": 0.05,
                 "tier_2": 0.1,
                 "tier_3": 0.05
-              }
+              },
+              "macro_precision": 0.5444444444444444,
+              "macro_recall": 0.5232051282051282,
+              "macro_f1": 0.5232592592592593
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -17538,7 +19152,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4444444444444444,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4470899470899471
             },
             "Engineering": {
               "n_records": 25,
@@ -17565,7 +19182,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.08,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6466666666666666,
+              "macro_recall": 0.6849206349206349,
+              "macro_f1": 0.6612739112739113
             },
             "Finance": {
               "n_records": 15,
@@ -17592,7 +19212,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.5115384615384616,
+              "macro_recall": 0.5,
+              "macro_f1": 0.49892063492063493
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -17619,7 +19242,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -17646,7 +19272,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.3333333333333333,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.6416666666666665,
+              "macro_recall": 0.6674074074074074,
+              "macro_f1": 0.646313823775124
             }
           },
           "by_sensitivity": {
@@ -17675,7 +19304,10 @@
                 "tier_1": 0.020833333333333332,
                 "tier_2": 0.125,
                 "tier_3": 0.041666666666666664
-              }
+              },
+              "macro_precision": 0.8564666270548624,
+              "macro_recall": 0.8339346405228759,
+              "macro_f1": 0.8402189517406907
             },
             "LOW": {
               "n_records": 13,
@@ -17702,7 +19334,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.15384615384615385,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3759259259259259,
+              "macro_recall": 0.4259259259259259,
+              "macro_f1": 0.3881192881192881
             },
             "MEDIUM": {
               "n_records": 39,
@@ -17729,7 +19364,10 @@
                 "tier_1": 0.05128205128205128,
                 "tier_2": 0.10256410256410256,
                 "tier_3": 0.02564102564102564
-              }
+              },
+              "macro_precision": 0.891130604288499,
+              "macro_recall": 0.8423475355054303,
+              "macro_f1": 0.8579730864250987
             }
           }
         },
@@ -19653,6 +21291,161 @@
             "tier_2": 0.09,
             "tier_3": 0.04
           },
+          "macro_precision": 0.9101041051872253,
+          "macro_recall": 0.9148426447519006,
+          "macro_f1": 0.9083413546156047,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 30,
+              "tp": 26,
+              "fp": 4,
+              "fn": 3,
+              "precision": 0.8666666666666667,
+              "recall": 0.896551724137931,
+              "f1": 0.8813559322033899
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 8,
+              "tp": 6,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.75,
+              "recall": 0.8571428571428571,
+              "f1": 0.7999999999999999
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 34,
+              "tp": 29,
+              "fp": 5,
+              "fn": 1,
+              "precision": 0.8529411764705882,
+              "recall": 0.9666666666666667,
+              "f1": 0.90625
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 16,
+              "tp": 16,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.8421052631578947,
+              "f1": 0.9142857142857143
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 23,
+              "tp": 21,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.9130434782608695,
+              "recall": 0.9545454545454546,
+              "f1": 0.9333333333333332
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 13,
+              "tp": 12,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9230769230769231,
+              "recall": 1.0,
+              "f1": 0.9600000000000001
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 48,
+              "tp": 41,
+              "fp": 7,
+              "fn": 3,
+              "precision": 0.8541666666666666,
+              "recall": 0.9318181818181818,
+              "f1": 0.8913043478260869
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 24,
+              "tp": 19,
+              "fp": 5,
+              "fn": 1,
+              "precision": 0.7916666666666666,
+              "recall": 0.95,
+              "f1": 0.8636363636363635
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 9,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 15,
+              "tp": 12,
+              "fp": 3,
+              "fn": 2,
+              "precision": 0.8,
+              "recall": 0.8571428571428571,
+              "f1": 0.8275862068965518
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -19679,7 +21472,10 @@
                 "tier_1": 0.05,
                 "tier_2": 0.05,
                 "tier_3": 0.05
-              }
+              },
+              "macro_precision": 0.5174603174603175,
+              "macro_recall": 0.5565384615384616,
+              "macro_f1": 0.5285117845117845
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -19706,7 +21502,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.43555555555555553,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4411640211640212
             },
             "Engineering": {
               "n_records": 25,
@@ -19733,7 +21532,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.08,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6436507936507937,
+              "macro_recall": 0.6849206349206349,
+              "macro_f1": 0.6597291958267568
             },
             "Finance": {
               "n_records": 15,
@@ -19760,7 +21562,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.5115384615384616,
+              "macro_recall": 0.5333333333333333,
+              "macro_f1": 0.5211428571428571
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -19787,7 +21592,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -19814,7 +21622,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.6749999999999999,
+              "macro_recall": 0.7340740740740742,
+              "macro_f1": 0.6907582682195685
             }
           },
           "by_sensitivity": {
@@ -19843,7 +21654,10 @@
                 "tier_1": 0.020833333333333332,
                 "tier_2": 0.08333333333333333,
                 "tier_3": 0.041666666666666664
-              }
+              },
+              "macro_precision": 0.8594612794612794,
+              "macro_recall": 0.8711895424836602,
+              "macro_f1": 0.8573525686111498
             },
             "LOW": {
               "n_records": 13,
@@ -19870,7 +21684,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.15384615384615385,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3759259259259259,
+              "macro_recall": 0.4259259259259259,
+              "macro_f1": 0.3881192881192881
             },
             "MEDIUM": {
               "n_records": 39,
@@ -19897,7 +21714,10 @@
                 "tier_1": 0.05128205128205128,
                 "tier_2": 0.07692307692307693,
                 "tier_3": 0.02564102564102564
-              }
+              },
+              "macro_precision": 0.8721888053467002,
+              "macro_recall": 0.8534586466165414,
+              "macro_f1": 0.8558269605638027
             }
           }
         },
@@ -21833,6 +23653,161 @@
             "tier_2": 0.08,
             "tier_3": 0.03
           },
+          "macro_precision": 0.8573028453875137,
+          "macro_recall": 0.9253233135084316,
+          "macro_f1": 0.8839976112346453,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 33,
+              "tp": 27,
+              "fp": 6,
+              "fn": 2,
+              "precision": 0.8181818181818182,
+              "recall": 0.9310344827586207,
+              "f1": 0.8709677419354839
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 11,
+              "tp": 6,
+              "fp": 5,
+              "fn": 1,
+              "precision": 0.5454545454545454,
+              "recall": 0.8571428571428571,
+              "f1": 0.6666666666666665
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 39,
+              "tp": 29,
+              "fp": 10,
+              "fn": 1,
+              "precision": 0.7435897435897436,
+              "recall": 0.9666666666666667,
+              "f1": 0.8405797101449275
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 19,
+              "tp": 16,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.8421052631578947,
+              "recall": 0.8421052631578947,
+              "f1": 0.8421052631578947
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 23,
+              "tp": 21,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.9130434782608695,
+              "recall": 0.9545454545454546,
+              "f1": 0.9333333333333332
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 11,
+              "tp": 10,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9090909090909091,
+              "recall": 1.0,
+              "f1": 0.9523809523809523
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 13,
+              "tp": 12,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9230769230769231,
+              "recall": 1.0,
+              "f1": 0.9600000000000001
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 50,
+              "tp": 42,
+              "fp": 8,
+              "fn": 2,
+              "precision": 0.84,
+              "recall": 0.9545454545454546,
+              "f1": 0.8936170212765958
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 24,
+              "tp": 19,
+              "fp": 5,
+              "fn": 1,
+              "precision": 0.7916666666666666,
+              "recall": 0.95,
+              "f1": 0.8636363636363635
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 9,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 12,
+              "tp": 10,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.8333333333333334,
+              "recall": 1.0,
+              "f1": 0.9090909090909091
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 15,
+              "tp": 12,
+              "fp": 3,
+              "fn": 2,
+              "precision": 0.8,
+              "recall": 0.8571428571428571,
+              "f1": 0.8275862068965518
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -21859,7 +23834,10 @@
                 "tier_1": 0.05,
                 "tier_2": 0.05,
                 "tier_3": 0.05
-              }
+              },
+              "macro_precision": 0.5091269841269841,
+              "macro_recall": 0.5565384615384616,
+              "macro_f1": 0.5246228956228955
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -21886,7 +23864,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4292063492063492,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4363155363155364
             },
             "Engineering": {
               "n_records": 25,
@@ -21913,7 +23894,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.04,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6025108225108226,
+              "macro_recall": 0.6882539682539682,
+              "macro_f1": 0.6354497354497355
             },
             "Finance": {
               "n_records": 15,
@@ -21940,7 +23924,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.5004273504273504,
+              "macro_recall": 0.5333333333333333,
+              "macro_f1": 0.515082251082251
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -21967,7 +23954,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.31333333333333335,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.32241715399610144
             },
             "Security": {
               "n_records": 15,
@@ -21994,7 +23984,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.708095238095238,
+              "macro_recall": 0.822962962962963,
+              "macro_f1": 0.7412417407154249
             }
           },
           "by_sensitivity": {
@@ -22023,7 +24016,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.08333333333333333,
                 "tier_3": 0.020833333333333332
-              }
+              },
+              "macro_precision": 0.8020000688966207,
+              "macro_recall": 0.884967320261438,
+              "macro_f1": 0.8284981165682921
             },
             "LOW": {
               "n_records": 13,
@@ -22050,7 +24046,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.07692307692307693,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.3666666666666666,
+              "macro_recall": 0.43333333333333335,
+              "macro_f1": 0.3848750664540138
             },
             "MEDIUM": {
               "n_records": 39,
@@ -22077,7 +24076,10 @@
                 "tier_1": 0.05128205128205128,
                 "tier_2": 0.07692307692307693,
                 "tier_3": 0.02564102564102564
-              }
+              },
+              "macro_precision": 0.8069323950902899,
+              "macro_recall": 0.8534586466165414,
+              "macro_f1": 0.8199922027290449
             }
           }
         },
@@ -24058,6 +26060,161 @@
             "tier_2": 0.12,
             "tier_3": 0.04
           },
+          "macro_precision": 0.9396243185327366,
+          "macro_recall": 0.8975266274358834,
+          "macro_f1": 0.9146596335498826,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 28,
+              "tp": 26,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.9285714285714286,
+              "recall": 0.896551724137931,
+              "f1": 0.912280701754386
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 6,
+              "tp": 5,
+              "fp": 1,
+              "fn": 2,
+              "precision": 0.8333333333333334,
+              "recall": 0.7142857142857143,
+              "f1": 0.7692307692307692
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 33,
+              "tp": 29,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8787878787878788,
+              "recall": 0.9666666666666667,
+              "f1": 0.9206349206349207
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 16,
+              "tp": 16,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.8421052631578947,
+              "f1": 0.9142857142857143
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 22,
+              "tp": 20,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.9090909090909091,
+              "recall": 0.9090909090909091,
+              "f1": 0.9090909090909091
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 4,
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 12,
+              "tp": 12,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 47,
+              "tp": 41,
+              "fp": 6,
+              "fn": 3,
+              "precision": 0.8723404255319149,
+              "recall": 0.9318181818181818,
+              "f1": 0.9010989010989012
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 23,
+              "tp": 19,
+              "fp": 4,
+              "fn": 1,
+              "precision": 0.8260869565217391,
+              "recall": 0.95,
+              "f1": 0.8837209302325583
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 8,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 9,
+              "tp": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526316
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 13,
+              "tp": 11,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.8461538461538461,
+              "recall": 0.7857142857142857,
+              "f1": 0.8148148148148148
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -24084,7 +26241,10 @@
                 "tier_1": 0.05,
                 "tier_2": 0.1,
                 "tier_3": 0.05
-              }
+              },
+              "macro_precision": 0.5444444444444444,
+              "macro_recall": 0.5232051282051282,
+              "macro_f1": 0.5232592592592593
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -24111,7 +26271,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4444444444444444,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4470899470899471
             },
             "Engineering": {
               "n_records": 25,
@@ -24138,7 +26301,10 @@
                 "tier_1": 0.08,
                 "tier_2": 0.08,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.6666666666666666,
+              "macro_recall": 0.6849206349206349,
+              "macro_f1": 0.671961741961742
             },
             "Finance": {
               "n_records": 15,
@@ -24165,7 +26331,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.5115384615384616,
+              "macro_recall": 0.5,
+              "macro_f1": 0.49892063492063493
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -24192,7 +26361,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.3333333333333333,
+              "macro_recall": 0.3333333333333333,
+              "macro_f1": 0.3333333333333333
             },
             "Security": {
               "n_records": 15,
@@ -24219,7 +26391,10 @@
                 "tier_1": 0.06666666666666667,
                 "tier_2": 0.3333333333333333,
                 "tier_3": 0.06666666666666667
-              }
+              },
+              "macro_precision": 0.6416666666666665,
+              "macro_recall": 0.6674074074074074,
+              "macro_f1": 0.646313823775124
             }
           },
           "by_sensitivity": {
@@ -24248,7 +26423,10 @@
                 "tier_1": 0.020833333333333332,
                 "tier_2": 0.125,
                 "tier_3": 0.041666666666666664
-              }
+              },
+              "macro_precision": 0.8564666270548624,
+              "macro_recall": 0.8339346405228759,
+              "macro_f1": 0.8402189517406907
             },
             "LOW": {
               "n_records": 13,
@@ -24275,7 +26453,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.15384615384615385,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.39814814814814814,
+              "macro_recall": 0.4259259259259259,
+              "macro_f1": 0.397008177008177
             },
             "MEDIUM": {
               "n_records": 39,
@@ -24302,7 +26483,10 @@
                 "tier_1": 0.05128205128205128,
                 "tier_2": 0.10256410256410256,
                 "tier_3": 0.02564102564102564
-              }
+              },
+              "macro_precision": 0.8985380116959064,
+              "macro_recall": 0.8423475355054303,
+              "macro_f1": 0.8618946550525497
             }
           }
         },

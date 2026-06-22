@@ -670,18 +670,29 @@ result now in hand:
 
 ### 7.11 Artefacts produced
 
-After the Phase C run, locally:
+**Public-facing (canonical):**
 
-- `dataset/classifier_artifacts/classifier_model.zip` — 324 MB zip
-  containing the fine-tuned roberta-base model (downloaded from Colab).
-  Contains: `model.safetensors` (~351 MB extracted), `config.json`,
-  `tokenizer.json` / `tokenizer_config.json`, `training_args.bin`,
-  auto-generated `model_card.md`. Phase D will extract into
-  `dataset/classifier_artifacts/model/` for inference.
-- `dataset/classifier_artifacts/roberta_test_probs.npy` — (when
-  downloaded) cached 100 × 15 prediction matrix from inference on the
-  test set. Same caching pattern as Claude — Phase D applies threshold
-  configurations to this matrix without re-running the model.
+- **HuggingFace Hub**: <https://huggingface.co/buraknoyan/mostargate-c2-roberta-large/>
+  — the fine-tuned RoBERTa-large weights, tokeniser, and auto-generated
+  model card. This is the reference artefact for the paper and for any
+  third-party reproduction; load with
+  `AutoModelForSequenceClassification.from_pretrained("buraknoyan/mostargate-c2-roberta-large")`.
+
+**Local (gitignored or generated from Colab):**
+
+- `dataset/classifier_artifacts/classifier_model_<short_model>.zip` —
+  zip of the fine-tuned model directory downloaded from Colab.
+  RoBERTa-base ≈ 324 MB; RoBERTa-large ≈ 1.27 GB. Contains:
+  `model.safetensors`, `config.json`, `tokenizer.json` /
+  `tokenizer_config.json`, `training_args.bin`, auto-generated
+  `model_card.md`. Phase D extracts into
+  `dataset/classifier_artifacts/model/` for inference; users without
+  the local zip can pull the same model from the HuggingFace link above.
+- `dataset/classifier_artifacts/roberta_test_probs.npy` — cached
+  100 × 15 prediction matrix from inference on the test set. Same
+  caching pattern as Claude — the sweep CLI applies threshold
+  configurations to this matrix without re-running the model. Kept in
+  the repo so the sweep is reproducible without re-running inference.
 
 ## 8. RoBERTa-large — capacity-step ablation
 
@@ -740,6 +751,11 @@ Because each invocation produces a self-contained JSON keyed by
 `finetuned_<short_model>` (or
 `finetuned_<short_model>_oracle_email_send_external`), the base and
 large runs land in different files and don't collide.
+
+The RoBERTa-large run is published at
+<https://huggingface.co/buraknoyan/mostargate-c2-roberta-large/> — load
+with `AutoModelForSequenceClassification.from_pretrained(...)` to
+reproduce inference end-to-end without rerunning training on Colab.
 
 ### 8.2 Headline — what 3× parameter count buys
 

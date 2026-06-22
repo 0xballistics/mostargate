@@ -1,5 +1,5 @@
 from .. import constants
-from .types import EvalResult, Summary, DeptSummary
+from .types import DeptSummary, EvalResult, PerPermissionStats, Summary
 
 PERMISSIONS: list[str] = list(constants.TOOLS.keys())
 TIERS: list[int] = [1, 2, 3]
@@ -40,6 +40,33 @@ def _filter_by_tier(perms: list[str], tier: int) -> list[str]:
     return [p for p in perms if constants.TOOL_TIERS[p] == tier]
 
 
+def _per_permission_stats(results: list[EvalResult]) -> dict[str, PerPermissionStats]:
+    """Per-permission TP/FP/FN and derived precision / recall / F1.
+
+    Each result already carries the predicted (`granted`) and ground-truth
+    sets, so this is a straightforward second-pass aggregation.
+    """
+    stats: dict[str, PerPermissionStats] = {}
+    for p in PERMISSIONS:
+        tp = sum(1 for r in results if p in r["granted"] and p in r["ground_truth"])
+        fp = sum(1 for r in results if p in r["granted"] and p not in r["ground_truth"])
+        fn = sum(1 for r in results if p not in r["granted"] and p in r["ground_truth"])
+        precision = tp / (tp + fp) if (tp + fp) else 0.0
+        recall = tp / (tp + fn) if (tp + fn) else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) else 0.0
+        stats[p] = PerPermissionStats(
+            n_positives=tp + fn,
+            n_predicted=tp + fp,
+            tp=tp,
+            fp=fp,
+            fn=fn,
+            precision=precision,
+            recall=recall,
+            f1=f1,
+        )
+    return stats
+
+
 def _group_summary(results: list[EvalResult]) -> DeptSummary:
     n_records = len(results)
     over_count_by_tier = {_tier_key(t): 0 for t in TIERS}
@@ -58,6 +85,12 @@ def _group_summary(results: list[EvalResult]) -> DeptSummary:
             if u:
                 under_rate_by_tier[_tier_key(t)] += 1
 
+    per_perm = _per_permission_stats(results)
+    n_perms = len(per_perm)
+    macro_p = sum(s["precision"] for s in per_perm.values()) / n_perms
+    macro_r = sum(s["recall"] for s in per_perm.values()) / n_perms
+    macro_f1 = sum(s["f1"] for s in per_perm.values()) / n_perms
+
     return DeptSummary(
         n_records=n_records,
         mean_raw_delta=sum(r["raw_delta"] for r in results) / n_records,
@@ -68,6 +101,9 @@ def _group_summary(results: list[EvalResult]) -> DeptSummary:
         mean_undershoot_count_by_tier={k: v / n_records for k, v in under_count_by_tier.items()},
         overshoot_rate_by_tier={k: v / n_records for k, v in over_rate_by_tier.items()},
         undershoot_rate_by_tier={k: v / n_records for k, v in under_rate_by_tier.items()},
+        macro_precision=macro_p,
+        macro_recall=macro_r,
+        macro_f1=macro_f1,
     )
 
 
@@ -80,6 +116,7 @@ def summarise(results: list[EvalResult]) -> Summary:
 
     return Summary(
         **_group_summary(results),
+        per_permission=_per_permission_stats(results),
         by_department={dept: _group_summary(recs) for dept, recs in sorted(by_dept.items())},
         by_sensitivity={sens: _group_summary(recs) for sens, recs in sorted(by_sens.items())},
     )

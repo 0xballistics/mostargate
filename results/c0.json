@@ -27,6 +27,161 @@
       "tier_2": 0.0,
       "tier_3": 0.0
     },
+    "macro_precision": 0.16133333333333333,
+    "macro_recall": 1.0,
+    "macro_f1": 0.2635287913146881,
+    "per_permission": {
+      "github_read": {
+        "n_positives": 29,
+        "n_predicted": 100,
+        "tp": 29,
+        "fp": 71,
+        "fn": 0,
+        "precision": 0.29,
+        "recall": 1.0,
+        "f1": 0.44961240310077516
+      },
+      "pull_request_create": {
+        "n_positives": 1,
+        "n_predicted": 100,
+        "tp": 1,
+        "fp": 99,
+        "fn": 0,
+        "precision": 0.01,
+        "recall": 1.0,
+        "f1": 0.019801980198019802
+      },
+      "code_execute": {
+        "n_positives": 7,
+        "n_predicted": 100,
+        "tp": 7,
+        "fp": 93,
+        "fn": 0,
+        "precision": 0.07,
+        "recall": 1.0,
+        "f1": 0.13084112149532712
+      },
+      "confluence_read": {
+        "n_positives": 30,
+        "n_predicted": 100,
+        "tp": 30,
+        "fp": 70,
+        "fn": 0,
+        "precision": 0.3,
+        "recall": 1.0,
+        "f1": 0.4615384615384615
+      },
+      "jira_read": {
+        "n_positives": 19,
+        "n_predicted": 100,
+        "tp": 19,
+        "fp": 81,
+        "fn": 0,
+        "precision": 0.19,
+        "recall": 1.0,
+        "f1": 0.319327731092437
+      },
+      "jira_write": {
+        "n_positives": 22,
+        "n_predicted": 100,
+        "tp": 22,
+        "fp": 78,
+        "fn": 0,
+        "precision": 0.22,
+        "recall": 1.0,
+        "f1": 0.36065573770491804
+      },
+      "slack_read": {
+        "n_positives": 10,
+        "n_predicted": 100,
+        "tp": 10,
+        "fp": 90,
+        "fn": 0,
+        "precision": 0.1,
+        "recall": 1.0,
+        "f1": 0.18181818181818182
+      },
+      "slack_write": {
+        "n_positives": 6,
+        "n_predicted": 100,
+        "tp": 6,
+        "fp": 94,
+        "fn": 0,
+        "precision": 0.06,
+        "recall": 1.0,
+        "f1": 0.11320754716981131
+      },
+      "salesforce_read": {
+        "n_positives": 12,
+        "n_predicted": 100,
+        "tp": 12,
+        "fp": 88,
+        "fn": 0,
+        "precision": 0.12,
+        "recall": 1.0,
+        "f1": 0.21428571428571425
+      },
+      "database_read": {
+        "n_positives": 44,
+        "n_predicted": 100,
+        "tp": 44,
+        "fp": 56,
+        "fn": 0,
+        "precision": 0.44,
+        "recall": 1.0,
+        "f1": 0.6111111111111112
+      },
+      "email_read": {
+        "n_positives": 20,
+        "n_predicted": 100,
+        "tp": 20,
+        "fp": 80,
+        "fn": 0,
+        "precision": 0.2,
+        "recall": 1.0,
+        "f1": 0.33333333333333337
+      },
+      "email_send_external": {
+        "n_positives": 8,
+        "n_predicted": 100,
+        "tp": 8,
+        "fp": 92,
+        "fn": 0,
+        "precision": 0.08,
+        "recall": 1.0,
+        "f1": 0.14814814814814814
+      },
+      "http_request": {
+        "n_positives": 10,
+        "n_predicted": 100,
+        "tp": 10,
+        "fp": 90,
+        "fn": 0,
+        "precision": 0.1,
+        "recall": 1.0,
+        "f1": 0.18181818181818182
+      },
+      "file_read_uploaded": {
+        "n_positives": 10,
+        "n_predicted": 100,
+        "tp": 10,
+        "fp": 90,
+        "fn": 0,
+        "precision": 0.1,
+        "recall": 1.0,
+        "f1": 0.18181818181818182
+      },
+      "export_file": {
+        "n_positives": 14,
+        "n_predicted": 100,
+        "tp": 14,
+        "fp": 86,
+        "fn": 0,
+        "precision": 0.14,
+        "recall": 1.0,
+        "f1": 0.24561403508771928
+      }
+    },
     "by_department": {
       "Customer Success": {
         "n_records": 20,
@@ -53,7 +208,10 @@
           "tier_1": 0.0,
           "tier_2": 0.0,
           "tier_3": 0.0
-        }
+        },
+        "macro_precision": 0.16666666666666669,
+        "macro_recall": 0.6,
+        "macro_f1": 0.24057614817783124
       },
       "Data and Analytics": {
         "n_records": 15,
@@ -80,7 +238,10 @@
           "tier_1": 0.0,
           "tier_2": 0.0,
           "tier_3": 0.0
-        }
+        },
+        "macro_precision": 0.13333333333333333,
+        "macro_recall": 0.4666666666666667,
+        "macro_f1": 0.18373138729175884
       },
       "Engineering": {
         "n_records": 25,
@@ -107,7 +268,10 @@
           "tier_1": 0.0,
           "tier_2": 0.0,
           "tier_3": 0.0
-        }
+        },
+        "macro_precision": 0.13600000000000004,
+        "macro_recall": 0.8,
+        "macro_f1": 0.20228545932568925
       },
       "Finance": {
         "n_records": 15,
@@ -134,7 +298,10 @@
           "tier_1": 0.0,
           "tier_2": 0.0,
           "tier_3": 0.0
-        }
+        },
+        "macro_precision": 0.16888888888888892,
+        "macro_recall": 0.5333333333333333,
+        "macro_f1": 0.23833316952512001
       },
       "Legal and Compliance": {
         "n_records": 10,
@@ -161,7 +328,10 @@
           "tier_1": 0.0,
           "tier_2": 0.0,
           "tier_3": 0.0
-        }
+        },
+        "macro_precision": 0.17333333333333334,
+        "macro_recall": 0.5333333333333333,
+        "macro_f1": 0.23227766385661125
       },
       "Security": {
         "n_records": 15,
@@ -188,7 +358,10 @@
           "tier_1": 0.0,
           "tier_2": 0.0,
           "tier_3": 0.0
-        }
+        },
+        "macro_precision": 0.20888888888888893,
+        "macro_recall": 0.8666666666666667,
+        "macro_f1": 0.3099982800137599
       }
     },
     "by_sensitivity": {
@@ -217,7 +390,10 @@
           "tier_1": 0.0,
           "tier_2": 0.0,
           "tier_3": 0.0
-        }
+        },
+        "macro_precision": 0.17500000000000002,
+        "macro_recall": 0.9333333333333333,
+        "macro_f1": 0.2766863998473621
       },
       "LOW": {
         "n_records": 13,
@@ -244,7 +420,10 @@
           "tier_1": 0.0,
           "tier_2": 0.0,
           "tier_3": 0.0
-        }
+        },
+        "macro_precision": 0.13333333333333336,
+        "macro_recall": 0.5333333333333333,
+        "macro_f1": 0.19299992405255562
       },
       "MEDIUM": {
         "n_records": 39,
@@ -271,7 +450,10 @@
           "tier_1": 0.0,
           "tier_2": 0.0,
           "tier_3": 0.0
-        }
+        },
+        "macro_precision": 0.15384615384615383,
+        "macro_recall": 0.9333333333333333,
+        "macro_f1": 0.24994596744635175
       }
     }
   },

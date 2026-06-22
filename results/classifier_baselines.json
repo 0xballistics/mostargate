@@ -28,6 +28,161 @@
         "tier_2": 0.27,
         "tier_3": 0.12
       },
+      "macro_precision": 0.7650028232939415,
+      "macro_recall": 0.6808274605007818,
+      "macro_f1": 0.7021363427856948,
+      "per_permission": {
+        "github_read": {
+          "n_positives": 29,
+          "n_predicted": 29,
+          "tp": 24,
+          "fp": 5,
+          "fn": 5,
+          "precision": 0.8275862068965517,
+          "recall": 0.8275862068965517,
+          "f1": 0.8275862068965517
+        },
+        "pull_request_create": {
+          "n_positives": 1,
+          "n_predicted": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "code_execute": {
+          "n_positives": 7,
+          "n_predicted": 2,
+          "tp": 2,
+          "fp": 0,
+          "fn": 5,
+          "precision": 1.0,
+          "recall": 0.2857142857142857,
+          "f1": 0.4444444444444445
+        },
+        "confluence_read": {
+          "n_positives": 30,
+          "n_predicted": 31,
+          "tp": 26,
+          "fp": 5,
+          "fn": 4,
+          "precision": 0.8387096774193549,
+          "recall": 0.8666666666666667,
+          "f1": 0.8524590163934426
+        },
+        "jira_read": {
+          "n_positives": 19,
+          "n_predicted": 17,
+          "tp": 12,
+          "fp": 5,
+          "fn": 7,
+          "precision": 0.7058823529411765,
+          "recall": 0.631578947368421,
+          "f1": 0.6666666666666667
+        },
+        "jira_write": {
+          "n_positives": 22,
+          "n_predicted": 19,
+          "tp": 16,
+          "fp": 3,
+          "fn": 6,
+          "precision": 0.8421052631578947,
+          "recall": 0.7272727272727273,
+          "f1": 0.7804878048780488
+        },
+        "slack_read": {
+          "n_positives": 10,
+          "n_predicted": 11,
+          "tp": 9,
+          "fp": 2,
+          "fn": 1,
+          "precision": 0.8181818181818182,
+          "recall": 0.9,
+          "f1": 0.8571428571428572
+        },
+        "slack_write": {
+          "n_positives": 6,
+          "n_predicted": 3,
+          "tp": 3,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666
+        },
+        "salesforce_read": {
+          "n_positives": 12,
+          "n_predicted": 12,
+          "tp": 10,
+          "fp": 2,
+          "fn": 2,
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "f1": 0.8333333333333334
+        },
+        "database_read": {
+          "n_positives": 44,
+          "n_predicted": 51,
+          "tp": 42,
+          "fp": 9,
+          "fn": 2,
+          "precision": 0.8235294117647058,
+          "recall": 0.9545454545454546,
+          "f1": 0.8842105263157896
+        },
+        "email_read": {
+          "n_positives": 20,
+          "n_predicted": 20,
+          "tp": 16,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1": 0.8000000000000002
+        },
+        "email_send_external": {
+          "n_positives": 8,
+          "n_predicted": 10,
+          "tp": 4,
+          "fp": 6,
+          "fn": 4,
+          "precision": 0.4,
+          "recall": 0.5,
+          "f1": 0.4444444444444445
+        },
+        "http_request": {
+          "n_positives": 10,
+          "n_predicted": 8,
+          "tp": 8,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.888888888888889
+        },
+        "file_read_uploaded": {
+          "n_positives": 10,
+          "n_predicted": 10,
+          "tp": 8,
+          "fp": 2,
+          "fn": 2,
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1": 0.8000000000000002
+        },
+        "export_file": {
+          "n_positives": 14,
+          "n_predicted": 14,
+          "tp": 11,
+          "fp": 3,
+          "fn": 3,
+          "precision": 0.7857142857142857,
+          "recall": 0.7857142857142857,
+          "f1": 0.7857142857142857
+        }
+      },
       "by_department": {
         "Customer Success": {
           "n_records": 20,
@@ -54,7 +209,10 @@
             "tier_1": 0.1,
             "tier_2": 0.1,
             "tier_3": 0.15
-          }
+          },
+          "macro_precision": 0.40694444444444444,
+          "macro_recall": 0.4722727272727273,
+          "macro_f1": 0.43200038869454166
         },
         "Data and Analytics": {
           "n_records": 15,
@@ -81,7 +239,10 @@
             "tier_1": 0.06666666666666667,
             "tier_2": 0.06666666666666667,
             "tier_3": 0.2
-          }
+          },
+          "macro_precision": 0.3466666666666666,
+          "macro_recall": 0.3333333333333333,
+          "macro_f1": 0.33809523809523806
         },
         "Engineering": {
           "n_records": 25,
@@ -108,7 +269,10 @@
             "tier_1": 0.12,
             "tier_2": 0.4,
             "tier_3": 0.04
-          }
+          },
+          "macro_precision": 0.4371428571428571,
+          "macro_recall": 0.42158730158730157,
+          "macro_f1": 0.4074603174603174
         },
         "Finance": {
           "n_records": 15,
@@ -135,7 +299,10 @@
             "tier_1": 0.13333333333333333,
             "tier_2": 0.26666666666666666,
             "tier_3": 0.06666666666666667
-          }
+          },
+          "macro_precision": 0.3715384615384616,
+          "macro_recall": 0.36444444444444446,
+          "macro_f1": 0.35764117364117365
         },
         "Legal and Compliance": {
           "n_records": 10,
@@ -162,7 +329,10 @@
             "tier_1": 0.0,
             "tier_2": 0.3,
             "tier_3": 0.1
-          }
+          },
+          "macro_precision": 0.26,
+          "macro_recall": 0.2533333333333333,
+          "macro_f1": 0.25575048732943473
         },
         "Security": {
           "n_records": 15,
@@ -189,7 +359,10 @@
             "tier_1": 0.06666666666666667,
             "tier_2": 0.4666666666666667,
             "tier_3": 0.2
-          }
+          },
+          "macro_precision": 0.6678835978835979,
+          "macro_recall": 0.6362962962962962,
+          "macro_f1": 0.6330905695611577
         }
       },
       "by_sensitivity": {
@@ -218,7 +391,10 @@
             "tier_1": 0.08333333333333333,
             "tier_2": 0.3125,
             "tier_3": 0.14583333333333334
-          }
+          },
+          "macro_precision": 0.7979219038042569,
+          "macro_recall": 0.6726256553903611,
+          "macro_f1": 0.7091020852785558
         },
         "LOW": {
           "n_records": 13,
@@ -245,7 +421,10 @@
             "tier_1": 0.15384615384615385,
             "tier_2": 0.38461538461538464,
             "tier_3": 0.07692307692307693
-          }
+          },
+          "macro_precision": 0.33888888888888885,
+          "macro_recall": 0.32222222222222224,
+          "macro_f1": 0.3076648841354724
         },
         "MEDIUM": {
           "n_records": 39,
@@ -272,7 +451,10 @@
             "tier_1": 0.07692307692307693,
             "tier_2": 0.1794871794871795,
             "tier_3": 0.10256410256410256
-          }
+          },
+          "macro_precision": 0.6666835016835019,
+          "macro_recall": 0.6659621275410749,
+          "macro_f1": 0.6587586267515778
         }
       }
     },
@@ -2280,6 +2462,161 @@
             "tier_2": 0.09,
             "tier_3": 0.04
           },
+          "macro_precision": 0.8481730437090257,
+          "macro_recall": 0.9613893930227868,
+          "macro_f1": 0.8885037214923217,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 25,
+              "tp": 25,
+              "fp": 0,
+              "fn": 4,
+              "precision": 1.0,
+              "recall": 0.8620689655172413,
+              "f1": 0.9259259259259259
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 10,
+              "tp": 7,
+              "fp": 3,
+              "fn": 0,
+              "precision": 0.7,
+              "recall": 1.0,
+              "f1": 0.8235294117647058
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 30,
+              "tp": 29,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9666666666666667,
+              "recall": 0.9666666666666667,
+              "f1": 0.9666666666666667
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 18,
+              "tp": 16,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.8888888888888888,
+              "recall": 0.8421052631578947,
+              "f1": 0.8648648648648649
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 23,
+              "tp": 22,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9565217391304348,
+              "recall": 1.0,
+              "f1": 0.9777777777777777
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 8,
+              "tp": 6,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1": 0.8571428571428571
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 22,
+              "tp": 12,
+              "fp": 10,
+              "fn": 0,
+              "precision": 0.5454545454545454,
+              "recall": 1.0,
+              "f1": 0.7058823529411764
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 56,
+              "tp": 44,
+              "fp": 12,
+              "fn": 0,
+              "precision": 0.7857142857142857,
+              "recall": 1.0,
+              "f1": 0.88
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 16,
+              "tp": 15,
+              "fp": 1,
+              "fn": 5,
+              "precision": 0.9375,
+              "recall": 0.75,
+              "f1": 0.8333333333333334
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 10,
+              "tp": 8,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1": 0.888888888888889
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 11,
+              "tp": 10,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9090909090909091,
+              "recall": 1.0,
+              "f1": 0.9523809523809523
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 29,
+              "tp": 14,
+              "fp": 15,
+              "fn": 0,
+              "precision": 0.4827586206896552,
+              "recall": 1.0,
+              "f1": 0.6511627906976745
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -2306,7 +2643,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.05,
                 "tier_3": 0.15
-              }
+              },
+              "macro_precision": 0.4896825396825397,
+              "macro_recall": 0.5533333333333333,
+              "macro_f1": 0.5042222222222222
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -2333,7 +2673,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.41333333333333333,
+              "macro_recall": 0.4666666666666667,
+              "macro_f1": 0.43362193362193363
             },
             "Engineering": {
               "n_records": 25,
@@ -2360,7 +2703,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.12,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.62,
+              "macro_recall": 0.76,
+              "macro_f1": 0.6496898812688287
             },
             "Finance": {
               "n_records": 15,
@@ -2387,7 +2733,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.48666666666666664,
+              "macro_recall": 0.5333333333333333,
+              "macro_f1": 0.5037037037037038
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -2414,7 +2763,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.4666666666666667,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4592592592592593
             },
             "Security": {
               "n_records": 15,
@@ -2441,7 +2793,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.7207936507936508,
+              "macro_recall": 0.8074074074074074,
+              "macro_f1": 0.7258465608465609
             }
           },
           "by_sensitivity": {
@@ -2470,7 +2825,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.10416666666666667,
                 "tier_3": 0.020833333333333332
-              }
+              },
+              "macro_precision": 0.763718240962074,
+              "macro_recall": 0.8957264957264959,
+              "macro_f1": 0.8061238546399838
             },
             "LOW": {
               "n_records": 13,
@@ -2497,7 +2855,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.23076923076923078,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.48333333333333334,
+              "macro_recall": 0.48518518518518516,
+              "macro_f1": 0.4710317460317461
             },
             "MEDIUM": {
               "n_records": 39,
@@ -2524,7 +2885,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.02564102564102564,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.8160281385281386,
+              "macro_recall": 0.8953968253968255,
+              "macro_f1": 0.8415461518176258
             }
           }
         },
@@ -4511,6 +4875,161 @@
             "tier_2": 0.11,
             "tier_3": 0.1
           },
+          "macro_precision": 0.8945817986996476,
+          "macro_recall": 0.9125567838090523,
+          "macro_f1": 0.8881865582994145,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 24,
+              "tp": 24,
+              "fp": 0,
+              "fn": 5,
+              "precision": 1.0,
+              "recall": 0.8275862068965517,
+              "f1": 0.9056603773584906
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 9,
+              "tp": 7,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.7777777777777778,
+              "recall": 1.0,
+              "f1": 0.8750000000000001
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 28,
+              "tp": 27,
+              "fp": 1,
+              "fn": 3,
+              "precision": 0.9642857142857143,
+              "recall": 0.9,
+              "f1": 0.9310344827586207
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 11,
+              "tp": 11,
+              "fp": 0,
+              "fn": 8,
+              "precision": 1.0,
+              "recall": 0.5789473684210527,
+              "f1": 0.7333333333333334
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 21,
+              "tp": 21,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.9545454545454546,
+              "f1": 0.9767441860465117
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 8,
+              "tp": 6,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1": 0.8571428571428571
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 19,
+              "tp": 12,
+              "fp": 7,
+              "fn": 0,
+              "precision": 0.631578947368421,
+              "recall": 1.0,
+              "f1": 0.7741935483870968
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 50,
+              "tp": 43,
+              "fp": 7,
+              "fn": 1,
+              "precision": 0.86,
+              "recall": 0.9772727272727273,
+              "f1": 0.9148936170212766
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 16,
+              "tp": 15,
+              "fp": 1,
+              "fn": 5,
+              "precision": 0.9375,
+              "recall": 0.75,
+              "f1": 0.8333333333333334
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 9,
+              "tp": 8,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.8888888888888888,
+              "recall": 1.0,
+              "f1": 0.9411764705882353
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 7,
+              "tp": 7,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.7,
+              "f1": 0.8235294117647058
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 23,
+              "tp": 14,
+              "fp": 9,
+              "fn": 0,
+              "precision": 0.6086956521739131,
+              "recall": 1.0,
+              "f1": 0.7567567567567568
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -4537,7 +5056,10 @@
                 "tier_1": 0.05,
                 "tier_2": 0.05,
                 "tier_3": 0.3
-              }
+              },
+              "macro_precision": 0.5777777777777778,
+              "macro_recall": 0.5148717948717949,
+              "macro_f1": 0.5303607085346216
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -4564,7 +5086,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.13333333333333333
-              }
+              },
+              "macro_precision": 0.41333333333333333,
+              "macro_recall": 0.43333333333333335,
+              "macro_f1": 0.4113997113997114
             },
             "Engineering": {
               "n_records": 25,
@@ -4591,7 +5116,10 @@
                 "tier_1": 0.04,
                 "tier_2": 0.16,
                 "tier_3": 0.04
-              }
+              },
+              "macro_precision": 0.64,
+              "macro_recall": 0.6804761904761905,
+              "macro_f1": 0.6394663894663893
             },
             "Finance": {
               "n_records": 15,
@@ -4618,7 +5146,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.06666666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.48666666666666664,
+              "macro_recall": 0.5,
+              "macro_f1": 0.4814814814814815
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -4645,7 +5176,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.4666666666666667,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4592592592592593
             },
             "Security": {
               "n_records": 15,
@@ -4672,7 +5206,10 @@
                 "tier_1": 0.13333333333333333,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.7255555555555556,
+              "macro_recall": 0.7807407407407407,
+              "macro_f1": 0.7136243386243386
             }
           },
           "by_sensitivity": {
@@ -4701,7 +5238,10 @@
                 "tier_1": 0.041666666666666664,
                 "tier_2": 0.14583333333333334,
                 "tier_3": 0.0625
-              }
+              },
+              "macro_precision": 0.7890187590187591,
+              "macro_recall": 0.8484715937657115,
+              "macro_f1": 0.7924601813281059
             },
             "LOW": {
               "n_records": 13,
@@ -4728,7 +5268,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.23076923076923078,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4666666666666667,
+              "macro_recall": 0.4185185185185185,
+              "macro_f1": 0.4361111111111111
             },
             "MEDIUM": {
               "n_records": 39,
@@ -4755,7 +5298,10 @@
                 "tier_1": 0.02564102564102564,
                 "tier_2": 0.02564102564102564,
                 "tier_3": 0.1794871794871795
-              }
+              },
+              "macro_precision": 0.8728205128205128,
+              "macro_recall": 0.8482372598162072,
+              "macro_f1": 0.8303936803936803
             }
           }
         },
@@ -6699,6 +7245,161 @@
             "tier_2": 0.09,
             "tier_3": 0.04
           },
+          "macro_precision": 0.8422471177830998,
+          "macro_recall": 0.9613893930227868,
+          "macro_f1": 0.8855469185355187,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 25,
+              "tp": 25,
+              "fp": 0,
+              "fn": 4,
+              "precision": 1.0,
+              "recall": 0.8620689655172413,
+              "f1": 0.9259259259259259
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 10,
+              "tp": 7,
+              "fp": 3,
+              "fn": 0,
+              "precision": 0.7,
+              "recall": 1.0,
+              "f1": 0.8235294117647058
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 30,
+              "tp": 29,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9666666666666667,
+              "recall": 0.9666666666666667,
+              "f1": 0.9666666666666667
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 20,
+              "tp": 16,
+              "fp": 4,
+              "fn": 3,
+              "precision": 0.8,
+              "recall": 0.8421052631578947,
+              "f1": 0.8205128205128205
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 23,
+              "tp": 22,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9565217391304348,
+              "recall": 1.0,
+              "f1": 0.9777777777777777
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 8,
+              "tp": 6,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1": 0.8571428571428571
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 22,
+              "tp": 12,
+              "fp": 10,
+              "fn": 0,
+              "precision": 0.5454545454545454,
+              "recall": 1.0,
+              "f1": 0.7058823529411764
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 56,
+              "tp": 44,
+              "fp": 12,
+              "fn": 0,
+              "precision": 0.7857142857142857,
+              "recall": 1.0,
+              "f1": 0.88
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 16,
+              "tp": 15,
+              "fp": 1,
+              "fn": 5,
+              "precision": 0.9375,
+              "recall": 0.75,
+              "f1": 0.8333333333333334
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 10,
+              "tp": 8,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1": 0.888888888888889
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 11,
+              "tp": 10,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9090909090909091,
+              "recall": 1.0,
+              "f1": 0.9523809523809523
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 29,
+              "tp": 14,
+              "fp": 15,
+              "fn": 0,
+              "precision": 0.4827586206896552,
+              "recall": 1.0,
+              "f1": 0.6511627906976745
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -6725,7 +7426,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.05,
                 "tier_3": 0.15
-              }
+              },
+              "macro_precision": 0.4896825396825397,
+              "macro_recall": 0.5533333333333333,
+              "macro_f1": 0.5042222222222222
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -6752,7 +7456,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.41333333333333333,
+              "macro_recall": 0.4666666666666667,
+              "macro_f1": 0.43362193362193363
             },
             "Engineering": {
               "n_records": 25,
@@ -6779,7 +7486,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.12,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.645,
+              "macro_recall": 0.76,
+              "macro_f1": 0.6674676590466064
             },
             "Finance": {
               "n_records": 15,
@@ -6806,7 +7516,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.48666666666666664,
+              "macro_recall": 0.5333333333333333,
+              "macro_f1": 0.5037037037037038
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -6833,7 +7546,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.4666666666666667,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4592592592592593
             },
             "Security": {
               "n_records": 15,
@@ -6860,7 +7576,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.7207936507936508,
+              "macro_recall": 0.8074074074074074,
+              "macro_f1": 0.7258465608465609
             }
           },
           "by_sensitivity": {
@@ -6889,7 +7608,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.10416666666666667,
                 "tier_3": 0.020833333333333332
-              }
+              },
+              "macro_precision": 0.7541944314382645,
+              "macro_recall": 0.8957264957264959,
+              "macro_f1": 0.8019280504441796
             },
             "LOW": {
               "n_records": 13,
@@ -6916,7 +7638,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.23076923076923078,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.48333333333333334,
+              "macro_recall": 0.48518518518518516,
+              "macro_f1": 0.4710317460317461
             },
             "MEDIUM": {
               "n_records": 39,
@@ -6943,7 +7668,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.02564102564102564,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.8160281385281386,
+              "macro_recall": 0.8953968253968255,
+              "macro_f1": 0.8415461518176258
             }
           }
         },
@@ -8935,6 +9663,161 @@
             "tier_2": 0.09,
             "tier_3": 0.03
           },
+          "macro_precision": 0.8156221378247864,
+          "macro_recall": 0.9648981649526114,
+          "macro_f1": 0.8719895580216365,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 25,
+              "tp": 25,
+              "fp": 0,
+              "fn": 4,
+              "precision": 1.0,
+              "recall": 0.8620689655172413,
+              "f1": 0.9259259259259259
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 10,
+              "tp": 7,
+              "fp": 3,
+              "fn": 0,
+              "precision": 0.7,
+              "recall": 1.0,
+              "f1": 0.8235294117647058
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 35,
+              "tp": 29,
+              "fp": 6,
+              "fn": 1,
+              "precision": 0.8285714285714286,
+              "recall": 0.9666666666666667,
+              "f1": 0.8923076923076922
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 27,
+              "tp": 17,
+              "fp": 10,
+              "fn": 2,
+              "precision": 0.6296296296296297,
+              "recall": 0.8947368421052632,
+              "f1": 0.7391304347826088
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 23,
+              "tp": 22,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9565217391304348,
+              "recall": 1.0,
+              "f1": 0.9777777777777777
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 8,
+              "tp": 6,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1": 0.8571428571428571
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 22,
+              "tp": 12,
+              "fp": 10,
+              "fn": 0,
+              "precision": 0.5454545454545454,
+              "recall": 1.0,
+              "f1": 0.7058823529411764
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 56,
+              "tp": 44,
+              "fp": 12,
+              "fn": 0,
+              "precision": 0.7857142857142857,
+              "recall": 1.0,
+              "f1": 0.88
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 16,
+              "tp": 15,
+              "fp": 1,
+              "fn": 5,
+              "precision": 0.9375,
+              "recall": 0.75,
+              "f1": 0.8333333333333334
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 10,
+              "tp": 8,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1": 0.888888888888889
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 11,
+              "tp": 10,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9090909090909091,
+              "recall": 1.0,
+              "f1": 0.9523809523809523
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 11,
+              "tp": 10,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9090909090909091,
+              "recall": 1.0,
+              "f1": 0.9523809523809523
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 29,
+              "tp": 14,
+              "fp": 15,
+              "fn": 0,
+              "precision": 0.4827586206896552,
+              "recall": 1.0,
+              "f1": 0.6511627906976745
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -8961,7 +9844,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.05,
                 "tier_3": 0.15
-              }
+              },
+              "macro_precision": 0.4896825396825397,
+              "macro_recall": 0.5533333333333333,
+              "macro_f1": 0.5042222222222222
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -8988,7 +9874,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.38,
+              "macro_recall": 0.4666666666666667,
+              "macro_f1": 0.4113997113997114
             },
             "Engineering": {
               "n_records": 25,
@@ -9015,7 +9904,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.12,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.5957575757575757,
+              "macro_recall": 0.76,
+              "macro_f1": 0.6348750664540138
             },
             "Finance": {
               "n_records": 15,
@@ -9042,7 +9934,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.48666666666666664,
+              "macro_recall": 0.5333333333333333,
+              "macro_f1": 0.5037037037037038
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -9069,7 +9964,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.49333333333333335,
+              "macro_recall": 0.52,
+              "macro_f1": 0.5001949317738792
             },
             "Security": {
               "n_records": 15,
@@ -9096,7 +9994,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.6874603174603174,
+              "macro_recall": 0.8074074074074074,
+              "macro_f1": 0.7036243386243386
             }
           },
           "by_sensitivity": {
@@ -9125,7 +10026,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.10416666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.7234404631842962,
+              "macro_recall": 0.906837606837607,
+              "macro_f1": 0.7860521700521701
             },
             "LOW": {
               "n_records": 13,
@@ -9152,7 +10056,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.23076923076923078,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4738095238095238,
+              "macro_recall": 0.48518518518518516,
+              "macro_f1": 0.4659035409035409
             },
             "MEDIUM": {
               "n_records": 39,
@@ -9179,7 +10086,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.02564102564102564,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.7957900432900432,
+              "macro_recall": 0.8953968253968255,
+              "macro_f1": 0.8310136891112501
             }
           }
         },
@@ -11198,6 +12108,161 @@
             "tier_2": 0.09,
             "tier_3": 0.01
           },
+          "macro_precision": 0.6964963807191676,
+          "macro_recall": 0.9706291591046582,
+          "macro_f1": 0.7696645984944545,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 25,
+              "tp": 25,
+              "fp": 0,
+              "fn": 4,
+              "precision": 1.0,
+              "recall": 0.8620689655172413,
+              "f1": 0.9259259259259259
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 10,
+              "tp": 7,
+              "fp": 3,
+              "fn": 0,
+              "precision": 0.7,
+              "recall": 1.0,
+              "f1": 0.8235294117647058
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 86,
+              "tp": 30,
+              "fp": 56,
+              "fn": 0,
+              "precision": 0.3488372093023256,
+              "recall": 1.0,
+              "f1": 0.5172413793103449
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 81,
+              "tp": 18,
+              "fp": 63,
+              "fn": 1,
+              "precision": 0.2222222222222222,
+              "recall": 0.9473684210526315,
+              "f1": 0.36
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 24,
+              "tp": 22,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.9166666666666666,
+              "recall": 1.0,
+              "f1": 0.9565217391304348
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 9,
+              "tp": 6,
+              "fp": 3,
+              "fn": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1": 0.8
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 23,
+              "tp": 12,
+              "fp": 11,
+              "fn": 0,
+              "precision": 0.5217391304347826,
+              "recall": 1.0,
+              "f1": 0.6857142857142856
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 56,
+              "tp": 44,
+              "fp": 12,
+              "fn": 0,
+              "precision": 0.7857142857142857,
+              "recall": 1.0,
+              "f1": 0.88
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 16,
+              "tp": 15,
+              "fp": 1,
+              "fn": 5,
+              "precision": 0.9375,
+              "recall": 0.75,
+              "f1": 0.8333333333333334
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 10,
+              "tp": 8,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1": 0.888888888888889
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 11,
+              "tp": 10,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9090909090909091,
+              "recall": 1.0,
+              "f1": 0.9523809523809523
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 64,
+              "tp": 10,
+              "fp": 54,
+              "fn": 0,
+              "precision": 0.15625,
+              "recall": 1.0,
+              "f1": 0.2702702702702703
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 29,
+              "tp": 14,
+              "fp": 15,
+              "fn": 0,
+              "precision": 0.4827586206896552,
+              "recall": 1.0,
+              "f1": 0.6511627906976745
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -11224,7 +12289,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.05,
                 "tier_3": 0.05
-              }
+              },
+              "macro_precision": 0.3901587301587302,
+              "macro_recall": 0.575,
+              "macro_f1": 0.4466748066748067
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -11251,7 +12319,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.3671794871794871,
+              "macro_recall": 0.4666666666666667,
+              "macro_f1": 0.39832781597487477
             },
             "Engineering": {
               "n_records": 25,
@@ -11278,7 +12349,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.12,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.5022222222222221,
+              "macro_recall": 0.76,
+              "macro_f1": 0.5486978177767651
             },
             "Finance": {
               "n_records": 15,
@@ -11305,7 +12379,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.44857142857142857,
+              "macro_recall": 0.5333333333333333,
+              "macro_f1": 0.4814814814814815
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -11332,7 +12409,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.44095238095238093,
+              "macro_recall": 0.52,
+              "macro_f1": 0.45423533581428327
             },
             "Security": {
               "n_records": 15,
@@ -11359,7 +12439,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.5726455026455027,
+              "macro_recall": 0.8074074074074074,
+              "macro_f1": 0.5968796992481202
             }
           },
           "by_sensitivity": {
@@ -11388,7 +12471,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.10416666666666667,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.6150644179661456,
+              "macro_recall": 0.906837606837607,
+              "macro_f1": 0.6904734783523725
             },
             "LOW": {
               "n_records": 13,
@@ -11415,7 +12501,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.23076923076923078,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.38504273504273506,
+              "macro_recall": 0.48518518518518516,
+              "macro_f1": 0.3936925647451963
             },
             "MEDIUM": {
               "n_records": 39,
@@ -11442,7 +12531,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.02564102564102564,
                 "tier_3": 0.02564102564102564
-              }
+              },
+              "macro_precision": 0.6807126694492286,
+              "macro_recall": 0.9104761904761905,
+              "macro_f1": 0.735791807435588
             }
           }
         },
@@ -13819,6 +14911,161 @@
             "tier_2": 0.09,
             "tier_3": 0.04
           },
+          "macro_precision": 0.8651119566479386,
+          "macro_recall": 0.9398742415076352,
+          "macro_f1": 0.8857256986992801,
+          "per_permission": {
+            "github_read": {
+              "n_positives": 29,
+              "n_predicted": 25,
+              "tp": 25,
+              "fp": 0,
+              "fn": 4,
+              "precision": 1.0,
+              "recall": 0.8620689655172413,
+              "f1": 0.9259259259259259
+            },
+            "pull_request_create": {
+              "n_positives": 1,
+              "n_predicted": 1,
+              "tp": 1,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "code_execute": {
+              "n_positives": 7,
+              "n_predicted": 10,
+              "tp": 7,
+              "fp": 3,
+              "fn": 0,
+              "precision": 0.7,
+              "recall": 1.0,
+              "f1": 0.8235294117647058
+            },
+            "confluence_read": {
+              "n_positives": 30,
+              "n_predicted": 30,
+              "tp": 29,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.9666666666666667,
+              "recall": 0.9666666666666667,
+              "f1": 0.9666666666666667
+            },
+            "jira_read": {
+              "n_positives": 19,
+              "n_predicted": 18,
+              "tp": 16,
+              "fp": 2,
+              "fn": 3,
+              "precision": 0.8888888888888888,
+              "recall": 0.8421052631578947,
+              "f1": 0.8648648648648649
+            },
+            "jira_write": {
+              "n_positives": 22,
+              "n_predicted": 23,
+              "tp": 22,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.9565217391304348,
+              "recall": 1.0,
+              "f1": 0.9777777777777777
+            },
+            "slack_read": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "slack_write": {
+              "n_positives": 6,
+              "n_predicted": 8,
+              "tp": 6,
+              "fp": 2,
+              "fn": 0,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1": 0.8571428571428571
+            },
+            "salesforce_read": {
+              "n_positives": 12,
+              "n_predicted": 22,
+              "tp": 12,
+              "fp": 10,
+              "fn": 0,
+              "precision": 0.5454545454545454,
+              "recall": 1.0,
+              "f1": 0.7058823529411764
+            },
+            "database_read": {
+              "n_positives": 44,
+              "n_predicted": 50,
+              "tp": 43,
+              "fp": 7,
+              "fn": 1,
+              "precision": 0.86,
+              "recall": 0.9772727272727273,
+              "f1": 0.9148936170212766
+            },
+            "email_read": {
+              "n_positives": 20,
+              "n_predicted": 16,
+              "tp": 15,
+              "fp": 1,
+              "fn": 5,
+              "precision": 0.9375,
+              "recall": 0.75,
+              "f1": 0.8333333333333334
+            },
+            "email_send_external": {
+              "n_positives": 8,
+              "n_predicted": 9,
+              "tp": 8,
+              "fp": 1,
+              "fn": 0,
+              "precision": 0.8888888888888888,
+              "recall": 1.0,
+              "f1": 0.9411764705882353
+            },
+            "http_request": {
+              "n_positives": 10,
+              "n_predicted": 7,
+              "tp": 7,
+              "fp": 0,
+              "fn": 3,
+              "precision": 1.0,
+              "recall": 0.7,
+              "f1": 0.8235294117647058
+            },
+            "file_read_uploaded": {
+              "n_positives": 10,
+              "n_predicted": 10,
+              "tp": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "export_file": {
+              "n_positives": 14,
+              "n_predicted": 29,
+              "tp": 14,
+              "fp": 15,
+              "fn": 0,
+              "precision": 0.4827586206896552,
+              "recall": 1.0,
+              "f1": 0.6511627906976745
+            }
+          },
           "by_department": {
             "Customer Success": {
               "n_records": 20,
@@ -13845,7 +15092,10 @@
                 "tier_1": 0.05,
                 "tier_2": 0.05,
                 "tier_3": 0.15
-              }
+              },
+              "macro_precision": 0.511904761904762,
+              "macro_recall": 0.5482051282051282,
+              "macro_f1": 0.514888888888889
             },
             "Data and Analytics": {
               "n_records": 15,
@@ -13872,7 +15122,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.41333333333333333,
+              "macro_recall": 0.4666666666666667,
+              "macro_f1": 0.43362193362193363
             },
             "Engineering": {
               "n_records": 25,
@@ -13899,7 +15152,10 @@
                 "tier_1": 0.04,
                 "tier_2": 0.12,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.6044444444444446,
+              "macro_recall": 0.6933333333333334,
+              "macro_f1": 0.6219121034910507
             },
             "Finance": {
               "n_records": 15,
@@ -13926,7 +15182,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.0,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.48666666666666664,
+              "macro_recall": 0.5333333333333333,
+              "macro_f1": 0.5037037037037038
             },
             "Legal and Compliance": {
               "n_records": 10,
@@ -13953,7 +15212,10 @@
                 "tier_1": 0.0,
                 "tier_2": 0.1,
                 "tier_3": 0.1
-              }
+              },
+              "macro_precision": 0.4666666666666667,
+              "macro_recall": 0.4533333333333333,
+              "macro_f1": 0.4592592592592593
             },
             "Security": {
               "n_records": 15,
@@ -13980,7 +15242,10 @@
                 "tier_1": 0.13333333333333333,
                 "tier_2": 0.26666666666666666,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.7255555555555556,
+              "macro_recall": 0.7807407407407407,
+              "macro_f1": 0.7136243386243386
             }
           },
           "by_sensitivity": {
@@ -14009,7 +15274,10 @@
                 "tier_1": 0.041666666666666664,
                 "tier_2": 0.10416666666666667,
                 "tier_3": 0.020833333333333332
-              }
+              },
+              "macro_precision": 0.7873357524828113,
+              "macro_recall": 0.8735042735042736,
+              "macro_f1": 0.8057324431164968
             },
             "LOW": {
               "n_records": 13,
@@ -14036,7 +15304,10 @@
                 "tier_1": 0.07692307692307693,
                 "tier_2": 0.23076923076923078,
                 "tier_3": 0.0
-              }
+              },
+              "macro_precision": 0.4166666666666667,
+              "macro_recall": 0.4185185185185185,
+              "macro_f1": 0.4043650793650794
             },
             "MEDIUM": {
               "n_records": 39,
@@ -14063,7 +15334,10 @@
                 "tier_1": 0.02564102564102564,
                 "tier_2": 0.02564102564102564,
                 "tier_3": 0.07692307692307693
-              }
+              },
+              "macro_precision": 0.8184523809523809,
+              "macro_recall": 0.891888053467001,
+              "macro_f1": 0.8412959954699084
             }
           }
         },
