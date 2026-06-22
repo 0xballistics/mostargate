@@ -72,6 +72,15 @@ baseline-claude:
 baseline-claude-refresh:
 	uv run -m mostargate.classifier.baselines --baseline claude --refresh-claude-cache
 
+# Test classifier using existing logits
+sweep-roberta:
+	uv run python -m mostargate.classifier.sweep 
+
+# Test classifier using existing logits excluding email_send_external results (outlier)
+sweep-roberta-exc-email:
+	uv run python -m mostargate.classifier.sweep --exclude email_send_external
+
+
 # ── Cleanup ────────────────────────────────────────────────────────────────────
 clean:
 	zip -r dataset/batches.zip dataset/pass*

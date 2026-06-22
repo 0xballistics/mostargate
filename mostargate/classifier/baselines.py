@@ -32,9 +32,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.multioutput import MultiOutputClassifier
 
-from .. import constants
 from ..experiments.metrics import evaluate, summarise
 from .data import PERMISSIONS, build_label_matrix, load_records
+from .sweep import THRESHOLD_CONFIGS, apply_thresholds_dict
 
 load_dotenv()
 
@@ -42,21 +42,6 @@ HAIKU_MODEL = "claude-haiku-4-5-20251001"
 
 BASELINES_RESULTS_PATH = Path("results/classifier_baselines.json")
 CLAUDE_SCORES_CACHE_PATH = Path("dataset/classifier_artifacts/claude_haiku_scores.json")
-
-
-def _tier_thr(perm: str, t1: float, t2: float, t3: float) -> float:
-    return {1: t1, 2: t2, 3: t3}[constants.TOOL_TIERS[perm]]
-
-
-# Six threshold configurations — same set we will apply to DeBERTa in Phase D
-THRESHOLD_CONFIGS: dict[str, dict[str, float]] = {
-    "static_05":             {p: 0.5 for p in PERMISSIONS},
-    "static_08":             {p: 0.8 for p in PERMISSIONS},
-    "risk_based_07_05_03":   {p: _tier_thr(p, 0.7, 0.5, 0.3) for p in PERMISSIONS},
-    "risk_based_06_04_02":   {p: _tier_thr(p, 0.6, 0.4, 0.2) for p in PERMISSIONS},
-    "risk_based_05_03_01":   {p: _tier_thr(p, 0.5, 0.3, 0.1) for p in PERMISSIONS},
-    "risk_based_08_06_04":   {p: _tier_thr(p, 0.8, 0.6, 0.4) for p in PERMISSIONS},
-}
 
 
 def _update_baselines_file(key: str, entry: dict) -> None:
@@ -273,19 +258,6 @@ def run_claude_haiku(test_records: list[dict]) -> tuple[list[dict], dict]:
     }
 
 
-def apply_threshold(
-    scores: list[dict],
-    threshold_map: dict,
-    test_records: list[dict],
-) -> list[dict]:
-    """Apply a per-permission threshold dict to cached scores; return EvalResults."""
-    results = []
-    for i, record in enumerate(test_records):
-        granted = {p for p in PERMISSIONS if scores[i].get(p, 0.0) >= threshold_map[p]}
-        results.append(evaluate(record, granted))
-    return results
-
-
 def parse_response(text: str) -> dict:
     """Robust parse: strip fences, find outermost JSON object."""
     text = text.strip()
@@ -348,7 +320,7 @@ def run_baseline_claude(
 
     configurations: dict = {}
     for name, thr_map in THRESHOLD_CONFIGS.items():
-        results = apply_threshold(scores, thr_map, test_records)
+        results = apply_thresholds_dict(scores, thr_map, test_records)
         configurations[name] = {
             "config": thr_map,
             "summary": summarise(results),

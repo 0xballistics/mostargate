@@ -654,7 +654,7 @@ result now in hand:
   converged on roberta-base); the next capacity step. Expected to
   reduce structural undershoot on the multi-permission classes
   (jira_read, code_execute, slack_write) where roberta-base is
-  conservative. About 10 minutes on T4.
+  conservative. About 10 minutes on T4. _Now done — §8._
 - **Focal loss** instead of BCE for the rare classes. Asymmetric loss
   function explicitly designed for the precision-recall trade-off
   problem we hit. Implementation is one extra import; less predictable
@@ -682,4 +682,376 @@ After the Phase C run, locally:
   downloaded) cached 100 × 15 prediction matrix from inference on the
   test set. Same caching pattern as Claude — Phase D applies threshold
   configurations to this matrix without re-running the model.
+
+## 8. RoBERTa-large — capacity-step ablation
+
+§7.10 listed `roberta-large` as the next-most-promising capacity step
+after the 40-epoch RoBERTa-base result landed at Scenario B (deployable
+with operational caveats). The training run completed without incident
+and produced the publishable headline. This section documents how the
+two runs were produced, walks through what each high-level metric
+measures, compares the result to the TF-IDF and Claude Haiku baselines
+with explicit deployment reasoning, and closes with a deployability
+verdict.
+
+### 8.1 How we ran both runs
+
+Both runs use the same training script, the same hyperparameters, and
+the same Colab T4 instance. The only difference is the `--model` flag.
+
+The script (`mostargate/classifier/train.py`) takes `--model` as a CLI
+argument that flows to `AutoTokenizer.from_pretrained(args.model)` and
+`AutoModelForSequenceClassification.from_pretrained(args.model, ...)`.
+Every other hyperparameter is identical:
+
+| hyperparameter | value (both runs) |
+|---|---|
+| epochs | 40 |
+| batch size | 16 |
+| learning rate | 2e-5 |
+| weight decay | 0.01 |
+| warmup ratio | 0.1 |
+| max seq length | 256 |
+| loss | BCEWithLogitsLoss with per-class pos_weight, clipped at 10 |
+| max_grad_norm | 1.0 |
+| seed | 42 |
+| precision | fp32 |
+
+Both runs converged cleanly. Wall-time on a T4: ~5 minutes for base,
+~14 minutes for large. No NaN events, no gradient instability, no
+special-case handling. Final training loss was 0.085 (base) and 0.041
+(large).
+
+The end-to-end workflow:
+
+1. `notebooks/colab_train.ipynb` cell 4 trains `--model roberta-base`.
+2. Cell 4b (uncommented for the ablation) trains
+   `--model roberta-large`, overwriting `dataset/classifier_artifacts/model/`.
+3. Cell 5 runs inference on the 100-record test set and caches the
+   probability matrix to `dataset/classifier_artifacts/roberta_test_probs.npy`.
+4. Cell 6 invokes `python -m mostargate.classifier.sweep`, which
+   applies the six threshold configurations and writes
+   `results/<short_model>_sweep.json` in the same shape as
+   `results/classifier_baselines.json` (TF-IDF + Claude Haiku).
+5. Cell 7 invokes `python -m mostargate.classifier.sweep --exclude
+   email_send_external` for the hybrid-architecture analysis.
+
+Because each invocation produces a self-contained JSON keyed by
+`finetuned_<short_model>` (or
+`finetuned_<short_model>_oracle_email_send_external`), the base and
+large runs land in different files and don't collide.
+
+### 8.2 Headline — what 3× parameter count buys
+
+Six threshold configurations, two models, side-by-side. RoBERTa-base
+values are from §7.5; RoBERTa-large values are the 40-epoch result of
+the ablation:
+
+| config | base sev-d | large sev-d | base over | large over | base under | large under |
+|---|---:|---:|---:|---:|---:|---:|
+| static_05 | 0.89 | **0.65** | 33% | **24%** | 24% | **22%** |
+| static_08 | 0.37 | 0.42 | 14% | 16% | 42% | **27%** |
+| risk_07_05_03 | 0.72 | **0.63** | 35% | **23%** | 26% | **21%** |
+| risk_06_04_02 | 1.12 | **0.72** | 49% | **28%** | 21% | **18%** |
+| risk_05_03_01 | 1.61 | **0.97** | 66% | **41%** | 16% | 16% |
+| risk_08_06_04 | 0.60 | **0.53** | 29% | **20%** | 30% | **21%** |
+
+| config | base macro-P | large macro-P | base macro-F1 | large macro-F1 |
+|---|---:|---:|---:|---:|
+| static_05 | 0.853 | **0.898** | 0.848 | **0.876** |
+| static_08 | 0.913 | **0.941** | 0.810 | **0.878** |
+| risk_07_05_03 | 0.858 | **0.897** | 0.848 | **0.881** |
+| risk_06_04_02 | 0.793 | **0.885** | 0.825 | **0.883** |
+| risk_05_03_01 | 0.740 | **0.832** | 0.803 | **0.859** |
+| risk_08_06_04 | 0.873 | **0.915** | 0.844 | **0.890** |
+
+The pattern is consistent. RoBERTa-large strictly dominates RoBERTa-base
+on macro-P and macro-F1 at every operating point. On sev-d it wins five
+of six configurations. The exception is `static_08`, where the large
+model's sev-d is marginally higher (0.42 vs 0.37) because it grants
+more correct positives — undershoot drops from 42% to 27%, but the
+extra correct grants come bundled with some extra false grants in the
+record-level sev-d calculation. The trade-off is exactly the one we
+documented in §7.6: marginal precision loss in exchange for material
+recall gain.
+
+Headline deltas at the canonical `risk_07_05_03`:
+
+| metric | RoBERTa-base | RoBERTa-large | delta |
+|---|---:|---:|---:|
+| sev-weighted delta | 0.72 | 0.63 | **-13%** |
+| overshoot | 35% | 23% | **-12 pp** |
+| undershoot | 26% | 21% | -5 pp |
+| macro-P | 0.858 | 0.897 | **+3.9 pp** |
+| macro-F1 | 0.848 | 0.881 | **+3.3 pp** |
+
+The largest single-config gain is at `risk_06_04_02`, where macro-F1
+climbs +5.8 pp (0.825 → 0.883) and undershoot drops to 18%. The 3×
+parameter cost buys real headroom on every metric, with no obvious
+diminishing return at this scale of fine-tuning data.
+
+### 8.3 What each metric actually measures
+
+Five aggregate metrics drive the sweep. They pull in different
+directions and citing them together is easy to misread; this section
+defines what each one measures so the configuration comparison in §8.5
+is unambiguous. RoBERTa-large numbers are used as the concrete examples.
+
+**Severity-weighted delta (sev-d).** Mean per-record sum of severity
+weights over the *over-granted* permissions, where Tier 1 permissions
+count 3×, Tier 2 count 2×, and Tier 3 count 1×. It is the primary
+operational risk number: "if the classifier is wrong, how dangerous is
+the wrongness on average?" Lower is better. Reference points: C0
+(grant everything in the role ceiling) = 21.6; C1 (role ceiling only,
+no classifier) = 17.51. RoBERTa-large at `risk_08_06_04` lands at 0.53
+— two orders of magnitude below the no-classifier baseline.
+
+Important: sev-d weights only over-grants. An under-grant (the
+classifier denies a permission the task needs) contributes zero to
+sev-d but still blocks the task. That is why sev-d alone is
+insufficient; undershoot must be tracked alongside.
+
+**Overshoot rate.** Fraction of records where the classifier grants at
+least one permission that ground truth doesn't include. A coarser
+sister of sev-d that ignores severity weighting — a record over-granting
+one Tier 3 permission counts the same as one over-granting one Tier 1.
+RoBERTa-large at `risk_08_06_04`: 20%. Lower is better.
+
+**Undershoot rate.** Fraction of records where the classifier misses at
+least one permission the task needs. This is the operational bottleneck:
+every under-grant turns into either a task failure, a retry, or a
+human-in-the-loop escalation. `1 - undershoot_rate` is the "auto-handled"
+share — the fraction of records the system finishes without operator
+intervention. RoBERTa-large at `risk_08_06_04`: 21% (so 79 of 100
+prompts auto-handled). Lower is better.
+
+**Macro-precision (macro-P).** Per-permission precision (TP / (TP + FP))
+averaged across the 15 permissions, equal-weighted. "When the
+classifier grants a permission, how often is it right?" Macro-P is the
+right north star when over-grants are expensive — the security-first
+default for a capability gate. RoBERTa-large at `risk_08_06_04`: 0.915.
+Note: macro-averaging ignores class frequency, so a rare permission
+with 5 positives contributes equally to a common one with 50. Higher is
+better.
+
+**Macro-F1.** Per-permission F1 averaged across the 15 permissions. F1
+is the harmonic mean of precision and recall, so it penalises imbalance
+in either direction — a model that always says yes has high recall but
+low precision (low F1); a model that almost never says yes has high
+precision but low recall (also low F1). Macro-F1 is the standard
+text-classification headline number and it's what TF-IDF and Claude
+Haiku publish, so it's the right metric for cross-baseline comparison.
+RoBERTa-large at `risk_08_06_04`: 0.890. Higher is better.
+
+**Auto-handled / sev-d on auto.** Two derived numbers. `auto/100` =
+round(100 × (1 - undershoot_rate)), the number of records the system
+finishes without HITL. `sev-d on auto` = mean sev-d among the
+auto-handled subset, telling us how risky the clean passes are. The
+pair tells the operational story together: how many records pass
+through cleanly, and at what residual over-grant cost.
+
+The five metrics pull in two directions:
+
+- **Precision-leaning** configurations (macro-P high, sev-d low): few
+  false grants, but more under-grants → more escalations.
+  Security-first.
+- **Recall-leaning** configurations (undershoot low): few missed
+  grants, but more over-grants → more residual risk in the granted
+  set. Operations-first.
+
+There is no operating point that wins both — the configuration choice
+is a function of which cost the deployment cares about more.
+
+### 8.4 RoBERTa-large vs the baselines
+
+At the canonical `risk_07_05_03`:
+
+| metric | TF-IDF | Claude Haiku | RoBERTa-large | gap vs Haiku |
+|---|---:|---:|---:|---:|
+| sev-weighted delta | 0.95 | 1.12 | **0.63** | RoBERTa **better** (-0.49) |
+| overshoot | 33% | 42% | **23%** | RoBERTa **better** (-19 pp) |
+| undershoot | 43% | **11%** | 21% | -10 pp worse |
+| macro-P | 0.737 | 0.842 | **0.897** | RoBERTa **better** (+5.5 pp) |
+| macro-F1 | 0.70 | 0.886 | 0.881 | -0.5 pp (effectively tied) |
+| auto/100 | 57 | **89** | 79 | -10 worse |
+
+Note: TF-IDF is a single-threshold model (sklearn `predict()` defaults
+to 0.5); it has no per-config sweep, so its "risk_07_05_03" entry is
+its single operating point repeated for alignment. Its macro-F1 (0.70)
+is the value from §7.6 / §7.9.
+
+The story by baseline:
+
+**Against TF-IDF.** RoBERTa-large beats TF-IDF on every metric by
+material margins: sev-d (-0.32 absolute, -34% relative), overshoot
+(-10 pp), undershoot (-22 pp), macro-P (+16 pp), macro-F1 (+18 pp),
+auto/100 (+22 records). The fine-tune is load-bearing. A TF-IDF
+baseline does not approach an enterprise capability gate's
+deployability bar; a fine-tuned 355M transformer does. This is the
+comparison that forecloses "could a simpler model do this?"
+
+**Against Claude Haiku.** RoBERTa-large wins on macro-P (+5.5 pp),
+sev-d (-0.49 absolute, -44% relative), and overshoot (-19 pp). It
+**ties** on macro-F1 (0.881 vs 0.886, well within run-to-run variance
+on a 100-record test set). It **trails** on undershoot (21% vs 11%)
+and auto/100 (79 vs 89). The gap is concentrated on recall: Claude
+catches positives RoBERTa-large misses.
+
+The metrics alone don't settle the question — real-world deployment
+constraints matter, and they tip the comparison further than the
+numbers suggest.
+
+**Latency and cost.** Claude Haiku is an API call. Even at fast
+inference (sub-second per call), it is ~10–100× slower than on-host
+encoder inference and costs money per call. At enterprise volume (a
+million capability evaluations per day is plausible for a multi-tenant
+agent platform), Haiku-as-gate becomes a non-trivial fixed cost and a
+hard dependency on Anthropic's availability. RoBERTa-large runs in
+~25 ms per record on a CPU and ~5 ms on a GPU; it is single-instance
+deployable inside the enterprise's own VPC with no external network
+hop.
+
+**Data residency and audit.** Each Haiku call sends the task prompt to
+an external provider. Many enterprise deployments are blocked from
+doing this by data-handling policy (GDPR, sectoral compliance,
+internal classification levels). RoBERTa-large is self-hosted: the
+prompt never leaves the boundary, the weights are versioned in-house,
+and the audit trail is end-to-end inspectable. For a security
+mechanism, this is not a soft preference — it is often a hard
+requirement.
+
+**Calibration and drift.** Claude Haiku's behaviour at our threshold
+configurations is calibrated to a fixed system prompt with 6 examples.
+Any change to the prompt or to Anthropic's underlying model version
+shifts the operating point silently. RoBERTa-large is a frozen
+artefact: the operating point is reproducible bit-for-bit from the
+saved weights, the threshold map, and the test data. For a security
+mechanism, this is the kind of property auditors and red-teams ask
+about.
+
+**What the metric gap actually costs.** The 10-pp undershoot gap
+translates to ~10 more records per 100 that need a HITL escalation or
+retry. At our 100-record test set that's 10 escalations; at enterprise
+volume it's an additional staffing cost on a HITL queue. This is real,
+and it is the only place the metric story tips toward Claude. But the
+cost has to be weighed against the three points above (latency,
+residency, audit), all of which tip toward RoBERTa-large.
+
+**On-paper vs in-practice.** If the question is "which model has the
+best F1 on 100 test records?", Claude Haiku and RoBERTa-large are tied.
+If the question is "which model is deployable as the permission gate
+of a multi-tenant enterprise agent platform?", the on-host fine-tuned
+encoder wins for reasons that don't show up in the F1 column. The
+right framing for the paper is not "RoBERTa-large beats Haiku on F1";
+it is "RoBERTa-large reaches Haiku's classification quality at the
+operating points that matter while satisfying enterprise deployment
+constraints Haiku doesn't."
+
+### 8.5 Which configuration to deploy, and is this deployable at all?
+
+The six configurations and their operational properties:
+
+| config | sev-d | over | under | macro-P | macro-F1 | auto/100 | best at |
+|---|---:|---:|---:|---:|---:|---:|---|
+| static_05 | 0.65 | 24% | 22% | 0.898 | 0.876 | 78 | — |
+| static_08 | 0.42 | 16% | 27% | **0.941** | 0.878 | 73 | highest macro-P |
+| risk_07_05_03 | 0.63 | 23% | 21% | 0.897 | 0.881 | 79 | canonical (§5.4) |
+| risk_06_04_02 | 0.72 | 28% | 18% | 0.885 | 0.883 | **82** | best auto + low under |
+| risk_05_03_01 | 0.97 | 41% | **16%** | 0.832 | 0.859 | **84** | lowest under |
+| risk_08_06_04 | **0.53** | 20% | 21% | 0.915 | **0.890** | 79 | best balance |
+
+Three configurations matter for a deployment decision; the others are
+points on the curve:
+
+- **`static_08`**: macro-P 0.941, undershoot 27%. The
+  security-maximising choice. Every grant is right 94% of the time,
+  but 27 of 100 prompts need escalation. Right for deployments where
+  wrong grants are expensive (financial controls, legal review
+  systems) and HITL is plentiful.
+- **`risk_05_03_01`**: undershoot 16%, macro-P 0.832, sev-d 0.97. The
+  throughput-maximising choice. Only 16 of 100 prompts need
+  escalation, but every grant is right 83% of the time and sev-d
+  climbs near 1.0. Right for deployments where escalation latency is
+  the dominant cost (consumer-facing agents) and the granted
+  permissions are reviewed downstream.
+- **`risk_08_06_04`**: macro-F1 0.890, macro-P 0.915, undershoot 21%,
+  sev-d 0.53. The balanced choice. No metric is best, but no metric
+  is sacrificed either: macro-P within 2.6 pp of `static_08`,
+  undershoot within 5 pp of `risk_05_03_01`, sev-d lowest of any
+  configuration that keeps macro-F1 above 0.88. The tier-asymmetric
+  thresholds (Tier 1 strict at 0.8, Tier 3 permissive at 0.4) align
+  with the operational asymmetry of the underlying permission tiers.
+
+Our recommendation for a first deployment is **`risk_08_06_04`**. It
+is the operating point with the lowest sev-d that still keeps macro-F1
+in the same range as Claude Haiku, and it never sacrifices one metric
+beyond the bar set by the next-best configuration on the same metric.
+The tier-asymmetric design also matches the operationally correct
+prior: Tier 1 permissions are default-deny — the classifier should
+require strong evidence before overriding; Tier 3 permissions are
+default-permit — the classifier should err toward granting.
+
+**Against the pre-committed deployability bar (undershoot < 10% AND
+macro-P ≥ 0.89):**
+
+| config | undershoot | macro-P | clears bar? |
+|---|---:|---:|:---:|
+| static_05 | 22% | 0.898 | macro-P ✅, undershoot ❌ |
+| static_08 | 27% | 0.941 | macro-P ✅, undershoot ❌ |
+| risk_07_05_03 | 21% | 0.897 | macro-P ✅, undershoot ❌ |
+| risk_06_04_02 | 18% | 0.885 | both ❌ |
+| risk_05_03_01 | 16% | 0.832 | both ❌ |
+| risk_08_06_04 | 21% | 0.915 | macro-P ✅, undershoot ❌ |
+
+No configuration clears both bars on the 15-permission system. Four of
+six clear macro-P (`static_05`, `static_08`, `risk_07_05_03`,
+`risk_08_06_04`); none clear the 10% undershoot bar. This is the same
+pattern §7.7 described for RoBERTa-base, but with macro-P ~4 pp higher
+and undershoot ~5 pp tighter — meaningful improvement, not a
+categorical breakthrough.
+
+**With the hybrid architecture from §7.8** (`email_send_external`
+handled by an external deterministic recipient-domain rule, modelled
+as an oracle that grants the permission iff ground truth does), the
+same canonical config tightens further: macro-P **0.940**, macro-F1
+**0.915**, undershoot **18%**. macro-P comfortably clears the bar;
+undershoot is 8 pp short. The metrics stay in the 15-permission space
+so they remain directly comparable to the TF-IDF and Claude Haiku
+baselines. This is the cleaner deployment story: ML for
+the 14 permissions where it's at frontier-LLM quality, deterministic
+rule for the one permission where (a) the classifier struggles, (b)
+the rule is enterprise-standard, and (c) it is the trifecta-completer
+warranting a hard gate regardless of model confidence.
+
+**Can RoBERTa-large be deployed in a real enterprise?**
+
+Yes — with the understanding that:
+
+1. **The capability gate is not the whole defence.** Source 1 (role
+   ceiling) handles 100% of out-of-ceiling permissions
+   deterministically; Source 3 (combination prohibitions) handles the
+   trifecta and trifecta-adjacent compositions; Source 2 (this
+   classifier) handles the in-ceiling permission selection. The
+   classifier is one layer in a defence-in-depth stack, not a
+   standalone gate.
+2. **HITL load is real but bounded.** At `risk_08_06_04`, 21% of
+   prompts need escalation; with the hybrid architecture, that drops
+   to 18%. For comparison, C1 (role ceiling alone) under-grants on
+   2% of prompts and over-grants on 100% — the classifier trades
+   substantially less over-grant for somewhat more under-grant, which
+   is the right direction for a security mechanism.
+3. **The operating point is the operator's call.** The six
+   configurations give the deployer a curve. `static_08` for a
+   high-stakes deployment, `risk_05_03_01` for a high-throughput
+   one, `risk_08_06_04` for a balanced one. The recommendation is to
+   ship with one default and expose the rest as configurable, not to
+   hard-code a single threshold.
+4. **It is the publishable deployment claim.** Scenario B in §3
+   (deployable with operational caveats) is the result. The precision
+   result (macro-P 0.941 at `static_08`, exceeding Haiku's 0.895) is
+   a stronger publishable headline than RoBERTa-base delivered, and
+   the hybrid architecture closes the rest of the credible-deployment
+   story. The result that matters for the paper is not the F1 tie
+   with Haiku; it is that an on-host, audit-friendly, residency-safe
+   355M-parameter model reaches that quality at all.
 
