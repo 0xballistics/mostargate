@@ -212,3 +212,6 @@ __marimo__/
 # the weights are reproducible from the training script.
 dataset/classifier_artifacts/*.zip
 dataset/classifier_artifacts/model
+
+
+.claude
